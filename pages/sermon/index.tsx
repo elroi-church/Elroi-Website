@@ -1,10 +1,13 @@
 import { FunctionComponent } from "react";
+import MainLayout from "../../components/commons/layouts/MainLayout";
 
 const Sermon: FunctionComponent = () => {
   return (
-    <div>
-      <h1>Sermon</h1>
-    </div>
+    <>
+      <MainLayout>
+        <h1>Sermon</h1>
+      </MainLayout>
+    </>
   );
 };
 

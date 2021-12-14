@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const NavFooter: FunctionComponent = () => {
   return (
-    <footer className="py-5 relative w-full">
+    <footer className="py-5 relative w-full border-t-2">
       <div className="container px-4 mx-auto">
         <div className="flex flex-wrap -mx-4 mb-8 lg:mb-16">
           <div className="w-full lg:w-1/3 px-4 mb-12 lg:mb-0">
