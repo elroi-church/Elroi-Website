@@ -44,7 +44,7 @@ const Navbar: FunctionComponent = () => {
           <li>
             <a
               className={`text-sm text-black-400 ${
-                path.toLowerCase() === "home" || router.pathname === "/"
+                path.toLowerCase() === "home" || router.pathname === "/" || path.toLowerCase() === "giving"
                   ? isActive
                   : "hover:text-gray-500"
               }`}
@@ -62,7 +62,7 @@ const Navbar: FunctionComponent = () => {
                   ? isActive
                   : "hover:text-gray-500"
               }`}
-              href="javascript:void(0);"
+              href="#"
               onClick={() =>
                 router.push("/about", undefined, { shallow: true })
               }
@@ -78,7 +78,7 @@ const Navbar: FunctionComponent = () => {
                   ? isActive
                   : "hover:text-gray-500"
               }`}
-              href="javascript:void(0);"
+              href="#"
               onClick={() =>
                 router.push("/sermon", undefined, { shallow: true })
               }
