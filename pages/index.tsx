@@ -1,14 +1,25 @@
 import type { NextPage } from "next";
 import MainLayout from "../components/commons/layouts/MainLayout";
+import { BsGift } from "react-icons/bs";
+import {
+  AiOutlineCalendar,
+  AiFillYoutube,
+  AiOutlineInstagram,
+} from "react-icons/ai";
+import { HiOutlineUsers } from "react-icons/hi";
+import { FaFacebook, FaTiktok } from "react-icons/fa";
+import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
+  const router = useRouter();
   return (
     <>
       <MainLayout>
         <section
-          className="pb-10 bg-top bg-cover bg-no-repeat"
+          className="pb-10 bg-center bg-cover"
           style={{
             backgroundImage: 'url("/assets/img/banner_home.png")',
+            height: '60vh'
           }}
         >
           <div className="container px-4 mx-auto">
@@ -45,78 +56,273 @@ const Home: NextPage = () => {
             </div>
           </div>
         </section>
-        <section className="relative py-20">
-          <div className="container px-4 mx-auto mb-10 lg:mb-0">
-            <div className="w-full lg:w-1/2">
-              <div className="flex flex-wrap lg:h-96 sm:max-w-md">
-                <div className="flex mb-2 items-center justify-center">
-                  <a className="text-xs text-gray-200" href="#">
-                    Home
-                  </a>
-                  <svg
-                    className="w-3 h-3 mx-1 text-gray-200"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                  <a className="text-xs text-gray-200" href="#">
-                    Blog
-                  </a>
-                  <svg
-                    className="w-3 h-3 mx-1 text-gray-200"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                  <a className="text-xs text-gray-200" href="#">
-                    Article
-                  </a>
-                </div>
-                <h2 className="mb-6 text-4xl lg:text-5xl font-bold font-heading">
-                  Lorem ipsum dolor sit amet consectutar domor at elis
-                </h2>
-                <div className="flex items-center justify-center">
-                  <div className="mr-6">
-                    <img
-                      className="w-16 h-16 object-cover rounded-full"
-                      src="mockup-assets/images/gray-300-avatar.png"
-                      alt=""
-                    />
+        <section className="lg:flex my-8 w-full lg:justify-between">
+          <div className="relative lg:w-1/3 w-full">
+            <div className="h-48 w-full overflow-hidden mb-3 rounded-r-[30px] shadow-lg">
+              <img src="/assets/img/card_home.png" className="w-full" />
+              <div className="h-full w-full absolute opacity-70"></div>
+              <div className="pl-5 mb-8 w-full absolute bottom-0">
+                <h1 className="text-white font-extrabold text-2xl">
+                  KASIH ALLAH
+                </h1>
+                <p className="text-white font-extralight">
+                  Apa yang terlintas di otakmu jika mendengar kata Kasih?
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="relative lg:w-1/3 w-full lg:mx-4">
+            <div className="h-48 w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
+              <img src="/assets/img/card_home.png" className="w-full" />
+              <div className="h-full w-full absolute opacity-70"></div>
+              <div className="pl-5 mb-8 w-full absolute bottom-0">
+                <h1 className="text-white font-extrabold text-2xl">
+                  IMAN YANG TEGUH
+                </h1>
+                <p className="text-white font-extralight">
+                  Apa yang terlintas di otakmu jika mendengar kata Kasih?
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="relative lg:w-1/3 w-full">
+            <div className="h-48 w-full overflow-hidden mb-3 rounded-l-[30px] shadow-lg">
+              <img src="/assets/img/card_home.png" className="w-full" />
+              <div className="h-full w-full absolute opacity-70"></div>
+              <div className="pl-5 mb-8 w-full absolute bottom-0">
+                <h1 className="text-white font-extrabold text-2xl">
+                  KASIH MULA MULA
+                </h1>
+                <p className="text-white font-extralight">
+                  Apa yang terlintas di otakmu jika mendengar kata Kasih?
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="container mx-auto px-4">
+          <div className="lg:flex">
+            <div className="w-full lg:w-3/5 lg:mx-4 h-full">
+              <h2 className="text-3xl font-bold mb-4 ml-8">
+                Be Part Of ERC Family
+              </h2>
+              <div className="relative h-full w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
+                <img src="/assets/img/sub_home.png" className="w-full h-full" />
+                <div className="h-full w-full absolute opacity-70"></div>
+                <div className="pl-5 w-full absolute bottom-8 lg:bottom-12">
+                  <div className="flex justify-between mx-2">
+                    <div>
+                      <h1 className="text-white font-extrabold sm:text-2xl lg:text-4xl">
+                        ERC Family
+                      </h1>
+                      <p className="text-white font-extralight sm:text-sm lg:text-md">
+                        Let’s Join With Us
+                      </p>
+                    </div>
+
+                    <a
+                      className="uppercase py-2 lg:px-9 px-4 rounded-lg sm:mb-0 sm:mr-3 text-[10px] lg:text-sm text-white text-center font-semibold border my-auto"
+                      href="#"
+                    >
+                      Register Now
+                    </a>
                   </div>
-                  <div>
-                    <h3 className="text-2xl font-bold font-heading">
-                      Danny Bailey
-                    </h3>
-                    <p className="text-lg text-gray-500">February 26, 2021</p>
+                </div>
+              </div>
+              <br />
+              <h2 className="text-3xl font-bold mb-4 ml-8">Sermon</h2>
+              <div className="lg:flex">
+                <div
+                  className="relative lg:w-1/3 w-full lg:mx-4 hover:cursor-pointer"
+                  onClick={() =>
+                    window.open("https://www.youtube.com/watch?v=TaAWK66v6rk")
+                  }
+                >
+                  <div className="h-50 w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
+                    <img src="/assets/img/sermon1.png" className="w-full" />
+                    <div className="h-full w-full absolute opacity-70"></div>
+                    <div className="left-4 mb-8 w-full absolute bottom-0">
+                      <h1 className="text-white font-extrabold text-sm">
+                        Joshua Antonius
+                      </h1>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="relative lg:w-1/3 w-full lg:mx-4 hover:cursor-pointer"
+                  onClick={() =>
+                    window.open("https://www.youtube.com/watch?v=TaAWK66v6rk")
+                  }
+                >
+                  <div className="h-50 w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
+                    <img src="/assets/img/sermon1.png" className="w-full" />
+                    <div className="h-full w-full absolute opacity-70"></div>
+                    <div className="left-4 mb-8 w-full absolute bottom-0">
+                      <h1 className="text-white font-extrabold text-sm">
+                        Joshua Antonius
+                      </h1>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="relative lg:w-1/3 w-full lg:mx-4 hover:cursor-pointer"
+                  onClick={() =>
+                    window.open("https://www.youtube.com/watch?v=TaAWK66v6rk")
+                  }
+                >
+                  <div className="h-50 w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
+                    <img src="/assets/img/sermon1.png" className="w-full" />
+                    <div className="h-full w-full absolute opacity-70"></div>
+                    <div className="left-4 mb-8 w-full absolute bottom-0">
+                      <h1 className="text-white font-extrabold text-sm">
+                        Joshua Antonius
+                      </h1>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="lg:absolute lg:top-0 lg:mt-20 lg:pl-8 lg:right-0 lg:w-1/2 h-96">
-            <img
-              className="h-full w-full ml-auto object-cover lg:rounded-l-xl"
-              src="mockup-assets/images/gray-500-horizontal.png"
-              alt=""
-            />
+            <div className="relative w-full lg:w-1/3 lg:mx-4">
+              {/* section 1 */}
+              <div className="mb-4 ml-8">
+                <h2 className="text-3xl font-bold">Get Involved</h2>
+                <h2 className="font-light">See what God can do through you.</h2>
+              </div>
+              <div
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                onClick={() =>
+                  router.push("/giving", undefined, { shallow: true })
+                }
+              >
+                <BsGift className="text-3xl mr-5" />
+                <p className="text-xl">Giving</p>
+              </div>
+              <div
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                onClick={() => {}}
+              >
+                <HiOutlineUsers className="text-3xl mr-5" />
+                <p className="text-xl">Volunteer</p>
+              </div>
+              <div
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                onClick={() => {}}
+              >
+                <AiOutlineCalendar className="text-3xl mr-5" />
+                <p className="text-xl">Cool</p>
+              </div>
+              {/* section 2 */}
+              <br />
+              <div className="mb-4 ml-8">
+                <h2 className="text-3xl font-bold">For Your Family</h2>
+                <h2 className="font-light">Be a Part Of Us</h2>
+              </div>
+              <div
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                onClick={() => {
+                  window.open("https://www.instagram.com/elroi_kidschurch");
+                }}
+              >
+                <img src="/assets/img/Logo_KC.png" className="w-[60px] -ml-6" />
+                <p className="text-xl">Kids Church</p>
+              </div>
+              <div
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                onClick={() => {
+                  window.open("https://www.instagram.com/drp_2.32");
+                }}
+              >
+                <img
+                  src="/assets/img/logo_drp.png"
+                  className="w-[40px] mr-3 -ml-4"
+                />
+                <p className="text-xl">DRP 2.32 (Youth)</p>
+              </div>
+              <div
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                onClick={() => {
+                  window.open(
+                    "https://www.instagram.com/drp_outstanding_teens"
+                  );
+                }}
+              >
+                <img
+                  src="/assets/img/logo_drp2.png"
+                  className="w-[40px] mr-3 -ml-4"
+                />
+                <p className="text-xl">DRP 2.32 Outstanding Teens</p>
+              </div>
+              <div
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                onClick={() => {
+                  window.open("https://www.instagram.com/thesignificantwomen_");
+                }}
+              >
+                <img
+                  src="/assets/img/LOGO_TSW.png"
+                  className="w-[40px] mr-3 -ml-4"
+                />
+                <p className="text-xl">The Signification Woman</p>
+              </div>
+              {/* section 3 */}
+              <br />
+              <div className="mb-4 ml-8">
+                <h2 className="text-3xl font-bold">Stay Connected</h2>
+              </div>
+              <div
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                onClick={() => {
+                  window.open(
+                    "https://www.youtube.com/channel/UCKJVc_tWtCVJLtV0gz0A1fg"
+                  );
+                }}
+              >
+                <AiFillYoutube className="text-3xl mr-8" />
+                <p className="text-xl">Youtube</p>
+              </div>
+              <div
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                onClick={() => {
+                  window.open("https://www.instagram.com/ercsawangan");
+                }}
+              >
+                <AiOutlineInstagram className="text-3xl mr-8" />
+                <p className="text-xl">Instagram</p>
+              </div>
+              <div
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                onClick={() => {
+                  window.open(
+                    "https://www.facebook.com/search/top?q=erc%20sawangan"
+                  );
+                }}
+              >
+                <FaFacebook className="text-3xl mr-8" />
+                <p className="text-xl">Facebook</p>
+              </div>
+              <div
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                onClick={() => {
+                  window.open("https://www.tiktok.com/@drp_2.32");
+                }}
+              >
+                <FaTiktok className="text-3xl mr-8" />
+                <p className="text-xl">Tiktok</p>
+              </div>
+              <div
+                className="w-full overflow-hidden mb-3 relative rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                onClick={() => {}}
+              >
+                <img
+                  src="/assets/img/rcti.png"
+                  className="w-[150px] -ml-14"
+                />
+                <p className="text-xl absolute left-[30%]">RCTI +</p>
+              </div>
+            </div>
           </div>
         </section>
+        <br />
       </MainLayout>
     </>
   );
