@@ -16,9 +16,10 @@ const Home: NextPage = () => {
     <>
       <MainLayout>
         <section
-          className="pb-10 bg-top bg-cover"
+          className="pb-10 bg-center bg-cover"
           style={{
             backgroundImage: 'url("/assets/img/banner_home.png")',
+            height: '60vh'
           }}
         >
           <div className="container px-4 mx-auto">

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 
 // Navbar tailwind component
 const Navbar: FunctionComponent = () => {
@@ -9,6 +9,8 @@ const Navbar: FunctionComponent = () => {
     "/assets/img/about/about3.png",
     "/assets/img/about/about4.png",
   ];
+
+  const [openDropdown, setOpenDropdown] = useState(false);
 
   const isActive =
     "lg:inline-block px-4 bg-primary hover:bg-primary-darker rounded-md transition duration-200";
@@ -44,7 +46,9 @@ const Navbar: FunctionComponent = () => {
           <li>
             <a
               className={`text-sm text-black-400 ${
-                path.toLowerCase() === "home" || router.pathname === "/" || path.toLowerCase() === "giving"
+                path.toLowerCase() === "home" ||
+                router.pathname === "/" ||
+                path.toLowerCase() === "giving"
                   ? isActive
                   : "hover:text-gray-500"
               }`}
@@ -87,10 +91,88 @@ const Navbar: FunctionComponent = () => {
             </a>
           </li>
 
-          <li>
-            <a className="text-sm text-black-400 hover:text-gray-500" href="#">
+          {/* <li>
+            <a
+              className="text-sm text-black-400 hover:text-gray-500"
+              href="#"
+              onClick={() =>
+                router.push("/ministry/baptism", undefined, { shallow: true })
+              }
+            >
               Ministry
             </a>
+          </li> */}
+
+          <li>
+            <div
+              onClick={() => setOpenDropdown(!openDropdown)}
+              className="relative"
+            >
+              <button
+                onClick={() => setOpenDropdown(!openDropdown)}
+                className={`text-sm text-black-400 ${
+                  path.toLowerCase().search('ministry') !== -1
+                    ? isActive
+                    : "hover:text-gray-500"
+                }`}
+              >
+                <span>Ministry</span>
+                <svg
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  className={`${
+                    openDropdown ? "rotate-180" : "rotate-0"
+                  } inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1`}
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              {openDropdown && (
+                <>
+                  <div className="absolute left-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-64">
+                    <div className="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
+                      <a
+                        className="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-primary-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-primary focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                        href="#"
+                        onClick={() =>
+                          router.push("/ministry/baptism", undefined, { shallow: true })
+                        }
+                      >
+                        Water Baptism
+                      </a>
+                      <a
+                        className="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-primary-darker dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-primary focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                        href="#"
+                      >
+                        Pastoral
+                      </a>
+                      <a
+                        className="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-primary-darker dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-primary focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                        href="#"
+                      >
+                        Child Dedication
+                      </a>
+                      <a
+                        className="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-primary-darker dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-primary focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                        href="#"
+                      >
+                        Prayer And Counseling
+                      </a>
+                      <a
+                        className="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-primary-darker dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-primary focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                        href="#"
+                      >
+                        ETC
+                      </a>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
           </li>
 
           <li>
