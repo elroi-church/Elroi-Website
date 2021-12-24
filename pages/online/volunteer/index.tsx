@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Banner from "../../../components/commons/banner";
 import MainLayout from "../../../components/commons/layouts/MainLayout";
 
-const index: NextPage = () => {
+const Volunter: NextPage = () => {
   const [state, setstate] = useState("online");
 
   const detail = [
@@ -58,7 +58,7 @@ const index: NextPage = () => {
                     <div className="w-[60vw] mx-auto flex">
                       <div className="lg:w-1/2 w-full">
                         <div className="h-fit w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
-                          <img src={`${detail.imgUrl}`} className="w-full" />
+                          <img src={`${detail.imgUrl}`} className="w-full" alt="" />
                         </div>
                       </div>
                       <div className="w-1/2 my-auto ml-[8%] text-left">
@@ -90,7 +90,7 @@ const index: NextPage = () => {
                       </div>
                       <div className="lg:w-1/2 w-full">
                         <div className="h-fit w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
-                          <img src={`${detail.imgUrl}`} className="w-full" />
+                          <img src={`${detail.imgUrl}`} className="w-full" alt="" />
                         </div>
                       </div>
                     </div>
@@ -105,4 +105,4 @@ const index: NextPage = () => {
   );
 };
 
-export default index;
+export default Volunter;
