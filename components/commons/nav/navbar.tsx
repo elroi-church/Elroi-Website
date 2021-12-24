@@ -229,6 +229,9 @@ const Navbar: FunctionComponent = () => {
         <a
           className="hidden lg:inline-block py-2 px-8 text-sm text-white bg-primary hover:bg-primary-darker font-bold rounded-md transition duration-200"
           href="#"
+          onClick={() => router.push("/auth/login", undefined, {
+            shallow: true,
+          })}
         >
           Sign In
         </a>

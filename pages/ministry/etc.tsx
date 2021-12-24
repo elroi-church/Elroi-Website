@@ -69,7 +69,7 @@ const etc: NextPage = () => {
                     <>
                       <div className="lg:w-1/2 w-full">
                         <div className="h-fit w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
-                          <img src={`${detail.imgUrl}`} className="w-full" />
+                          <img src={`${detail.imgUrl}`} className="w-full" alt="" />
                         </div>
                       </div>
                       <div className="w-1/2 my-auto ml-[8%] text-left">
@@ -85,7 +85,7 @@ const etc: NextPage = () => {
                       </div>
                       <div className="lg:w-1/2 w-full">
                         <div className="h-fit w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
-                          <img src={`${detail.imgUrl}`} className="w-full" />
+                          <img src={`${detail.imgUrl}`} className="w-full" alt="" />
                         </div>
                       </div>
                     </>
