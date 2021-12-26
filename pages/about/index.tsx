@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
-import MainLayout from "../../components/commons/layouts/MainLayout";
-import Navbar from "../../components/commons/nav/navbar";
+import MainLayout from "../../core/components/commons/layouts/MainLayout";
+import Navbar from "../../core/components/commons/nav/navbar";
 
 const index: FunctionComponent = () => {
   const containerImage = [
@@ -127,7 +127,6 @@ const index: FunctionComponent = () => {
             </div>
           </div>
         </section>
-
       </MainLayout>
     </>
   );

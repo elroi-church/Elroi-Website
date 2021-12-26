@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 // Navbar tailwind component
 const Navbar: FunctionComponent = () => {
@@ -11,6 +12,12 @@ const Navbar: FunctionComponent = () => {
   ];
 
   const [openDropdown, setOpenDropdown] = useState(false);
+
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    console.log(session);
+  }, [session]);
 
   const isActive =
     "lg:inline-block px-4 bg-primary hover:bg-primary-darker rounded-md transition duration-200";
@@ -42,7 +49,7 @@ const Navbar: FunctionComponent = () => {
             </svg>
           </button>
         </div>
-        <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
+        <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
           <li>
             <a
               className={`text-sm text-black-400 ${
@@ -111,7 +118,7 @@ const Navbar: FunctionComponent = () => {
               <button
                 onClick={() => setOpenDropdown(!openDropdown)}
                 className={`text-sm text-black-400 ${
-                  path.toLowerCase().search('ministry') !== -1
+                  path.toLowerCase().search("ministry") !== -1
                     ? isActive
                     : "hover:text-gray-500"
                 }`}
@@ -139,7 +146,9 @@ const Navbar: FunctionComponent = () => {
                         className="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-primary-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-primary focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                         href="#"
                         onClick={() =>
-                          router.push("/ministry/baptism", undefined, { shallow: true })
+                          router.push("/ministry/baptism", undefined, {
+                            shallow: true,
+                          })
                         }
                       >
                         Water Baptism
@@ -193,12 +202,23 @@ const Navbar: FunctionComponent = () => {
             </a>
           </li>
         </ul>
-        <a
-          className="hidden lg:inline-block py-2 px-8 text-sm text-white bg-primary hover:bg-primary-darker font-bold rounded-md transition duration-200"
-          href="#"
-        >
-          Sign In
-        </a>
+        {session && session.user ? (
+          <a
+            className="hidden lg:inline-block py-2 px-8 text-sm text-white bg-primary hover:bg-primary-darker font-bold rounded-md transition duration-200"
+            href="#"
+            onClick={() => signOut()}
+          >
+            Sign Out
+          </a>
+        ) : (
+          <a
+            className="hidden lg:inline-block py-2 px-8 text-sm text-white bg-primary hover:bg-primary-darker font-bold rounded-md transition duration-200"
+            href="#"
+            onClick={() => signIn()}
+          >
+            Sign In
+          </a>
+        )}
       </nav>
       <div className="hidden navbar-menu fixed top-0 left-0 bottom-0 w-5/6 max-w-sm z-50">
         <div className="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25" />
@@ -296,12 +316,21 @@ const Navbar: FunctionComponent = () => {
           </div>
           <div className="mt-auto">
             <div className="pt-6">
-              <a
-                className="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl"
-                href="#"
-              >
-                Sign in
-              </a>
+              {session && session.user ? (
+                <a
+                  className="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold  bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl"
+                  onClick={() => signOut()}
+                >
+                  Sign Out
+                </a>
+              ) : (
+                <a
+                  className="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold  bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl"
+                  onClick={() => signIn()}
+                >
+                  Sign In
+                </a>
+              )}
             </div>
             <p className="my-4 text-xs text-center text-gray-400">
               <span>© 2020 All rights reserved.</span>

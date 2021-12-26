@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import MainLayout from "../../components/commons/layouts/MainLayout";
+import MainLayout from "../../core/components/commons/layouts/MainLayout";
 
 const Giving: NextPage = () => {
   return (
