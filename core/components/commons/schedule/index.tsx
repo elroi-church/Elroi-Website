@@ -3,7 +3,7 @@ import React from "react";
 import TermConditions, { TermType } from "../termConditions";
 
 const Schedule: NextPage<PropsSchedule> = (props: PropsSchedule) => {
-  const { titleSchedule, imgUrl, payload = [], bgColor = "bg-white" } = props;
+  const { titleSchedule, imgUrl, payload = [], bgColor = "bg-white", termconditions = [],imgUrlTerm } = props;
   return (
     <div className={`${bgColor}`}>
       <h1 className="font-bold text-[50px] text-center px-[80px] py-[120px]">
@@ -30,15 +30,8 @@ const Schedule: NextPage<PropsSchedule> = (props: PropsSchedule) => {
       <div className="py-[50px]"></div>
       <div className="my-[40px]">
         <TermConditions
-          term={[
-            {
-              title: "1. Bawa pas photo berwarna ukuran 3x4 sebanyak 2 lembar",
-            },
-            {
-              title: "2. Bawa materai 10rb;",
-            },
-          ]}
-          imgUrl="/assets/img/schedule/schedule.png"
+          term={termconditions}
+          imgUrl={`${imgUrlTerm}`}
         />
       </div>
       <div className="pb-8"></div>
@@ -54,6 +47,7 @@ interface PropsSchedule {
   bgColor?: string;
   payload?: Array<PayloadType>;
   termconditions?: Array<TermType>;
+  imgUrlTerm?: string;
 }
 
 interface PayloadType {

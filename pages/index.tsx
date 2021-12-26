@@ -58,7 +58,7 @@ const Home: NextPage = () => {
         </section>
         <section className="lg:flex px-5 my-8 w-full lg:justify-between">
           <div className="relative lg:w-1/3 w-full">
-            <div className="h-48 w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
+            <div className="h-48 w-full overflow-hidden mb-3 rounded-r-[30px] shadow-lg">
               <img src="/assets/img/card_home.png" className="w-full" alt="" />
               <div className="h-full w-full absolute opacity-70"></div>
               <div className="pl-5 mb-8 w-full absolute bottom-0">
@@ -86,7 +86,7 @@ const Home: NextPage = () => {
             </div>
           </div>
           <div className="relative lg:w-1/3 w-full">
-            <div className="h-48 w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
+            <div className="h-48 w-full overflow-hidden mb-3 rounded-l-[30px] shadow-lg">
               <img src="/assets/img/card_home.png" className="w-full" alt="" />
               <div className="h-full w-full absolute opacity-70"></div>
               <div className="pl-5 mb-8 w-full absolute bottom-0">
@@ -143,7 +143,11 @@ const Home: NextPage = () => {
                   }
                 >
                   <div className="h-50 w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
-                    <img src="/assets/img/sermon1.png" className="w-full" />
+                    <img
+                      src="/assets/img/sermon1.png"
+                      className="w-full"
+                      alt=""
+                    />
                     <div className="h-full w-full absolute opacity-70"></div>
                     <div className="left-4 mb-8 w-full absolute bottom-0">
                       <h1 className="text-white font-extrabold text-sm">
@@ -159,7 +163,11 @@ const Home: NextPage = () => {
                   }
                 >
                   <div className="h-50 w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
-                    <img src="/assets/img/sermon1.png" className="w-full" />
+                    <img
+                      src="/assets/img/sermon1.png"
+                      className="w-full"
+                      alt=""
+                    />
                     <div className="h-full w-full absolute opacity-70"></div>
                     <div className="left-4 mb-8 w-full absolute bottom-0">
                       <h1 className="text-white font-extrabold text-sm">
@@ -175,7 +183,11 @@ const Home: NextPage = () => {
                   }
                 >
                   <div className="h-50 w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
-                    <img src="/assets/img/sermon1.png" className="w-full" />
+                    <img
+                      src="/assets/img/sermon1.png"
+                      className="w-full"
+                      alt=""
+                    />
                     <div className="h-full w-full absolute opacity-70"></div>
                     <div className="left-4 mb-8 w-full absolute bottom-0">
                       <h1 className="text-white font-extrabold text-sm">
@@ -193,7 +205,7 @@ const Home: NextPage = () => {
                 <h2 className="font-light">See what God can do through you.</h2>
               </div>
               <div
-                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 sm:mr-3 text-sm text-center font-semibold my-auto flex items-center transition duration-400"
                 onClick={() =>
                   router.push("/giving", undefined, { shallow: true })
                 }
@@ -202,14 +214,14 @@ const Home: NextPage = () => {
                 <p className="text-xl">Giving</p>
               </div>
               <div
-                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 sm:mr-3 text-sm text-center font-semibold my-auto flex items-center transition duration-400"
                 onClick={() => {}}
               >
                 <HiOutlineUsers className="text-3xl mr-5" />
                 <p className="text-xl">Volunteer</p>
               </div>
               <div
-                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 sm:mr-3 text-sm text-center font-semibold my-auto flex items-center transition duration-400"
                 onClick={() => {}}
               >
                 <AiOutlineCalendar className="text-3xl mr-5" />
@@ -222,16 +234,20 @@ const Home: NextPage = () => {
                 <h2 className="font-light">Be a Part Of Us</h2>
               </div>
               <div
-                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 sm:mr-3 text-sm text-center font-semibold my-auto flex items-center transition duration-400"
                 onClick={() => {
                   window.open("https://www.instagram.com/elroi_kidschurch");
                 }}
               >
-                <img src="/assets/img/Logo_KC.png" className="w-[60px] -ml-6" />
+                <img
+                  src="/assets/img/Logo_KC.png"
+                  className="w-[60px] -ml-6"
+                  alt=""
+                />
                 <p className="text-xl">Kids Church</p>
               </div>
               <div
-                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 sm:mr-3 text-sm text-center font-semibold my-auto flex items-center transition duration-400"
                 onClick={() => {
                   window.open("https://www.instagram.com/drp_2.32");
                 }}
@@ -239,11 +255,12 @@ const Home: NextPage = () => {
                 <img
                   src="/assets/img/logo_drp.png"
                   className="w-[40px] mr-3 -ml-4"
+                  alt=""
                 />
                 <p className="text-xl">DRP 2.32 (Youth)</p>
               </div>
               <div
-                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 sm:mr-3 text-sm text-center font-semibold my-auto flex items-center transition duration-400"
                 onClick={() => {
                   window.open(
                     "https://www.instagram.com/drp_outstanding_teens"
@@ -253,11 +270,12 @@ const Home: NextPage = () => {
                 <img
                   src="/assets/img/logo_drp2.png"
                   className="w-[40px] mr-3 -ml-4"
+                  alt=""
                 />
                 <p className="text-xl">DRP 2.32 Outstanding Teens</p>
               </div>
               <div
-                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 sm:mr-3 text-sm text-center font-semibold my-auto flex items-center transition duration-400"
                 onClick={() => {
                   window.open("https://www.instagram.com/thesignificantwomen_");
                 }}
@@ -265,6 +283,7 @@ const Home: NextPage = () => {
                 <img
                   src="/assets/img/LOGO_TSW.png"
                   className="w-[40px] mr-3 -ml-4"
+                  alt=""
                 />
                 <p className="text-xl">The Signification Woman</p>
               </div>
@@ -274,7 +293,7 @@ const Home: NextPage = () => {
                 <h2 className="text-3xl font-bold">Stay Connected</h2>
               </div>
               <div
-                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 sm:mr-3 text-sm text-center font-semibold my-auto flex items-center transition duration-400"
                 onClick={() => {
                   window.open(
                     "https://www.youtube.com/channel/UCKJVc_tWtCVJLtV0gz0A1fg"
@@ -285,7 +304,7 @@ const Home: NextPage = () => {
                 <p className="text-xl">Youtube</p>
               </div>
               <div
-                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 sm:mr-3 text-sm text-center font-semibold my-auto flex items-center transition duration-400"
                 onClick={() => {
                   window.open("https://www.instagram.com/ercsawangan");
                 }}
@@ -294,7 +313,7 @@ const Home: NextPage = () => {
                 <p className="text-xl">Instagram</p>
               </div>
               <div
-                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 sm:mr-3 text-sm text-center font-semibold my-auto flex items-center transition duration-400"
                 onClick={() => {
                   window.open(
                     "https://www.facebook.com/search/top?q=erc%20sawangan"
@@ -305,7 +324,7 @@ const Home: NextPage = () => {
                 <p className="text-xl">Facebook</p>
               </div>
               <div
-                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                className="w-full overflow-hidden mb-3 rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 sm:mr-3 text-sm text-center font-semibold my-auto flex items-center transition duration-400"
                 onClick={() => {
                   window.open("https://www.tiktok.com/@drp_2.32");
                 }}
@@ -314,10 +333,14 @@ const Home: NextPage = () => {
                 <p className="text-xl">Tiktok</p>
               </div>
               <div
-                className="w-full overflow-hidden mb-3 relative rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 rounded-lg sm:mr-3 text-sm w-full text-center font-semibold my-auto flex items-center transition duration-400"
+                className="w-full overflow-hidden mb-3 relative rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 sm:mr-3 text-sm text-center font-semibold my-auto flex items-center transition duration-400"
                 onClick={() => {}}
               >
-                <img src="/assets/img/rcti.png" className="w-[150px] -ml-14" />
+                <img
+                  src="/assets/img/rcti.png"
+                  className="w-[150px] -ml-14"
+                  alt=""
+                />
                 <p className="text-xl absolute left-[30%]">RCTI +</p>
               </div>
             </div>

@@ -22,6 +22,18 @@ const baptism: NextPage = () => {
             },
             { title: "Water Baptism", subtitle: "1 January 2022" },
           ]}
+          imgUrlTerm="/assets/img/schedule/schedule.png"
+          termconditions={[
+            {
+              title: "1. Bawa pas photo berwarna ukuran 3x4 sebanyak 2 lembar.",
+            },
+            {
+              title: "2. Bawa materai 10rb.",
+            },
+            {
+              title: "3. Bawa handuk, dan baju ganti.",
+            },
+          ]}
         />
       </MainLayout>
     </>

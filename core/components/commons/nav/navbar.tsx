@@ -156,24 +156,48 @@ const Navbar: FunctionComponent = () => {
                       <a
                         className="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-primary-darker dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-primary focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                         href="#"
+                        onClick={() =>
+                          router.push("/ministry/pastoral", undefined, {
+                            shallow: true,
+                          })
+                        }
                       >
                         Pastoral
                       </a>
                       <a
                         className="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-primary-darker dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-primary focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                         href="#"
+                        onClick={() =>
+                          router.push("/ministry/child_dedication", undefined, {
+                            shallow: true,
+                          })
+                        }
                       >
                         Child Dedication
                       </a>
                       <a
                         className="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-primary-darker dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-primary focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                         href="#"
+                        onClick={() =>
+                          router.push(
+                            "/ministry/prayer_counseling",
+                            undefined,
+                            {
+                              shallow: true,
+                            }
+                          )
+                        }
                       >
                         Prayer And Counseling
                       </a>
                       <a
                         className="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-primary-darker dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-primary focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                         href="#"
+                        onClick={() =>
+                          router.push("/ministry/etc", undefined, {
+                            shallow: true,
+                          })
+                        }
                       >
                         ETC
                       </a>
@@ -185,7 +209,14 @@ const Navbar: FunctionComponent = () => {
           </li>
 
           <li>
-            <a className="text-sm text-black-400 hover:text-gray-500" href="#">
+            <a
+              className={`text-sm text-black-400 ${
+                path.toLowerCase().search("online") !== -1
+                  ? isActive
+                  : "hover:text-gray-500"
+              }`}
+              href="#"
+            >
               Online
             </a>
           </li>
@@ -214,7 +245,11 @@ const Navbar: FunctionComponent = () => {
           <a
             className="hidden lg:inline-block py-2 px-8 text-sm text-white bg-primary hover:bg-primary-darker font-bold rounded-md transition duration-200"
             href="#"
-            onClick={() => signIn()}
+            onClick={() =>
+              router.push("/auth/login", undefined, {
+                shallow: true,
+              })
+            }
           >
             Sign In
           </a>
