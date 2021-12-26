@@ -28,7 +28,7 @@ const Navbar: FunctionComponent = () => {
 
   return (
     <>
-      <nav className="relative px-6 mx-12 flex justify-between items-center bg-white">
+      <nav className="relative lg:px-6 lg:mx-12 flex justify-between items-center bg-white">
         <a className="text-3xl font-bold leading-none" href="#">
           <img
             className="h-20 pt-2"
