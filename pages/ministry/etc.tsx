@@ -1,8 +1,8 @@
 import { NextPage } from "next";
 import React from "react";
 import { AiOutlineInstagram } from "react-icons/ai";
-import Banner from "../../components/commons/banner";
-import MainLayout from "../../components/commons/layouts/MainLayout";
+import Banner from "../../core/components/commons/banner";
+import MainLayout from "../../core/components/commons/layouts/MainLayout";
 
 const etc: NextPage = () => {
   const detail = [
@@ -60,7 +60,9 @@ const etc: NextPage = () => {
           </div>
         </div>
         <div className="mt-10">
-          <h2 className="font-bold mx-auto text-3xl text-center">WHAT WE’VE DONE</h2>
+          <h2 className="font-bold mx-auto text-3xl text-center">
+            WHAT WE’VE DONE
+          </h2>
           {detail?.map((detail, index) => {
             return (
               <>
@@ -69,7 +71,11 @@ const etc: NextPage = () => {
                     <>
                       <div className="lg:w-1/2 w-full">
                         <div className="h-fit w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
-                          <img src={`${detail.imgUrl}`} className="w-full" alt="" />
+                          <img
+                            src={`${detail.imgUrl}`}
+                            className="w-full"
+                            alt=""
+                          />
                         </div>
                       </div>
                       <div className="w-1/2 my-auto ml-[8%] text-left">
@@ -85,7 +91,11 @@ const etc: NextPage = () => {
                       </div>
                       <div className="lg:w-1/2 w-full">
                         <div className="h-fit w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
-                          <img src={`${detail.imgUrl}`} className="w-full" alt="" />
+                          <img
+                            src={`${detail.imgUrl}`}
+                            className="w-full"
+                            alt=""
+                          />
                         </div>
                       </div>
                     </>

@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import React from "react";
-import Banner from "../../components/commons/banner";
-import MainLayout from "../../components/commons/layouts/MainLayout";
+import Banner from "../../core/components/commons/banner";
+import MainLayout from "../../core/components/commons/layouts/MainLayout";
 
 const pastoral: NextPage = () => {
   const detail = [
@@ -40,7 +40,11 @@ const pastoral: NextPage = () => {
                   <>
                     <div className="lg:w-1/2 w-full">
                       <div className="h-fit w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
-                        <img src={`${detail.imgUrl}`} className="w-full" alt=""/>
+                        <img
+                          src={`${detail.imgUrl}`}
+                          className="w-full"
+                          alt=""
+                        />
                       </div>
                     </div>
                     <div className="w-1/2 my-auto ml-[8%] text-right">
@@ -68,7 +72,11 @@ const pastoral: NextPage = () => {
                     </div>
                     <div className="lg:w-1/2 w-full">
                       <div className="h-fit w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
-                        <img src={`${detail.imgUrl}`} className="w-full" alt=""/>
+                        <img
+                          src={`${detail.imgUrl}`}
+                          className="w-full"
+                          alt=""
+                        />
                       </div>
                     </div>
                   </>

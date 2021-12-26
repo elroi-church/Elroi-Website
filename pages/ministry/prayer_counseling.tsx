@@ -1,8 +1,8 @@
 import { NextPage } from "next";
 import React from "react";
 import { BsWhatsapp } from "react-icons/bs";
-import Banner from "../../components/commons/banner";
-import MainLayout from "../../components/commons/layouts/MainLayout";
+import Banner from "../../core/components/commons/banner";
+import MainLayout from "../../core/components/commons/layouts/MainLayout";
 
 const prayer_counseling: NextPage = () => {
   return (
