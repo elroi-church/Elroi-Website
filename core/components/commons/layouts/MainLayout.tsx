@@ -6,10 +6,10 @@ const MainLayout: FunctionComponent<ReactNode> = ({ children }) => {
   return (
     <>
       <Navbar />
-      <div className="main-layout">
+      <main className="main-layout min-h-screen">
         {children}
         {/* <div className="main-layout__content">{children}</div> */}
-      </div>
+      </main>
       <NavFooter />
     </>
   );

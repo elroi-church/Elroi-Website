@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import MainLayout from "../components/commons/layouts/MainLayout";
+import MainLayout from "../core/components/commons/layouts/MainLayout";
 import { BsGift } from "react-icons/bs";
 import {
   AiOutlineCalendar,
@@ -56,7 +56,7 @@ const Home: NextPage = () => {
             </div>
           </div>
         </section>
-        <section className="lg:flex my-8 w-full lg:justify-between">
+        <section className="lg:flex px-5 my-8 w-full lg:justify-between">
           <div className="relative lg:w-1/3 w-full">
             <div className="h-48 w-full overflow-hidden mb-3 rounded-r-[30px] shadow-lg">
               <img src="/assets/img/card_home.png" className="w-full" alt="" />
@@ -107,7 +107,11 @@ const Home: NextPage = () => {
                 Be Part Of ERC Family
               </h2>
               <div className="relative h-full w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
-                <img src="/assets/img/sub_home.png" className="w-full h-full" alt=""/>
+                <img
+                  src="/assets/img/sub_home.png"
+                  className="w-full h-full"
+                  alt=""
+                />
                 <div className="h-full w-full absolute opacity-70"></div>
                 <div className="pl-5 w-full absolute bottom-8 lg:bottom-12">
                   <div className="flex justify-between mx-2">
@@ -139,7 +143,11 @@ const Home: NextPage = () => {
                   }
                 >
                   <div className="h-50 w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
-                    <img src="/assets/img/sermon1.png" className="w-full" alt=""/>
+                    <img
+                      src="/assets/img/sermon1.png"
+                      className="w-full"
+                      alt=""
+                    />
                     <div className="h-full w-full absolute opacity-70"></div>
                     <div className="left-4 mb-8 w-full absolute bottom-0">
                       <h1 className="text-white font-extrabold text-sm">
@@ -155,7 +163,11 @@ const Home: NextPage = () => {
                   }
                 >
                   <div className="h-50 w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
-                    <img src="/assets/img/sermon1.png" className="w-full" alt=""/>
+                    <img
+                      src="/assets/img/sermon1.png"
+                      className="w-full"
+                      alt=""
+                    />
                     <div className="h-full w-full absolute opacity-70"></div>
                     <div className="left-4 mb-8 w-full absolute bottom-0">
                       <h1 className="text-white font-extrabold text-sm">
@@ -171,7 +183,11 @@ const Home: NextPage = () => {
                   }
                 >
                   <div className="h-50 w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
-                    <img src="/assets/img/sermon1.png" className="w-full" alt=""/>
+                    <img
+                      src="/assets/img/sermon1.png"
+                      className="w-full"
+                      alt=""
+                    />
                     <div className="h-full w-full absolute opacity-70"></div>
                     <div className="left-4 mb-8 w-full absolute bottom-0">
                       <h1 className="text-white font-extrabold text-sm">
@@ -223,7 +239,11 @@ const Home: NextPage = () => {
                   window.open("https://www.instagram.com/elroi_kidschurch");
                 }}
               >
-                <img src="/assets/img/Logo_KC.png" className="w-[60px] -ml-6" alt="" />
+                <img
+                  src="/assets/img/Logo_KC.png"
+                  className="w-[60px] -ml-6"
+                  alt=""
+                />
                 <p className="text-xl">Kids Church</p>
               </div>
               <div
@@ -316,7 +336,11 @@ const Home: NextPage = () => {
                 className="w-full overflow-hidden mb-3 relative rounded-[30px] shadow-lg bg-[#F4F0F0] hover:bg-[#f0f0f0] hover:cursor-pointer py-3 px-8 sm:mr-3 text-sm text-center font-semibold my-auto flex items-center transition duration-400"
                 onClick={() => {}}
               >
-                <img src="/assets/img/rcti.png" className="w-[150px] -ml-14" alt="" />
+                <img
+                  src="/assets/img/rcti.png"
+                  className="w-[150px] -ml-14"
+                  alt=""
+                />
                 <p className="text-xl absolute left-[30%]">RCTI +</p>
               </div>
             </div>

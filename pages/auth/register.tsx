@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import MainLayout from "../../components/commons/layouts/MainLayout";
+import MainLayout from "../../core/components/commons/layouts/MainLayout";
 
 const Register: NextPage = () => {
   const router = useRouter();

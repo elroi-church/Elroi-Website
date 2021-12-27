@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import MainLayout from "../../components/commons/layouts/MainLayout";
+import MainLayout from "../../core/components/commons/layouts/MainLayout";
 
 const Sermon: FunctionComponent = () => {
   return (

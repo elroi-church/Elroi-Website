@@ -1,8 +1,9 @@
 import type { NextPage } from "next";
-import MainLayout from "../../components/commons/layouts/MainLayout";
+import MainLayout from "../../core/components/commons/layouts/MainLayout";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 
 const Login: NextPage = () => {
   const router = useRouter();
@@ -14,12 +15,12 @@ const Login: NextPage = () => {
           className="pb-10 bg-center bg-cover flex justify-center items-center"
           style={{
             backgroundImage: `url("/assets/img/loginbg.png")`,
-            height: "100vh",
+            height: "100%",
           }}
         >
           <div className="mt-[70px] w-full">
-            <div className="w-1/2 mx-auto">
-              <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div className="w-full lg:w-1/2 px-5 mx-auto">
+              <form className="bg-white shadow-md rounded-2xl px-8 pt-6 pb-8 mb-4">
                 <div className="mb-4">
                   {/* <h2 className="font-bold text-3xl text-center">Log In</h2> */}
                   <img
@@ -80,21 +81,31 @@ const Login: NextPage = () => {
                 <div className="flex items-center flex-col">
                   <p className="font-light">
                     Don’t have an Account ?
-                    <span className="font-semibold hover:cursor-pointer ml-2" onClick={() => router.push("/auth/register", undefined, { shallow: true })}>
+                    <span
+                      className="font-semibold hover:cursor-pointer ml-2"
+                      onClick={() =>
+                        router.push("/auth/register", undefined, {
+                          shallow: true,
+                        })
+                      }
+                    >
                       Sign Up
                     </span>
                   </p>
                   <br />
                   <div className="font-light w-full flex items-center justify-center">
-                    <div className="border mr-2 border border-black w-1/4"></div>
+                    <div className="border mr-2 border-black w-1/4"></div>
                     <span className="font-light hover:cursor-pointer">
                       Or login with
                     </span>
-                    <div className="border ml-2 border border-black w-1/4"></div>
+                    <div className="border ml-2 border-black w-1/4"></div>
                   </div>
                   <br />
                   <div className="flex w-1/4 justify-between">
-                    <FcGoogle className="text-4xl hover:cursor-pointer" />
+                    <FcGoogle
+                      className="text-4xl hover:cursor-pointer"
+                      onClick={() => signIn("google")}
+                    />
                     &nbsp;
                     <FaFacebook className="text-4xl hover:cursor-pointer" />
                   </div>

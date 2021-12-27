@@ -1,8 +1,8 @@
 import { NextPage } from "next";
 import React from "react";
-import Banner from "../../components/commons/banner";
-import MainLayout from "../../components/commons/layouts/MainLayout";
-import Schedule from "../../components/commons/schedule";
+import Banner from "../../core/components/commons/banner";
+import MainLayout from "../../core/components/commons/layouts/MainLayout";
+import Schedule from "../../core/components/commons/schedule";
 
 const baptism: NextPage = () => {
   return (
