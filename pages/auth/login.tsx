@@ -15,12 +15,12 @@ const Login: NextPage = () => {
           className="pb-10 bg-center bg-cover flex justify-center items-center"
           style={{
             backgroundImage: `url("/assets/img/loginbg.png")`,
-            height: "100vh",
+            height: "100%",
           }}
         >
           <div className="mt-[70px] w-full">
-            <div className="w-1/2 mx-auto">
-              <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div className="w-full lg:w-1/2 px-5 mx-auto">
+              <form className="bg-white shadow-md rounded-2xl px-8 pt-6 pb-8 mb-4">
                 <div className="mb-4">
                   {/* <h2 className="font-bold text-3xl text-center">Log In</h2> */}
                   <img

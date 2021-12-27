@@ -36,10 +36,10 @@ const MobileNav: React.FC<Props> = ({ isOpenMenu, menuHandler }) => {
       leaveTo="opacity-0"
     >
       <div
-        className={`block navbar-menu fixed top-0 left-0 bottom-0 w-5/6 max-w-sm z-50`}
+        className={`block navbar-menu fixed top-0 left-0 bottom-0 w-5/6 max-w-sm z-50 `}
       >
         <div className="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25" />
-        <nav className="relative flex flex-col py-6 px-6 h-full w-full bg-white border-r overflow-y-auto">
+        <nav className="relative flex flex-col py-6 px-6 h-full w-full bg-white border-r rounded-r-xl overflow-y-auto">
           <div className="flex items-center mb-2">
             <a className="mr-auto text-3xl font-bold leading-none" href="#">
               <img

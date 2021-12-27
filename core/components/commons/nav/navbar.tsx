@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import React, { FunctionComponent, useEffect, useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import MobileNav from "./MobileNav";
+import ProfileDropdown from "./ProfileDropdown";
 
 // Navbar tailwind component
 const Navbar: FunctionComponent = () => {
@@ -41,7 +42,7 @@ const Navbar: FunctionComponent = () => {
 
   return (
     <>
-      <nav className="relative lg:px-6 lg:mx-12 flex justify-between items-center bg-white">
+      <nav className="relative lg:px-6 lg:mx-12 flex justify-between items-center bg-white ">
         <a className="text-3xl font-bold leading-none" href="#">
           <img
             className="h-20 pt-2"
@@ -250,13 +251,7 @@ const Navbar: FunctionComponent = () => {
           </li>
         </ul>
         {session && session.user ? (
-          <a
-            className="hidden lg:inline-block py-2 px-8 text-sm text-white bg-primary hover:bg-primary-darker font-bold rounded-md transition duration-200"
-            href="#"
-            onClick={() => signOut()}
-          >
-            Sign Out
-          </a>
+          <ProfileDropdown />
         ) : (
           <a
             className="hidden lg:inline-block py-2 px-8 text-sm text-white bg-primary hover:bg-primary-darker font-bold rounded-md transition duration-200"
