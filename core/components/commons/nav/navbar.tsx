@@ -239,13 +239,33 @@ const Navbar: FunctionComponent = () => {
           </li>
 
           <li>
-            <a className="text-sm text-black-400 hover:text-gray-500" href="#">
+            <a
+              className={`text-sm text-black-400 ${
+                path.toLowerCase().search("koperasi") !== -1
+                  ? isActive
+                  : "hover:text-gray-500"
+              }`}
+              href="#"
+              onClick={() =>
+                router.push("/koperasi", undefined, { shallow: true })
+              }
+            >
               Koperasi
             </a>
           </li>
 
           <li>
-            <a className="text-sm text-black-400 hover:text-gray-500" href="#">
+            <a
+              className={`text-sm text-black-400 ${
+                path.toLowerCase().search("colour") !== -1
+                  ? isActive
+                  : "hover:text-gray-500"
+              }`}
+              href="#"
+              onClick={() =>
+                router.push("/colour", undefined, { shallow: true })
+              }
+            >
               Colour
             </a>
           </li>
