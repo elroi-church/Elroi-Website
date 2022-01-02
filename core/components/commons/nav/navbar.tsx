@@ -42,7 +42,7 @@ const Navbar: FunctionComponent = () => {
 
   return (
     <>
-      <nav className="relative lg:px-6 lg:mx-12 flex justify-between items-center bg-white ">
+      <nav className="relative lg:px-[60px] flex justify-between items-center bg-white shadow-lg w-full">
         <a className="text-3xl font-bold leading-none" href="#">
           <img
             className="h-20 pt-2"
@@ -233,6 +233,9 @@ const Navbar: FunctionComponent = () => {
                   : "hover:text-gray-500"
               }`}
               href="#"
+              onClick={() =>
+                router.push("/online", undefined, { shallow: true })
+              }
             >
               Online
             </a>

@@ -165,7 +165,7 @@ const NavFooter: FunctionComponent = () => {
         </div>
         <div className="border-t border-gray-50 pt-8">
           <p className="lg:text-center text-sm text-gray-400">
-            All rights reserved © Elroichurch 2022
+            All rights reserved © Elroichurch {new Date().getFullYear()}
           </p>
         </div>
       </div>
