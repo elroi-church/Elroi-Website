@@ -11,8 +11,8 @@ const TermConditions: NextPage<Term> = (props: Term) => {
           <h1 className="font-bold text-4xl mb-8">Terms & Conditions</h1>
           <div className="block">
             {term.length > 0 &&
-              term.map((data) => {
-                return <p>{data.title}</p>;
+              term.map((data, idx) => {
+                return <p key={idx}>{data.title}</p>;
               })}
 
             <div className="mt-6">
@@ -27,7 +27,7 @@ const TermConditions: NextPage<Term> = (props: Term) => {
         </div>
         <div className="w-1/2">
           <div className="h-fit w-full overflow-hidden mb-3 rounded-l-[30px] shadow-lg">
-            <img src={`${imgUrl}`} className="w-full" />
+            <img src={`${imgUrl}`} className="w-full" alt="Term condition" />
           </div>
         </div>
       </div>

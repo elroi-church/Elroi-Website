@@ -42,7 +42,7 @@ const Navbar: FunctionComponent = () => {
 
   return (
     <>
-      <nav className="relative lg:px-6 lg:mx-12 flex justify-between items-center bg-white ">
+      <nav className="relative lg:px-[60px] flex justify-between items-center bg-white shadow-lg w-full">
         <a className="text-3xl font-bold leading-none" href="#">
           <img
             className="h-20 pt-2"
@@ -233,19 +233,42 @@ const Navbar: FunctionComponent = () => {
                   : "hover:text-gray-500"
               }`}
               href="#"
+              onClick={() =>
+                router.push("/online", undefined, { shallow: true })
+              }
             >
               Online
             </a>
           </li>
 
           <li>
-            <a className="text-sm text-black-400 hover:text-gray-500" href="#">
+            <a
+              className={`text-sm text-black-400 ${
+                path.toLowerCase().search("koperasi") !== -1
+                  ? isActive
+                  : "hover:text-gray-500"
+              }`}
+              href="#"
+              onClick={() =>
+                router.push("/koperasi", undefined, { shallow: true })
+              }
+            >
               Koperasi
             </a>
           </li>
 
           <li>
-            <a className="text-sm text-black-400 hover:text-gray-500" href="#">
+            <a
+              className={`text-sm text-black-400 ${
+                path.toLowerCase().search("colour") !== -1
+                  ? isActive
+                  : "hover:text-gray-500"
+              }`}
+              href="#"
+              onClick={() =>
+                router.push("/colour", undefined, { shallow: true })
+              }
+            >
               Colour
             </a>
           </li>
