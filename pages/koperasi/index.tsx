@@ -38,7 +38,7 @@ const Koperasi: NextPage = () => {
               </div>
               <div>
                 <a
-                  className="block sm:inline-block py-4 px-20 rounded-[35px] mb-4 sm:mb-0 sm:mr-3 text-lg text-white text-center leading-none border"
+                  className="block sm:inline-block py-2 px-20 rounded-[10px] mb-4 sm:mb-0 sm:mr-3 text-lg text-white text-center leading-none border"
                   href="#"
                 >
                   Join Us
@@ -87,9 +87,9 @@ const Koperasi: NextPage = () => {
                 />
               </div>
             </div>
-            <div className="w-1/2 mr-5 my-auto">
-                <h2 className="text-3xl"> PENASEHAT</h2>
-                <p> Ps. M. Riza Solihin</p>
+            <div className="w-1/2 ml-5 my-auto text-left">
+                <h2 className="text-3xl font-semibold"> PENASEHAT</h2>
+                <p className="text-xl"> Ps. M. Riza Solihin</p>
             </div>
           </div>
         </div>

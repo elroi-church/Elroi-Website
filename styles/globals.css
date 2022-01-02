@@ -2,12 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 html,
 body,
 body > div:first-child,
 div#__next,
-div#__next{
+div#__next {
   height: 100%;
+}
+
+.scrolling-wrapper-flexbox {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+.scrolling-wrapper-flexbox .card {
+  flex: 0 0 auto;
+}
+.scrolling-wrapper-flexbox::-webkit-scrollbar {
+  display: none;
 }
