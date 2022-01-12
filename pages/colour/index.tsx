@@ -37,18 +37,23 @@ const Colour: NextPage = () => {
   return (
     <>
       <MainLayout>
-        <Banner title="Colour" imgUrl="/assets/img/colour/colour.png" />
+        <Banner title="The Rainbow" imgUrl="/assets/img/colour/colour.png" />
         <div className="m-auto w-full px-10 my-[150px] text-center">
           <div className="flex justify-between">
-            <div className="text-3xl uppercase font-semibold">my miracle</div>
-            <div className="text-xl text-sky-500 font-light">See More</div>
+            <div className="text-3xl uppercase font-semibold">my sunshine</div>
+            <div className="text-xl text-sky-500 font-light hover:cursor-pointer"
+              onClick={() =>
+                router.push("/colour/detail", undefined, { shallow: true })
+              }>See More</div>
           </div>
           <br />
           <div className="scrolling-wrapper-flexbox">
             {miracle.length &&
               miracle.map((item, idx) => {
                 return (
-                  <div key={idx}>
+                  <div key={idx} className="hover:cursor-pointer" onClick={() =>
+                    router.push(`/colour/detail/${idx}`, undefined, { shallow: true })
+                  }>
                     <div className="w-[25vw] h-[17vw] card overflow-hidden mb-3 mx-3 rounded-[30px] shadow-lg">
                       <img
                         src={`${item.imgUrl}`}
@@ -123,7 +128,9 @@ const Colour: NextPage = () => {
               {miracle.length &&
                 miracle.map((item, idx) => {
                   return (
-                    <div key={idx}>
+                    <div key={idx}  className="hover:cursor-pointer" onClick={() =>
+                      router.push(`/colour/articles/${idx}`, undefined, { shallow: true })
+                    }>
                       <h2 className="text-2xl font-semibold text-left ml-2 mb-4">
                         {item.title}
                       </h2>

@@ -269,7 +269,7 @@ const Navbar: FunctionComponent = () => {
                 router.push("/colour", undefined, { shallow: true })
               }
             >
-              Colour
+              The Rainbow
             </a>
           </li>
         </ul>
