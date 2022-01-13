@@ -10,6 +10,11 @@ const Koperasi: NextPage = () => {
     "Sisa Hasil Usaha",
     "Membantu penjualan produk anggota",
   ];
+  const ketentuanIuran = [
+    "Iuran Dibayar Setiap Bulan",
+    "Besaran Iuran Berpengaruh Signifikan dengan SHU",
+    "Besaran Iuran Berpengaruh pada Sistem Simpan-Pinjam",
+  ];
   return (
     <>
       <MainLayout>
@@ -106,9 +111,27 @@ const Koperasi: NextPage = () => {
         <div className="py-[80px] bg-gray-100">
           <div className="m-auto w-2/3 text-center">
             <h1 className="font-bold text-[50px] mb-3">IURAN ANGGOTA</h1>
-            {uniqueSelling?.map((item, idx) => (
-              <div className="p-5 bg-primary rounded-xl mb-5" key={idx}>
-                <p className="text-2xl font-light text-white">{item}</p>
+
+            <div className="grid grid-cols-3 gap-4">
+              <div className="p-5 bg-primary rounded-xl bg-gray-400">
+                <p className="text-2xl font-semibold text-white">SILVER</p>
+                <p className="text-2xl font-semibold text-white">RP.10.000</p>
+              </div>
+              <div className="p-5 bg-primary rounded-xl bg-[#DAA520]">
+                <p className="text-2xl font-semibold text-white">GOLD</p>
+                <p className="text-2xl font-semibold text-white">RP.30.000</p>
+              </div>
+              <div className="p-5 bg-primary rounded-xl bg-black">
+                <p className="text-2xl font-semibold text-white">PLATINUM</p>
+                <p className="text-2xl font-semibold text-white">RP.50.000</p>
+              </div>
+            </div>
+          </div>
+          <div className="m-auto w-2/3 text-center mt-10">
+            <h1 className="font-bold text-[50px] mb-3">KETENTUAN IURAN</h1>
+            {ketentuanIuran?.map((item, idx) => (
+              <div className="p-5 outline outline-primary rounded-xl mb-5" key={idx}>
+                <p className="text-2xl font-light text-black">{item}</p>
               </div>
             ))}
           </div>
@@ -127,8 +150,8 @@ const Koperasi: NextPage = () => {
                 />
               </div>
             </div>
-            <div className="w-1/2 ml-5 my-auto text-left">
-              <h2 className="text-3xl font-semibold"> PENASEHAT</h2>
+            <div className="w-1/2 ml-10 my-auto text-left">
+              <h2 className="text-3xl font-semibold"> PENASIHAT</h2>
               <p className="text-xl"> Ps. M. Riza Solihin</p>
             </div>
           </div>
