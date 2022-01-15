@@ -11,11 +11,18 @@ const cool: NextPage = () => {
           title="WELCOME TO ERC ONLINE"
           imgUrl="/assets/img/about/about.png"
         />
-        <div className="mx-[80px] my-[30vh] text-center">
-          <div className="w-1/2 m-auto">
-            <h2 className="font-semibold text-[40px]">TAGLINE ONLINE</h2>
-            <p className="text-xl">
-              No Matter Where You Are, You Are Our Family and You Can
+        <div className="mx-[100px] my-[30vh] text-center">
+          <div className="m-auto">
+            <h2 className="font-semibold text-[50px]">TAGLINE <span className="text-primary">ONLINE</span></h2>
+            <p className="text-3xl leading-loose">
+              Pandemi merubah segalanya dan mengharuskan kita untuk beradaptasi.
+              Ini adalah tantangan dan dunia yang baru dengan segala
+              keterbatasan yang ada untuk menjangkau dunia yang besar ini. Kami
+              membutuhkan anda untuk bergabung sesuai dengan ability, skill,
+              calling untuk kita melakukan Kisah Para Rasul 1 ayat 8 yang
+              berkata “Tetapi kamu akan menerima kuasa, kalau Roh Kudus turun ke
+              atas kamu, dan kamu akan menjadi saksi-Ku di Yerusalem dan di
+              seluruh Yudea dan Samaria dan sampai ke ujung bumi.”
             </p>
           </div>
         </div>

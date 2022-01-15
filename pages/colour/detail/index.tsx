@@ -4,7 +4,7 @@ import React from "react";
 import Banner from "../../../core/components/commons/banner";
 import MainLayout from "../../../core/components/commons/layouts/MainLayout";
 
-const ColourArticle: NextPage = () => {
+const ColourDetail: NextPage = () => {
   const router = useRouter();
   const miracle = [
     {
@@ -37,18 +37,16 @@ const ColourArticle: NextPage = () => {
   return (
     <>
       <MainLayout>
-        <Banner title="The Rainbow" imgUrl="/assets/img/colour/colour.png" />
         <div className="m-10">
-          <h2 className="font-semibold text-[40px] py-10 text-center">Artikel</h2>
-          <div className="grid xs:grid-cols-12 md:grid-cols-4">
+          <div className="grid">
             {miracle.length &&
               miracle.map((item, idx) => {
                 return (
                   <div
                     key={idx}
-                    className="relative hover:cursor-pointer"
+                    className="relative hover:cursor-pointer w-100"
                     onClick={() =>
-                      router.push(`/colour/articles/${idx}`, undefined, {
+                      router.push(`/colour/detail/${idx}`, undefined, {
                         shallow: true,
                       })
                     }
@@ -56,14 +54,14 @@ const ColourArticle: NextPage = () => {
                     {/* <h2 className="text-2xl font-semibold text-left ml-2 mb-4">
                       {item.title}
                     </h2> */}
-                    <div className="xs:w-[100%] xs:h-fit md:w-[20vw] md:h-[17vw] card overflow-hidden my-10 rounded-[30px] shadow-lg">
-                      <div className="absolute bottom-[55px] left-5 text-white">
-                        <h2 className="text-xl font-bold">Running Home</h2>
-                        <p className="font-light">Hizqia Chandra</p>
+                    <div className="w-[100%] h-[40vw] card overflow-hidden my-10 rounded-[30px] shadow-lg">
+                      <div className="absolute bottom-[85px] left-5 text-white">
+                        <h2 className="text-3xl font-bold uppercase">ALLAH MENYEMBUHKAN PENYAKITKU</h2>
+                        <p className="font-light text-xl">Ibu Kusra Kisnanti</p>
                       </div>
                       <img
                         src={`${item.imgUrl}`}
-                        className="h-[100%] w-full aspect-square"
+                        className="h-[100%] object-cover w-full aspect-square"
                         alt="Term condition"
                       />
                     </div>
@@ -77,4 +75,4 @@ const ColourArticle: NextPage = () => {
   );
 };
 
-export default ColourArticle;
+export default ColourDetail;
