@@ -154,7 +154,7 @@ const Home: NextPage = () => {
                     window.open("https://www.youtube.com/watch?v=TaAWK66v6rk")
                   }
                 >
-                  <div className="h-50 w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
+                  <div className="h-50 w-full overflow-hidden mb-3 rounded-[30px] lg:rounded-r-[30px] shadow-lg">
                     <img
                       src="/assets/img/sermon1.png"
                       className="w-full"
@@ -194,7 +194,7 @@ const Home: NextPage = () => {
                     window.open("https://www.youtube.com/watch?v=TaAWK66v6rk")
                   }
                 >
-                  <div className="h-50 w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
+                  <div className="h-50 w-full overflow-hidden mb-3 rounded-[30px] lg:rounded-l-[30px] shadow-lg">
                     <img
                       src="/assets/img/sermon3.png"
                       className="w-full"
