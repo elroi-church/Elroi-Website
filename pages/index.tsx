@@ -58,7 +58,7 @@ const Home: NextPage = () => {
         </section>
         <section className="flex-col m-auto mt-4 lg:flex-row flex px-4 w-full lg:px-0 my-8 md:w-3/4 lg:w-full lg:justify-between">
           <div className="relative lg:w-1/3 w-full">
-            <div className="h-48 w-full overflow-hidden mb-3 rounded-[30px] lg:rounded-r-[30px] shadow-lg">
+            <div className="h-48 w-full overflow-hidden mb-3 rounded-[30px] lg:rounded-[0px] lg:rounded-r-[30px] shadow-lg">
               <img
                 src="/assets/img/card_home.png"
                 className="w-full h-full"
@@ -94,7 +94,7 @@ const Home: NextPage = () => {
             </div>
           </div>
           <div className="relative lg:w-1/3 w-full">
-            <div className="h-48 w-full overflow-hidden mb-3 rounded-[30px] lg:rounded-l-[30px] shadow-lg">
+            <div className="h-48 w-full overflow-hidden mb-3 rounded-[30px] lg:rounded-[0px] lg:rounded-l-[30px] shadow-lg">
               <img
                 src="/assets/img/card_home.png"
                 className="w-full h-full"
@@ -154,7 +154,7 @@ const Home: NextPage = () => {
                     window.open("https://www.youtube.com/watch?v=TaAWK66v6rk")
                   }
                 >
-                  <div className="h-50 w-full overflow-hidden mb-3 rounded-[30px] lg:rounded-r-[30px] shadow-lg">
+                  <div className="h-50 w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
                     <img
                       src="/assets/img/sermon1.png"
                       className="w-full"
@@ -194,7 +194,7 @@ const Home: NextPage = () => {
                     window.open("https://www.youtube.com/watch?v=TaAWK66v6rk")
                   }
                 >
-                  <div className="h-50 w-full overflow-hidden mb-3 rounded-[30px] lg:rounded-l-[30px] shadow-lg">
+                  <div className="h-50 w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
                     <img
                       src="/assets/img/sermon3.png"
                       className="w-full"

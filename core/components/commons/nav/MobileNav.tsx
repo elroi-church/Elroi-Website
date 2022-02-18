@@ -70,15 +70,33 @@ const MobileNav: React.FC<Props> = ({ isOpenMenu, menuHandler }) => {
             <ul>
               <li>
                 <a
-                  className="text-sm text-black-400 hover:text-gray-500"
+                  // className="text-sm text-black-400 hover:text-gray-500"
+                  className={`text-sm text-black-400 ${
+                    path.toLowerCase() === "home" ||
+                    router.pathname === "/" ||
+                    path.toLowerCase() === "giving"
+                      ? isActive
+                      : "hover:text-gray-500"
+                  }`}
                   href="#"
+                  onClick={() => router.push("/", undefined, { shallow: true })}
                 >
                   Home
                 </a>
               </li>
 
               <li>
-                <a className="text-sm text-black-400" href="#">
+                <a
+                  className={`text-sm text-black-400 ${
+                    path.toLowerCase() === "about"
+                      ? isActive
+                      : "hover:text-gray-500"
+                  }`}
+                  href="#"
+                  onClick={() =>
+                    router.push("/about", undefined, { shallow: true })
+                  }
+                >
                   About
                 </a>
               </li>
@@ -86,9 +104,14 @@ const MobileNav: React.FC<Props> = ({ isOpenMenu, menuHandler }) => {
               <li>
                 <a
                   className={`text-sm text-black-400 ${
-                    path.toLowerCase() === "sermon" ?? isActive
+                    path.toLowerCase() === "sermon"
+                      ? isActive
+                      : "hover:text-gray-500"
                   }`}
                   href="#"
+                  onClick={() =>
+                    router.push("/sermon", undefined, { shallow: true })
+                  }
                 >
                   Sermons
                 </a>
@@ -105,8 +128,15 @@ const MobileNav: React.FC<Props> = ({ isOpenMenu, menuHandler }) => {
 
               <li>
                 <a
-                  className="text-sm text-black-400 hover:text-gray-500"
+                  className={`text-sm text-black-400 ${
+                    path.toLowerCase().search("online") !== -1
+                      ? isActive
+                      : "hover:text-gray-500"
+                  }`}
                   href="#"
+                  onClick={() =>
+                    router.push("/online", undefined, { shallow: true })
+                  }
                 >
                   Online
                 </a>
@@ -114,8 +144,15 @@ const MobileNav: React.FC<Props> = ({ isOpenMenu, menuHandler }) => {
 
               <li>
                 <a
-                  className="text-sm text-black-400 hover:text-gray-500"
+                  className={`text-sm text-black-400 ${
+                    path.toLowerCase().search("koperasi") !== -1
+                      ? isActive
+                      : "hover:text-gray-500"
+                  }`}
                   href="#"
+                  onClick={() =>
+                    router.push("/koperasi", undefined, { shallow: true })
+                  }
                 >
                   Koperasi
                 </a>
@@ -123,8 +160,15 @@ const MobileNav: React.FC<Props> = ({ isOpenMenu, menuHandler }) => {
 
               <li>
                 <a
-                  className="text-sm text-black-400 hover:text-gray-500"
+                  className={`text-sm text-black-400 ${
+                    path.toLowerCase().search("colour") !== -1
+                      ? isActive
+                      : "hover:text-gray-500"
+                  }`}
                   href="#"
+                  onClick={() =>
+                    router.push("/colour", undefined, { shallow: true })
+                  }
                 >
                   Colour
                 </a>
@@ -135,14 +179,14 @@ const MobileNav: React.FC<Props> = ({ isOpenMenu, menuHandler }) => {
             <div className="pt-6">
               {session && session.user ? (
                 <a
-                  className="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold  bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl"
+                  className="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold  bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl hover:cursor-pointer"
                   onClick={() => signOut()}
                 >
                   Sign Out
                 </a>
               ) : (
                 <a
-                  className="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold  bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl"
+                  className="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold  bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl hover:cursor-pointer"
                   onClick={() =>
                     router.push("/auth/login", undefined, {
                       shallow: true,
