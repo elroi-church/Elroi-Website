@@ -26,9 +26,9 @@ const Banner: NextPage<PropsBanner> = (props: PropsBanner) => {
               />
             </a>
           </nav>
-          <div className="py-20 md:py-26 text-center">
+          <div className="py-28 lg:py-26 text-center">
             <div className="max-w-3xl mx-auto mb-5">
-              <h2 className="text-[74px] text-white font-bold font-heading -mb-5">
+              <h2 className="text-[50px] lg:text-[74px] text-white font-bold font-heading -mb-5">
                 {title}
               </h2>
             </div>
