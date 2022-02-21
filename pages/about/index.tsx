@@ -66,7 +66,7 @@ const index: FunctionComponent = () => {
           <div className="flex flex-wrap items-center mb-16 w-full">
             {listAbout?.map((about, idx) => {
               return (
-                <div key={idx} className="w-full flex flex-wrap mb-[8rem]">
+                <div key={idx} className="w-full flex flex-wrap mb-10 lg:mb-[8rem]">
                   {idx % 2 !== 0 ? (
                     <>
                       <div className="w-full lg:w-2/3 px-[20px] lg:px-0 lg:pl-10 order-last lg:order-first">
@@ -146,8 +146,8 @@ const index: FunctionComponent = () => {
             </h1>
             <br />
             <br />
-            <div className="flex">
-              <div className="w-1/2">
+            <div className="lg:flex">
+              <div className="w-full lg:w-1/2">
                 <div className="h-fit w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
                   <img
                     src="/assets/img/about/meetpastor.png"
@@ -156,7 +156,7 @@ const index: FunctionComponent = () => {
                   />
                 </div>
               </div>
-              <div className="w-1/2 ml-10 my-auto text-left">
+              <div className="w-full lg:w-1/2 ml-10 my-auto text-left">
                 <h2 className="text-3xl font-semibold"> Senior Pastor</h2>
                 <p className="text-xl"> Ps. M. Riza Solihin</p>
                 <p className="text-xl"> Ps. Elsa Imelda</p>
