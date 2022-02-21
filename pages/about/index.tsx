@@ -78,14 +78,14 @@ const index: FunctionComponent = () => {
                     <>
                       <div className="w-full lg:w-2/3 px-[20px] lg:px-0 lg:pl-10 order-last lg:order-first">
                         <div className="indent-24 lg:indent-0 text-justify lg:text-right mr-0 lg:mr-10">
-                          <p className="text-lg text-gray-500 leading-loose lg:text-3xl lg:leading-[3rem]">
+                          <p className="text-lg text-gray-500 leading-loose lg:text-2xl lg:leading-[3rem]">
                             {about.desc}
                           </p>
                         </div>
                       </div>
                       <div className="w-full order-first lg:order-last lg:w-1/3 mb-8 lg:mb-0">
                         <img
-                          className="w-1/2 lg:w-full h-full object-cover m-auto lg:m-0 rounded-[20px] lg:rounded-[0px] lg:rounded-l-xl"
+                          className="w-1/2 lg:w-full h-full m-auto lg:m-0 rounded-[20px] lg:rounded-[0px] lg:rounded-l-xl"
                           src={about.img}
                           alt=""
                         />
@@ -95,14 +95,14 @@ const index: FunctionComponent = () => {
                     <>
                       <div className="w-full lg:w-1/3 mb-8 lg:mb-0">
                         <img
-                          className="w-1/2 lg:w-full h-full object-cover m-auto lg:m-0 rounded-[20px] lg:rounded-[0px] lg:rounded-r-xl"
+                          className="w-1/2 lg:w-full h-full m-auto lg:m-0 rounded-[20px] lg:rounded-[0px] lg:rounded-r-xl"
                           src={about.img}
                           alt=""
                         />
                       </div>
                       <div className="w-full lg:w-2/3 px-[20px] lg:px-0 lg:pr-10">
                         <div className="indent-24 lg:indent-0 text-justify lg:text-left ml-0 lg:ml-10">
-                          <p className="text-lg text-gray-500 leading-loose lg:text-3xl lg:leading-[3rem]">
+                          <p className="text-lg text-gray-500 leading-loose lg:text-2xl lg:leading-[3rem]">
                             {about.desc}
                           </p>
                         </div>
