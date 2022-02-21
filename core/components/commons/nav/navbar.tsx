@@ -42,7 +42,7 @@ const Navbar: FunctionComponent = () => {
 
   return (
     <>
-      <nav className="relative lg:px-[60px] flex justify-between items-center bg-white shadow-lg w-full">
+      <nav className="relative lg:px-[60px] flex justify-between items-center bg-white shadow-lg w-full z-50">
         <a className="text-3xl font-bold leading-none" href="#">
           <img
             className="h-20 pt-2"
@@ -160,7 +160,11 @@ const Navbar: FunctionComponent = () => {
                   <div className="absolute left-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-64">
                     <div className="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
                       <a
-                        className="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-primary-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-primary focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                        className={`block px-4 py-2 mt-2 text-sm rounded-lg dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline ${
+                          path.toLowerCase().search("ministry/baptism") !== -1
+                            ? isActive + " w-full"
+                            : "hover:bg-primary hover:text-gray-500 bg-transparent dark-mode:bg-transparent dark-mode:hover:bg-primary-600"
+                        }`}
                         href="#"
                         onClick={() =>
                           router.push("/ministry/baptism", undefined, {
@@ -171,7 +175,11 @@ const Navbar: FunctionComponent = () => {
                         Water Baptism
                       </a>
                       <a
-                        className="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-primary-darker dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-primary focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                        className={`block px-4 py-2 mt-2 text-sm rounded-lg  dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline ${
+                          path.toLowerCase().search("ministry/pastoral") !== -1
+                            ? isActive + " w-full"
+                            : "hover:bg-primary hover:text-gray-500 bg-transparent dark-mode:bg-transparent dark-mode:hover:bg-primary-600"
+                        }`}
                         href="#"
                         onClick={() =>
                           router.push("/ministry/pastoral", undefined, {
@@ -182,7 +190,11 @@ const Navbar: FunctionComponent = () => {
                         Pastoral
                       </a>
                       <a
-                        className="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-primary-darker dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-primary focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                        className={`block px-4 py-2 mt-2 text-sm rounded-lg  dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline ${
+                          path.toLowerCase().search("ministry/child_dedication") !== -1
+                            ? isActive + " w-full"
+                            : "hover:bg-primary hover:text-gray-500 bg-transparent dark-mode:bg-transparent dark-mode:hover:bg-primary-600"
+                        }`}
                         href="#"
                         onClick={() =>
                           router.push("/ministry/child_dedication", undefined, {
@@ -193,7 +205,11 @@ const Navbar: FunctionComponent = () => {
                         Child Dedication
                       </a>
                       <a
-                        className="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-primary-darker dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-primary focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                        className={`block px-4 py-2 mt-2 text-sm rounded-lg  dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline ${
+                          path.toLowerCase().search("ministry/prayer_counseling") !== -1
+                            ? isActive + " w-full"
+                            : "hover:bg-primary hover:text-gray-500 bg-transparent dark-mode:bg-transparent dark-mode:hover:bg-primary-600"
+                        }`}
                         href="#"
                         onClick={() =>
                           router.push(
@@ -208,7 +224,11 @@ const Navbar: FunctionComponent = () => {
                         Prayer And Counseling
                       </a>
                       <a
-                        className="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-primary-darker dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-primary focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                        className={`block px-4 py-2 mt-2 text-sm rounded-lg  dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline ${
+                          path.toLowerCase().search("ministry/etc") !== -1
+                            ? isActive + " w-full"
+                            : "hover:bg-primary hover:text-gray-500 bg-transparent dark-mode:bg-transparent dark-mode:hover:bg-primary-600"
+                        }`}
                         href="#"
                         onClick={() =>
                           router.push("/ministry/etc", undefined, {
