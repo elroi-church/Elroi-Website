@@ -42,7 +42,7 @@ const Navbar: FunctionComponent = () => {
 
   return (
     <>
-      <nav className="relative lg:px-[60px] flex justify-between items-center bg-white shadow-lg w-full">
+      <nav className="relative lg:px-[60px] flex justify-between items-center bg-white shadow-lg w-full z-50">
         <a className="text-3xl font-bold leading-none" href="#">
           <img
             className="h-20 pt-2"
