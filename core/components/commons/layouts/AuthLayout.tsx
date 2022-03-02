@@ -9,10 +9,10 @@ const AuthLayout: FunctionComponent<ReactNode> = ({ children }) => {
       <NavbarAuth />
       <main className="main-layout min-h-screen my-10">
         <div className="flex">
-          <div className="w-1/4">
+          <div className="w-1/5">
             <SideBar />
           </div>
-          <div className="w-3/4">{children}</div>
+          <div className="w-4/5">{children}</div>
         </div>
         {/* <div className="main-layout__content">{children}</div> */}
       </main>

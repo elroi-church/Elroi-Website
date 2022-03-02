@@ -45,7 +45,7 @@ const Navbar: FunctionComponent = () => {
       <nav className="relative lg:px-[60px] flex justify-between items-center bg-white shadow-lg w-full z-50">
         <a className="text-3xl font-bold leading-none" href="#">
           <img
-            className="h-20 pt-2"
+            className="h-28 pt-2"
             src="/assets/img/logo_erc.png"
             alt=""
             width="auto"

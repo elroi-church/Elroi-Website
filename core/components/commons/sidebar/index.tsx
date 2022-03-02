@@ -9,7 +9,7 @@ const SideBar: React.FC = () => {
 
   return (
     <div>
-      <div className={`block navbar-menu w-5/6 max-w-sm`}>
+      <div className={`block navbar-menu w-100 max-w-sm`}>
         <nav className="relative flex flex-col py-6 h-full w-fullborder-r rounded-r-xl overflow-y-auto">
           <ul>
             <li className={`${path.toLowerCase() === "dashboard" ? 'mb-5' : 'mb-7'}`}>
