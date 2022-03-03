@@ -73,6 +73,7 @@ const Login: NextPage = () => {
                   <button
                     className="bg-primary hover:bg-primary-darker text-white font-bold py-2 px-4 rounded-[20px] focus:outline-none focus:shadow-outline w-2/3 mx-auto"
                     type="button"
+                    onClick={() => router.push("/dashboard", undefined, { shallow: true })}
                   >
                     Sign In
                   </button>

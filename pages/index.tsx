@@ -38,16 +38,16 @@ const Home: NextPage = () => {
             </nav>
             <div className="py-20 md:py-26 text-center">
               <div className="max-w-3xl mx-auto mb-5">
-                <h2 className="text-[74px] text-white font-bold font-heading -mb-5">
+                <h2 className="text-5xl lg:text-[74px] text-white font-bold font-heading mb-1">
                   El-Roi Chruch
                 </h2>
-                <p className="text-white text-2xl leading-relaxed tracking-wider">
+                <p className="text-white text-4xl lg:text-5xl leading-relaxed tracking-wider">
                   Sawangan
                 </p>
               </div>
               <div>
                 <a
-                  className="block uppercase sm:inline-block py-4 px-20 rounded-[35px] mb-4 sm:mb-0 sm:mr-3 text-lg text-white text-center font-semibold leading-none border"
+                  className="block uppercase sm:inline-block py-4 px-20 rounded-[35px] mb-4 sm:mb-0 sm:mr-3 text-md lg:text-lg text-white text-center font-semibold leading-none border"
                   href="#"
                 >
                   Watch Our Service Now
@@ -56,10 +56,14 @@ const Home: NextPage = () => {
             </div>
           </div>
         </section>
-        <section className="lg:flex px-5 my-8 w-full lg:justify-between">
+        <section className="flex-col m-auto mt-4 lg:flex-row flex px-4 w-full lg:px-0 my-8 md:w-3/4 lg:w-full lg:justify-between">
           <div className="relative lg:w-1/3 w-full">
-            <div className="h-48 w-full overflow-hidden mb-3 rounded-r-[30px] shadow-lg">
-              <img src="/assets/img/card_home.png" className="w-full" alt="" />
+            <div className="h-48 w-full overflow-hidden mb-3 rounded-[30px] lg:rounded-[0px] lg:rounded-r-[30px] shadow-lg">
+              <img
+                src="/assets/img/card_home.png"
+                className="w-full h-full"
+                alt=""
+              />
               <div className="h-full w-full absolute opacity-70"></div>
               <div className="pl-5 mb-8 w-full absolute bottom-0">
                 <h1 className="text-white font-extrabold text-2xl">
@@ -73,7 +77,11 @@ const Home: NextPage = () => {
           </div>
           <div className="relative lg:w-1/3 w-full lg:mx-4">
             <div className="h-48 w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
-              <img src="/assets/img/card_home.png" className="w-full" alt="" />
+              <img
+                src="/assets/img/card_home.png"
+                className="w-full h-full"
+                alt=""
+              />
               <div className="h-full w-full absolute opacity-70"></div>
               <div className="pl-5 mb-8 w-full absolute bottom-0">
                 <h1 className="text-white font-extrabold text-2xl">
@@ -86,8 +94,12 @@ const Home: NextPage = () => {
             </div>
           </div>
           <div className="relative lg:w-1/3 w-full">
-            <div className="h-48 w-full overflow-hidden mb-3 rounded-l-[30px] shadow-lg">
-              <img src="/assets/img/card_home.png" className="w-full" alt="" />
+            <div className="h-48 w-full overflow-hidden mb-3 rounded-[30px] lg:rounded-[0px] lg:rounded-l-[30px] shadow-lg">
+              <img
+                src="/assets/img/card_home.png"
+                className="w-full h-full"
+                alt=""
+              />
               <div className="h-full w-full absolute opacity-70"></div>
               <div className="pl-5 mb-8 w-full absolute bottom-0">
                 <h1 className="text-white font-extrabold text-2xl">
@@ -164,14 +176,14 @@ const Home: NextPage = () => {
                 >
                   <div className="h-50 w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
                     <img
-                      src="/assets/img/sermon1.png"
+                      src="/assets/img/sermon2.png"
                       className="w-full"
                       alt=""
                     />
                     <div className="h-full w-full absolute opacity-70"></div>
                     <div className="left-4 mb-8 w-full absolute bottom-0">
                       <h1 className="text-white font-extrabold text-sm">
-                        Joshua Antonius
+                        Hizqia Chandra
                       </h1>
                     </div>
                   </div>
@@ -184,14 +196,14 @@ const Home: NextPage = () => {
                 >
                   <div className="h-50 w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
                     <img
-                      src="/assets/img/sermon1.png"
+                      src="/assets/img/sermon3.png"
                       className="w-full"
                       alt=""
                     />
                     <div className="h-full w-full absolute opacity-70"></div>
                     <div className="left-4 mb-8 w-full absolute bottom-0">
                       <h1 className="text-white font-extrabold text-sm">
-                        Joshua Antonius
+                        Kezia Immanuela
                       </h1>
                     </div>
                   </div>
@@ -338,10 +350,10 @@ const Home: NextPage = () => {
               >
                 <img
                   src="/assets/img/rcti.png"
-                  className="w-[150px] -ml-14"
+                  className="w-[54px] -ml-[0.8rem] mr-6"
                   alt=""
                 />
-                <p className="text-xl absolute left-[30%]">RCTI +</p>
+                <p className="text-xl">RCTI +</p>
               </div>
             </div>
           </div>
