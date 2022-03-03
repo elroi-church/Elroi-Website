@@ -12,7 +12,11 @@ const SideBar: React.FC = () => {
       <div className={`block navbar-menu w-100 max-w-sm`}>
         <nav className="relative flex flex-col py-6 h-full w-fullborder-r rounded-r-xl overflow-y-auto">
           <ul>
-            <li className={`${path.toLowerCase() === "dashboard" ? 'mb-5' : 'mb-7'}`}>
+            <li
+              className={`${
+                path.toLowerCase() === "dashboard" ? "mb-5" : "mb-7"
+              }`}
+            >
               <a
                 className={`text-xl pl-28 py-2 pr-4 text-black-400 ${
                   path.toLowerCase() === "dashboard"
@@ -20,20 +24,28 @@ const SideBar: React.FC = () => {
                     : "hover:text-gray-500"
                 }`}
                 href="#"
-                onClick={() => router.push("dashboard", undefined, { shallow: true })}
+                onClick={() =>
+                  router.push("/dashboard", undefined, { shallow: true })
+                }
               >
                 Dashboard
               </a>
             </li>
-            <li className={`${path.toLowerCase() === "sunshine" ? 'mb-5' : 'mb-7'}`}>
+            <li
+              className={`${
+                path.toLowerCase().search("sunshine") !== -1 ? "mb-5" : "mb-7"
+              }`}
+            >
               <a
                 className={`text-xl pl-28 py-2 pr-4 text-black-400 ${
-                  path.toLowerCase() === "sunshine"
+                  path.toLowerCase().search("sunshine") !== -1
                     ? isActive
                     : "hover:text-gray-500"
                 }`}
                 href="#"
-                onClick={() => router.push("sunshine", undefined, { shallow: true })}
+                onClick={() =>
+                  router.push("/sunshine", undefined, { shallow: true })
+                }
               >
                 My Sunshine
               </a>
