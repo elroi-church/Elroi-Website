@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { FunctionComponent } from "react";
-import AuthLayout from "../../core/components/commons/layouts/AuthLayout";
+import AuthLayout from "../../../core/components/commons/layouts/AuthLayout";
 
 const Sunshine: FunctionComponent = () => {
   const router = useRouter();

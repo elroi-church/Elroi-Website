@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import AuthLayout from "../../core/components/commons/layouts/AuthLayout";
+import AuthLayout from "../../../core/components/commons/layouts/AuthLayout";
 import DatePicker from "react-datepicker";
 // css for react datepicker
 import "react-datepicker/dist/react-datepicker.css";
@@ -15,7 +15,7 @@ interface PropsForm {
   kesaksian: string;
 }
 
-const SunshineForm: FC = () => {
+const ArticleForm: FC = () => {
   const [form, setForm] = React.useState<PropsForm>({
     name: "",
     gender: "Pria",
@@ -80,7 +80,7 @@ const SunshineForm: FC = () => {
                 <input
                   type="radio"
                   id="Pria"
-                  name="drone"
+                  name="jenkel"
                   value="Pria"
                   onChange={(v) => onChangeRadioGender(v.target)}
                   checked={form.gender === "Pria"}
@@ -94,7 +94,7 @@ const SunshineForm: FC = () => {
                 <input
                   type="radio"
                   id="Wanita"
-                  name="drone"
+                  name="jenkel"
                   value="Wanita"
                   onChange={(v) => onChangeRadioGender(v.target)}
                   checked={form.gender === "Wanita"}
@@ -321,4 +321,4 @@ const SunshineForm: FC = () => {
   );
 };
 
-export default SunshineForm;
+export default ArticleForm;

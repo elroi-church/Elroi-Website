@@ -1,26 +1,22 @@
 import React, { FC } from "react";
-import AuthLayout from "../../core/components/commons/layouts/AuthLayout";
+import AuthLayout from "../../../core/components/commons/layouts/AuthLayout";
 
 interface PropsForm {
   name: string;
-  gender: String;
-  umur: string;
-  nowa: string;
+  ktp: string;
+  alamat: string;
+  nohp: string;
   email: string;
 }
 
-const SunshineForm: FC = () => {
+const KoperasiForm: FC = () => {
   const [form, setForm] = React.useState<PropsForm>({
     name: "",
-    gender: "Pria",
-    umur: "",
-    nowa: "",
+    ktp: "",
+    alamat: "",
+    nohp: "",
     email: "",
   });
-
-  const onChangeRadio = (gender: string): void => {
-    setForm(() => ({ ...form, gender }));
-  };
 
   // create function handle submit form
   const handleSubmit = (event: any): void => {
@@ -30,7 +26,7 @@ const SunshineForm: FC = () => {
   return (
     <AuthLayout>
       <div className="font-bold text-3xl text-center w-[90%]">
-        FORM MY SUNSHINE
+        FORM KOPERASI
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
@@ -47,73 +43,50 @@ const SunshineForm: FC = () => {
               onChange={(v) => setForm({ ...form, name: v.target.value })}
             />
           </div>
-          <div className="flex justify-between w-1/2">
-            <div className="mb-4">
-              <label
-                className="block text-left text-xl text-gray-700 text-sm"
-                htmlFor="name"
-              >
-                Jenis Kelamin
-              </label>
-              <div className="text-left">
-                <div>
-                  <input
-                    type="radio"
-                    id="Pria"
-                    name="drone"
-                    value="Pria"
-                    onChange={(v) => onChangeRadio(v.target.value)}
-                    checked={form.gender === "Pria" ? true : false}
-                  />
-                  <label className="text-lg ml-2" htmlFor="Pria">
-                    Pria
-                  </label>
-                </div>
-
-                <div>
-                  <input
-                    type="radio"
-                    id="Wanita"
-                    name="drone"
-                    value="Wanita"
-                    onChange={(v) => onChangeRadio(v.target.value)}
-                    checked={form.gender === "Wanita" ? true : false}
-                  />
-                  <label className="text-lg ml-2" htmlFor="Wanita">
-                    Wanita
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div>
-              <label
-                className="block text-left text-xl text-gray-700 text-sm mb-2"
-                htmlFor="name"
-              >
-                Umur
-              </label>
-              <input
-                className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                id="name"
-                type="number"
-                max={100}
-                min={0}
-              />
-            </div>
+          <div className="mb-4">
+            <label
+              className="block text-left text-xl text-gray-700 text-sm mb-2"
+              htmlFor="name"
+            >
+              NIK KTP
+            </label>
+            <input
+              className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+              id="name"
+              type="text"
+              value={form.ktp}
+              onChange={(v) => setForm({ ...form, ktp: v.target.value })}
+            />
           </div>
           <div className="mb-4">
             <label
               className="block text-left text-xl text-gray-700 text-sm mb-2"
               htmlFor="name"
             >
-              No. WhatsApp
+              Alamat
+            </label>
+            <textarea
+              className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-[10px] transitionease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              id="exampleFormControlTextarea1"
+              rows={3}
+              value={form.alamat}
+              onChange={(v) => setForm({ ...form, alamat: v.target.value })}
+            ></textarea>
+          </div>
+
+          <div className="mb-4">
+            <label
+              className="block text-left text-xl text-gray-700 text-sm mb-2"
+              htmlFor="name"
+            >
+              Nomor Hp
             </label>
             <input
               className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
               id="name"
               type="text"
-              value={form.nowa}
-              onChange={(v) => setForm({ ...form, nowa: v.target.value })}
+              value={form.nohp}
+              onChange={(v) => setForm({ ...form, nohp: v.target.value })}
             />
           </div>
           <div className="mb-4">
@@ -144,4 +117,4 @@ const SunshineForm: FC = () => {
   );
 };
 
-export default SunshineForm;
+export default KoperasiForm;
