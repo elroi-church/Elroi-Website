@@ -1,17 +1,15 @@
 import React, { FC } from "react";
 import AuthLayout from "../../../core/components/commons/layouts/AuthLayout";
-import DatePicker from "react-datepicker";
-// css for react datepicker
-import "react-datepicker/dist/react-datepicker.css";
+import DatePickerInput from "../../../core/components/commons/datepicker/index";
 
 interface PropsForm {
   name: string;
   divisiCool: String;
-  tglLahir: Date;
+  tglLahir: Date | null;
   notelp: string;
   email: string;
   domisili: string;
-  kategoriKesaksian: string;
+  coolSecara: string;
   alamat: string;
 }
 
@@ -23,24 +21,25 @@ const ArticleForm: FC = () => {
     notelp: "",
     email: "",
     domisili: "",
-    kategoriKesaksian: "Bisnis/Pekerjaan/Keuangan",
+    coolSecara: "Online",
     alamat: "",
   });
   //   const [kategoriKesaksian, setKategoriKesaksian] = React.useState(
   //     "Bisnis/Pekerjaan/Keuangan"
   //   );
-  const [startDate, setStartDate] = React.useState(new Date());
-
-  const onChangeRadioCool = React.useCallback((target: any): void => {
-    if (target.checked) {
-      setForm((state) => ({ ...state, divisiCool: target.value }));
-    }
-  }, []);
-  const onChangeRadio = React.useCallback((target: any): void => {
-    if (target.checked) {
-      setForm((state) => ({ ...state, kategoriKesaksian: target.value }));
-    }
-  }, []);
+  const onChangeRadio = React.useCallback(
+    (type: string, value: string): void => {
+      for (const key in form) {
+        if (Object.prototype.hasOwnProperty.call(form, key)) {
+          console.log(key, type);
+          if (type === key) {
+            setForm(() => ({ ...form, [type]: value }));
+          }
+        }
+      }
+    },
+    [form]
+  );
 
   // create function handle submit form
   const handleSubmit = (event: any): void => {
@@ -75,11 +74,13 @@ const ArticleForm: FC = () => {
             >
               Tanggal Lahir (Day/Month/Year)
             </label>
-            <DatePicker
-              className="appearance-none border rounded-[20px] border-gray border-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+            <DatePickerInput
+              className="w-full"
               dateFormat="dd/MM/yyyy"
-              selected={startDate}
-              onChange={(date: Date) => setForm({ ...form, tglLahir: date })}
+              selectedDate={form.tglLahir}
+              onChange={(date: Date | null): void =>
+                setForm({ ...form, tglLahir: date })
+              }
             />
           </div>
 
@@ -159,9 +160,9 @@ const ArticleForm: FC = () => {
                 <input
                   type="radio"
                   id="Umum (>25 Tahun)"
-                  name="drone"
+                  name="divisicool"
                   value="Umum (>25 Tahun)"
-                  onChange={(v) => onChangeRadioCool(v.target)}
+                  onChange={(v) => onChangeRadio("divisiCool", v.target.value)}
                   checked={form.divisiCool === "Umum (>25 Tahun)"}
                 />
                 <label
@@ -176,9 +177,9 @@ const ArticleForm: FC = () => {
                 <input
                   type="radio"
                   id="Youth (DRP 2.32: 18 -25 tahun)"
-                  name="drone"
+                  name="divisicool"
                   value="Youth (DRP 2.32: 18 -25 tahun)"
-                  onChange={(v) => onChangeRadioCool(v.target)}
+                  onChange={(v) => onChangeRadio("divisiCool", v.target.value)}
                   checked={form.divisiCool === "Youth (DRP 2.32: 18 -25 tahun)"}
                 />
                 <label
@@ -193,9 +194,9 @@ const ArticleForm: FC = () => {
                 <input
                   type="radio"
                   id="Teens (DOT: 12 -17 tahun)"
-                  name="drone"
+                  name="divisicool"
                   value="Teens (DOT: 12 -17 tahun)"
-                  onChange={(v) => onChangeRadioCool(v.target)}
+                  onChange={(v) => onChangeRadio("divisiCool", v.target.value)}
                   checked={form.divisiCool === "Teens (DOT: 12 -17 tahun)"}
                 />
                 <label
@@ -210,9 +211,9 @@ const ArticleForm: FC = () => {
                 <input
                   type="radio"
                   id="Kids (Kids Church: 0 -11 tahun)"
-                  name="drone"
+                  name="divisicool"
                   value="Kids (Kids Church: 0 -11 tahun)"
-                  onChange={(v) => onChangeRadioCool(v.target)}
+                  onChange={(v) => onChangeRadio("divisiCool", v.target.value)}
                   checked={
                     form.divisiCool === "Kids (Kids Church: 0 -11 tahun)"
                   }
@@ -239,17 +240,12 @@ const ArticleForm: FC = () => {
                 <input
                   type="radio"
                   id="Online"
-                  name="drone"
+                  name="coolsecara"
                   value="Online"
-                  onChange={(v) => onChangeRadio(v.target)}
-                  checked={
-                    form.kategoriKesaksian === "Online"
-                  }
+                  onChange={(v) => onChangeRadio("coolSecara", v.target.value)}
+                  checked={form.coolSecara === "Online"}
                 />
-                <label
-                  className="text-lg ml-2 font-light"
-                  htmlFor="Online"
-                >
+                <label className="text-lg ml-2 font-light" htmlFor="Online">
                   Online
                 </label>
               </div>
@@ -258,15 +254,12 @@ const ArticleForm: FC = () => {
                 <input
                   type="radio"
                   id="Offline"
-                  name="drone"
+                  name="coolsecara"
                   value="Offline"
-                  onChange={(v) => onChangeRadio(v.target)}
-                  checked={form.kategoriKesaksian === "Offline"}
+                  onChange={(v) => onChangeRadio("coolSecara", v.target.value)}
+                  checked={form.coolSecara === "Offline"}
                 />
-                <label
-                  className="text-lg ml-2 font-light"
-                  htmlFor="Offline"
-                >
+                <label className="text-lg ml-2 font-light" htmlFor="Offline">
                   Offline
                 </label>
               </div>
@@ -275,15 +268,12 @@ const ArticleForm: FC = () => {
                 <input
                   type="radio"
                   id="Hybrid"
-                  name="drone"
+                  name="coolsecara"
                   value="Hybrid"
-                  onChange={(v) => onChangeRadio(v.target)}
-                  checked={form.kategoriKesaksian === "Hybrid"}
+                  onChange={(v) => onChangeRadio("coolSecara", v.target.value)}
+                  checked={form.coolSecara === "Hybrid"}
                 />
-                <label
-                  className="text-lg ml-2 font-light"
-                  htmlFor="Hybrid"
-                >
+                <label className="text-lg ml-2 font-light" htmlFor="Hybrid">
                   Hybrid
                 </label>
               </div>

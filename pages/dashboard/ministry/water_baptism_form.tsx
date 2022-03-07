@@ -1,8 +1,6 @@
 import React, { FC } from "react";
 import AuthLayout from "../../../core/components/commons/layouts/AuthLayout";
-import DatePicker from "react-datepicker";
-// css for react datepicker
-import "react-datepicker/dist/react-datepicker.css";
+import DatePickerInput from "../../../core/components/commons/datepicker";
 
 interface PropsForm {
   name: string;
@@ -18,8 +16,8 @@ interface PropsForm {
   branch: string;
   pendeta: string;
   gender: string;
-  tglLahir: Date;
-  baptismDate: Date;
+  tglLahir: Date | null;
+  baptismDate: Date | null;
   childName: string;
   childAddress: string;
   childRtrw: string;
@@ -27,7 +25,7 @@ interface PropsForm {
   childKodePos: string;
   childNotelp: string;
   childTempatLahir: string;
-  childTglLahir: Date;
+  childTglLahir: Date | null;
   childFatherName: string;
   childMotherName: string;
   childParentAddress: string;
@@ -36,7 +34,7 @@ interface PropsForm {
   childParentKodePos: string;
   childNameConfirmation: string;
   childDayBaptism: string;
-  childDateBaptism: Date;
+  childDateBaptism: Date | null;
 }
 
 const WaterBaptismForm: FC = () => {
@@ -77,8 +75,15 @@ const WaterBaptismForm: FC = () => {
 
   const [page, setPage] = React.useState<number>(0);
 
-  const onChangeRadio = (gender: string): void => {
-    setForm(() => ({ ...form, gender }));
+  const onChangeRadio = (type: string, value: string): void => {
+    for (const key in form) {
+      if (Object.prototype.hasOwnProperty.call(form, key)) {
+        console.log(key, type);
+        if (type === key) {
+          setForm(() => ({ ...form, [type]: value }));
+        }
+      }
+    }
   };
 
   // create function handle submit form
@@ -211,7 +216,7 @@ const WaterBaptismForm: FC = () => {
                     id="Pria"
                     name="drone"
                     value="Pria"
-                    onChange={(v) => onChangeRadio(v.target.value)}
+                    onChange={(v) => onChangeRadio("gender", v.target.value)}
                     checked={form.gender === "Pria"}
                   />
                   <label className="text-lg ml-2" htmlFor="Pria">
@@ -225,7 +230,7 @@ const WaterBaptismForm: FC = () => {
                     id="Wanita"
                     name="drone"
                     value="Wanita"
-                    onChange={(v) => onChangeRadio(v.target.value)}
+                    onChange={(v) => onChangeRadio("gender", v.target.value)}
                     checked={form.gender === "Wanita"}
                   />
                   <label className="text-lg ml-2" htmlFor="Wanita">
@@ -260,11 +265,11 @@ const WaterBaptismForm: FC = () => {
                 >
                   Tanggal Lahir (Day/Month/Year)
                 </label>
-                <DatePicker
-                  className="w-full appearance-none border rounded-[20px] border-gray border-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                <DatePickerInput
+                  className="w-full"
                   dateFormat="dd/MM/yyyy"
-                  selected={form.tglLahir}
-                  onChange={(date: Date) =>
+                  selectedDate={form.tglLahir}
+                  onChange={(date: Date | null): void =>
                     setForm({ ...form, tglLahir: date })
                   }
                 />
@@ -314,11 +319,11 @@ const WaterBaptismForm: FC = () => {
               >
                 Tanggal Akan Dibaptis (Day/Month/Year)
               </label>
-              <DatePicker
-                className="appearance-none border rounded-[20px] border-gray border-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+              <DatePickerInput
+                className="w-full"
                 dateFormat="dd/MM/yyyy"
-                selected={form.baptismDate}
-                onChange={(date: Date) =>
+                selectedDate={form.baptismDate}
+                onChange={(date: Date | null): void =>
                   setForm({ ...form, baptismDate: date })
                 }
               />
@@ -495,11 +500,11 @@ const WaterBaptismForm: FC = () => {
                 >
                   Tanggal Lahir (Day/Month/Year)
                 </label>
-                <DatePicker
-                  className="w-full appearance-none border rounded-[20px] border-gray border-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                <DatePickerInput
+                  className="w-full"
                   dateFormat="dd/MM/yyyy"
-                  selected={form.childTglLahir}
-                  onChange={(date: Date) =>
+                  selectedDate={form.childTglLahir}
+                  onChange={(date: Date | null): void =>
                     setForm({ ...form, childTglLahir: date })
                   }
                 />
@@ -689,11 +694,11 @@ const WaterBaptismForm: FC = () => {
                 >
                   Tanggal Lahir (Day/Month/Year)
                 </label>
-                <DatePicker
-                  className="w-full appearance-none border rounded-[20px] border-gray border-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                <DatePickerInput
+                  className="w-full"
                   dateFormat="dd/MM/yyyy"
-                  selected={form.childTglLahir}
-                  onChange={(date: Date) =>
+                  selectedDate={form.childTglLahir}
+                  onChange={(date: Date | null): void =>
                     setForm({ ...form, childTglLahir: date })
                   }
                 />
@@ -731,11 +736,11 @@ const WaterBaptismForm: FC = () => {
                 >
                   Tanggal (Day/Month/Year)
                 </label>
-                <DatePicker
-                  className="w-full appearance-none border rounded-[20px] border-gray border-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                <DatePickerInput
+                  className="w-full"
                   dateFormat="dd/MM/yyyy"
-                  selected={form.childDateBaptism}
-                  onChange={(date: Date) =>
+                  selectedDate={form.childDateBaptism}
+                  onChange={(date: Date | null): void =>
                     setForm({ ...form, childDateBaptism: date })
                   }
                 />

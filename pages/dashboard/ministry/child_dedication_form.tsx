@@ -1,17 +1,15 @@
 import React, { FC } from "react";
-import DatePicker from "react-datepicker";
-// css for react datepicker
-import "react-datepicker/dist/react-datepicker.css";
+import DatePickerInput from "../../../core/components/commons/datepicker";
 import AuthLayout from "../../../core/components/commons/layouts/AuthLayout";
 
 interface PropsForm {
   childName: string;
   childTempatLahir: string;
   childAddress: string;
-  childTglLahir: Date;
+  childTglLahir: Date | null;
   childFather: string;
   childMother: string;
-  childDateSubmitted: Date;
+  childDateSubmitted: Date | null;
 }
 
 const ChildDedicationForm: FC = () => {
@@ -70,11 +68,11 @@ const ChildDedicationForm: FC = () => {
               >
                 Tanggal Lahir (Day/Month/Year)
               </label>
-              <DatePicker
-                className="w-full appearance-none border rounded-[20px] border-gray border-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+              <DatePickerInput
+                className="w-full"
                 dateFormat="dd/MM/yyyy"
-                selected={form.childTglLahir}
-                onChange={(date: Date) =>
+                selectedDate={form.childTglLahir}
+                onChange={(date: Date | null) =>
                   setForm({ ...form, childTglLahir: date })
                 }
               />
@@ -106,11 +104,11 @@ const ChildDedicationForm: FC = () => {
             >
               Tanggal Diserahkan (Day/Month/Year)
             </label>
-            <DatePicker
-              className="w-full appearance-none border rounded-[20px] border-gray border-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+            <DatePickerInput
+              className="w-full"
               dateFormat="dd/MM/yyyy"
-              selected={form.childTglLahir}
-              onChange={(date: Date) =>
+              selectedDate={form.childTglLahir}
+              onChange={(date: Date | null) =>
                 setForm({ ...form, childTglLahir: date })
               }
             />
@@ -163,11 +161,11 @@ const ChildDedicationForm: FC = () => {
             >
               Tanggal Diserahkan (Day/Month/Year)
             </label>
-            <DatePicker
-              className="w-full appearance-none border rounded-[20px] border-gray border-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+            <DatePickerInput
+              className="w-full"
               dateFormat="dd/MM/yyyy"
-              selected={form.childDateSubmitted}
-              onChange={(date: Date) =>
+              selectedDate={form.childDateSubmitted}
+              onChange={(date: Date | null) =>
                 setForm({ ...form, childDateSubmitted: date })
               }
             />
