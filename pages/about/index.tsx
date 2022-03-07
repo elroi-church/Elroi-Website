@@ -60,7 +60,7 @@ const index: FunctionComponent = () => {
               })}
             </div>
           </div>
-          <div className="container w-full mx-auto text-center mt-4">
+          <div className="container w-2/3 lg:w-full mx-auto text-center mt-4">
             <h1 className="text-4xl font-bold">
               History Of <span className="text-orange-400">ERC Sawangan </span>
             </h1>
@@ -85,7 +85,7 @@ const index: FunctionComponent = () => {
                       </div>
                       <div className="w-full order-first lg:order-last lg:w-1/3 mb-8 lg:mb-0">
                         <img
-                          className="w-1/2 lg:w-full h-full m-auto lg:m-0 rounded-[20px] lg:rounded-[0px] lg:rounded-l-xl"
+                          className="w-[90%] lg:w-full h-full m-auto lg:m-0 rounded-[20px] lg:rounded-[0px] lg:rounded-l-xl"
                           src={about.img}
                           alt=""
                         />
@@ -95,7 +95,7 @@ const index: FunctionComponent = () => {
                     <>
                       <div className="w-full lg:w-1/3 mb-8 lg:mb-0">
                         <img
-                          className="w-1/2 lg:w-full h-full m-auto lg:m-0 rounded-[20px] lg:rounded-[0px] lg:rounded-r-xl"
+                          className="w-[90%] lg:w-full h-full m-auto lg:m-0 rounded-[20px] lg:rounded-[0px] lg:rounded-r-xl"
                           src={about.img}
                           alt=""
                         />
@@ -115,7 +115,7 @@ const index: FunctionComponent = () => {
           </div>
         </section>
         <section className="py-20 bg-gray-100 text-center">
-          <h1 className="font-bold text-4xl mb-3">
+          <h1 className="m-auto font-bold text-4xl mb-3 w-2/3 lg:w-full">
             <span className="text-primary">VISI MISI</span> GBI SAWANGAN
           </h1>
           <br />
