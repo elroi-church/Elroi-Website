@@ -35,26 +35,28 @@ const SideBar: React.FC = () => {
             </li>
             <li
               className={`${
-                path.toLowerCase().search("ministry") !== -1 ? "mb-5" : "mb-7"
+                path.toLowerCase() === "dashboard/history" ? "mb-5" : "mb-7"
               }`}
             >
-              {/* <a
+              <a
                 className={`text-xl pl-28 py-2 pr-4 text-black-400 ${
-                  path.toLowerCase().search("ministry") !== -1
+                  path.toLowerCase() === "dashboard/history"
                     ? isActive
                     : "hover:text-gray-500"
                 }`}
                 href="#"
                 onClick={() =>
-                  router.push(
-                    "/dashboard/ministry/water_baptism_form",
-                    undefined,
-                    { shallow: true }
-                  )
+                  router.push("/dashboard/history", undefined, { shallow: true })
                 }
               >
-                Ministry
-              </a> */}
+                History
+              </a>
+            </li>
+            <li
+              className={`${
+                path.toLowerCase().search("ministry") !== -1 ? "mb-5" : "mb-7"
+              }`}
+            >
               <div
                 onClick={() => setOpenDropdown(!openDropdown)}
                 className={`relative text-xl pl-28 py-2 pr-4 text-black-400 ${
@@ -63,9 +65,7 @@ const SideBar: React.FC = () => {
                     : "hover:text-gray-500"
                 }`}
               >
-                <button
-                  onClick={() => setOpenDropdown(!openDropdown)}
-                >
+                <button onClick={() => setOpenDropdown(!openDropdown)}>
                   <span>Ministry</span>
                   <svg
                     fill="currentColor"
@@ -149,7 +149,7 @@ const SideBar: React.FC = () => {
       </div>
       {openDropdown && (
         <>
-          <div className="absolute left-[18vw] top-[13rem] w-full mt-2 z-50 rounded-md shadow-lg md:w-64">
+          <div className="absolute left-[19vw] top-[29vh] w-full mt-2 z-50 rounded-md shadow-lg md:w-64">
             <div className="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
               <a
                 className={`block px-4 py-2 mt-2 mb-4 text-sm rounded-lg dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline ${
