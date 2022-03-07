@@ -26,7 +26,7 @@ const Koperasi: NextPage = () => {
           }}
         >
           <div className="container px-4 mx-auto">
-            <nav className="flex justify-between items-center py-6">
+            <nav className="flex justify-between items-center lg:py-6">
               <a
                 className="text-3xl text-white font-semibold leading-none"
                 href="#"
@@ -41,7 +41,7 @@ const Koperasi: NextPage = () => {
             </nav>
             <div className="py-20 md:py-26 text-center">
               <div className="max-w-3xl mx-auto mb-5">
-                <h2 className="text-[74px] text-white font-bold font-heading -mb-5">
+                <h2 className="text-5xl md:text-[74px] text-white font-bold font-heading">
                   Koperasi ERC KSMS
                 </h2>
                 <p className="text-white font-light text-2xl leading-relaxed tracking-wider">
@@ -64,7 +64,7 @@ const Koperasi: NextPage = () => {
             <div className="font-bold mb-4">
               <img
                 src="/assets/img/koperasi/LOGO KSMS.png"
-                className="w-[60%] m-auto"
+                className="w-full lg:w-[60%] m-auto"
                 alt="Logo KSMS"
               />
             </div>
@@ -99,8 +99,8 @@ const Koperasi: NextPage = () => {
           </div>
         </div>
         <div className="py-[80px]">
-          <div className="m-auto w-2/3 text-center">
-            <h1 className="font-bold text-[50px] mb-3">UNIQUE SELLING POINT</h1>
+          <div className="m-auto w-[90%] md:w-2/3 text-center">
+            <h1 className="font-bold text-3xl md:text-[50px] mb-3">UNIQUE SELLING POINT</h1>
             {uniqueSelling?.map((item, idx) => (
               <div className="p-5 bg-primary rounded-xl mb-5" key={idx}>
                 <p className="text-2xl font-light text-white">{item}</p>
@@ -109,10 +109,10 @@ const Koperasi: NextPage = () => {
           </div>
         </div>
         <div className="py-[80px] bg-gray-100">
-          <div className="m-auto w-2/3 text-center">
-            <h1 className="font-bold text-[50px] mb-3">IURAN ANGGOTA</h1>
+          <div className="m-auto w-[90%] md:w-2/3 text-center">
+            <h1 className="font-bold text-3xl md:text-[50px] mb-3">IURAN ANGGOTA</h1>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="p-5 bg-primary rounded-xl bg-gray-400">
                 <p className="text-2xl font-semibold text-white">SILVER</p>
                 <p className="text-2xl font-semibold text-white">RP.10.000</p>
@@ -127,8 +127,8 @@ const Koperasi: NextPage = () => {
               </div>
             </div>
           </div>
-          <div className="m-auto w-2/3 text-center mt-10">
-            <h1 className="font-bold text-[50px] mb-3">KETENTUAN IURAN</h1>
+          <div className="m-auto w-[90%] md:w-2/3 text-center mt-10">
+            <h1 className="font-bold text-3xl md:text-[50px] mb-3">KETENTUAN IURAN</h1>
             {ketentuanIuran?.map((item, idx) => (
               <div className="p-5 outline outline-primary rounded-xl mb-5" key={idx}>
                 <p className="text-2xl font-light text-black">{item}</p>
@@ -136,12 +136,12 @@ const Koperasi: NextPage = () => {
             ))}
           </div>
         </div>
-        <div className="m-auto w-2/3 my-[80px] text-center">
-          <h1 className="font-bold text-[50px] mb-3">STRUKTUR</h1>
+        <div className="m-auto w-[90%] md:w-2/3 my-[80px] text-center">
+          <h1 className="font-bold text-3xl md:text-[50px] mb-3">STRUKTUR</h1>
           <br />
           <br />
-          <div className="flex">
-            <div className="w-1/2">
+          <div className="md:flex">
+            <div className="w-full md:w-1/2">
               <div className="h-fit w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
                 <img
                   src="/assets/img/koperasi/struktur.png"
@@ -150,7 +150,7 @@ const Koperasi: NextPage = () => {
                 />
               </div>
             </div>
-            <div className="w-1/2 ml-10 my-auto text-left">
+            <div className="w-full md:w-1/2 md:ml-10 my-auto text-center md:text-left">
               <h2 className="text-3xl font-semibold"> PENASIHAT</h2>
               <p className="text-xl"> Ps. M. Riza Solihin</p>
             </div>
