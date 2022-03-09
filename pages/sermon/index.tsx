@@ -1,45 +1,32 @@
+import { GetServerSideProps } from "next";
 import { FunctionComponent, useState } from "react";
 import MainLayout from "../../core/components/commons/layouts/MainLayout";
+import axios from "axios";
+import { appConfig } from "../../config/config";
+import { Sermon } from "../../core/features/sermon/entities/sermon.entity";
 
-interface RecentSermonProps {
-  img: string;
-  title: string;
-  subtitle: string;
+interface SermonProps {
+  recentSermons: Sermon[];
 }
 
-const Sermon: FunctionComponent = () => {
-  const [recentSermon, setRecentSermon] = useState<RecentSermonProps[]>([
-    {
-      img: "/assets/img/online/bgkend.png",
-      title: "CAROLLY YOSUA EVANDRO",
-      subtitle: "APA YANG ADA PADAMU",
+export const getServerSideProps: GetServerSideProps<SermonProps> = async () => {
+  const res = await axios.get(
+    `${appConfig.apiUrl}/api/sermons?status=Finish&limit=6&publishStatus=Published`
+  );
+
+  const recentSermons = res.data?.data;
+
+  console.log(res);
+
+  return {
+    props: {
+      recentSermons: recentSermons,
     },
-    {
-      img: "/assets/img/sermon/cardsermon2.png",
-      title: "PS. M. RIZA SOLIHIN",
-      subtitle: "TUHAN TELAH MELUPAKAN AKU",
-    },
-    {
-      img: "/assets/img/sermon/cardsermon3.png",
-      title: "PS. JESSE LANTANG",
-      subtitle: "NEW WINE",
-    },
-    {
-      img: "/assets/img/sermon/cardsermon4.png",
-      title: "PS. M. RIZA SOLIHIN",
-      subtitle: "MEMIUTANGI KRISTUS",
-    },
-    {
-      img: "/assets/img/sermon/cardsermon5.png",
-      title: "PS. JEFFRY RAMA",
-      subtitle: "STANDING FIRM",
-    },
-    {
-      img: "/assets/img/sermon/cardsermon6.png",
-      title: "PS. TIMOTHY ABRAHAM",
-      subtitle: "KESEHATAN JIWA",
-    },
-  ]);
+  };
+};
+
+const SermonPage: FunctionComponent<SermonProps> = ({ recentSermons }) => {
+  const [sermon, setSermon] = useState(recentSermons);
   return (
     <>
       <MainLayout>
@@ -65,22 +52,24 @@ const Sermon: FunctionComponent = () => {
           </div>
         </div>
         <div className="my-20 lg:px-[200px] items-center">
-          <h2 className="text-3xl md:text-[30px] text-center md:text-left mb-2 font-bold">Recent Sermons</h2>
+          <h2 className="text-3xl md:text-[30px] text-center md:text-left mb-2 font-bold">
+            Recent Sermons
+          </h2>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-3">
-            {recentSermon?.map((sermon, idx) => {
+          <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-x-5 lg:gap-y-5">
+            {sermon?.map((sermon, idx) => {
               return (
-                <div key={idx}>
-                  <div className="flex flex-col justify-center items-center overflow-hidden rounded-[30px] w-[90%] md:w-full shadow-lg h-2/4 mx-auto">
+                <div key={idx} className="mb-5">
+                  <div className="flex flex-col justify-center items-center overflow-hidden rounded-[30px] w-[90%] md:w-full shadow-lg mx-auto">
                     <img
-                      src={sermon.img}
-                      className="h-full w-full aspect-square object-fit"
+                      src={sermon.thumbnailURL}
+                      className="h-auto w-full object-cover"
                       alt="Term condition"
                     />
                   </div>
                   <div className="text-black mt-4 md:text-left text-center">
                     <h2 className="font-bold">{sermon.title}</h2>
-                    <p className="font-light">{sermon.subtitle}</p>
+                    <p className="font-light">{sermon.content}</p>
                   </div>
                 </div>
               );
@@ -92,4 +81,4 @@ const Sermon: FunctionComponent = () => {
   );
 };
 
-export default Sermon;
+export default SermonPage;
