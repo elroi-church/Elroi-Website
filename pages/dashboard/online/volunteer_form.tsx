@@ -3,7 +3,6 @@ import AuthLayout from "../../../core/components/commons/layouts/AuthLayout";
 
 interface PropsForm {
   name: string;
-  gender: String;
   umur: string;
   nowa: string;
   email: string;
@@ -20,22 +19,28 @@ interface PropsForm {
 const SunshineForm: FC = () => {
   const [form, setForm] = React.useState<PropsForm>({
     name: "",
-    gender: "Pria",
     umur: "",
     nowa: "",
     email: "",
     usia: "",
     notelp: "",
     domisili: "",
-    berjemaat: "",
-    melayani: "",
-    isPresentKom: "",
-    karunia: "",
-    kerinduanBidang: "",
+    berjemaat: "Ya",
+    melayani: "Ya",
+    isPresentKom: "Ya",
+    karunia: "Pengajaran",
+    kerinduanBidang: "Creative Team (Social Media)",
   });
 
-  const onChangeRadio = (gender: string): void => {
-    setForm(() => ({ ...form, gender }));
+  const onChangeRadio = (type: string, value: string): void => {
+    for (const key in form) {
+      if (Object.prototype.hasOwnProperty.call(form, key)) {
+        console.log(key, type);
+        if (type === key) {
+          setForm(() => ({ ...form, [type]: value }));
+        }
+      }
+    }
   };
 
   // create function handle submit form
@@ -122,9 +127,9 @@ const SunshineForm: FC = () => {
                 <input
                   type="radio"
                   id="Ya"
-                  name="drone"
+                  name="berjemaat"
                   value="Ya"
-                  onChange={(v) => onChangeRadio(v.target.value)}
+                  onChange={(v) => onChangeRadio("berjemaat", v.target.value)}
                   checked={form.berjemaat === "Ya"}
                 />
                 <label className="text-lg ml-2 font-light" htmlFor="Ya">
@@ -136,9 +141,9 @@ const SunshineForm: FC = () => {
                 <input
                   type="radio"
                   id="Tidak"
-                  name="drone"
+                  name="berjemaat"
                   value="Tidak"
-                  onChange={(v) => onChangeRadio(v.target.value)}
+                  onChange={(v) => onChangeRadio("berjemaat", v.target.value)}
                   checked={form.berjemaat === "Tidak"}
                 />
                 <label className="text-lg ml-2 font-light" htmlFor="Tidak">
@@ -159,13 +164,13 @@ const SunshineForm: FC = () => {
               <div>
                 <input
                   type="radio"
-                  id="Ya"
-                  name="drone"
+                  id="melayanigansya"
+                  name="melayanigans"
                   value="Ya"
-                  onChange={(v) => onChangeRadio(v.target.value)}
+                  onChange={(v) => onChangeRadio("melayani", v.target.value)}
                   checked={form.melayani === "Ya"}
                 />
-                <label className="text-lg ml-2 font-light" htmlFor="Ya">
+                <label className="text-lg ml-2 font-light" htmlFor="melayanigansya">
                   Ya
                 </label>
               </div>
@@ -173,13 +178,13 @@ const SunshineForm: FC = () => {
               <div>
                 <input
                   type="radio"
-                  id="Tidak"
-                  name="drone"
+                  id="melayanigansTidak"
+                  name="melayanigans"
                   value="Tidak"
-                  onChange={(v) => onChangeRadio(v.target.value)}
+                  onChange={(v) => onChangeRadio("melayani", v.target.value)}
                   checked={form.melayani === "Tidak"}
                 />
-                <label className="text-lg ml-2 font-light" htmlFor="Tidak">
+                <label className="text-lg ml-2 font-light" htmlFor="melayanigansTidak">
                   Tidak
                 </label>
               </div>
@@ -198,9 +203,9 @@ const SunshineForm: FC = () => {
                 <input
                   type="radio"
                   id="Pengajaran"
-                  name="drone"
+                  name="karunia"
                   value="Pengajaran"
-                  onChange={(v) => onChangeRadio(v.target.value)}
+                  onChange={(v) => onChangeRadio("karunia", v.target.value)}
                   checked={form.karunia === "Pengajaran"}
                 />
                 <label className="text-lg font-light ml-2" htmlFor="Pengajaran">
@@ -212,9 +217,9 @@ const SunshineForm: FC = () => {
                 <input
                   type="radio"
                   id="Penglihatan"
-                  name="drone"
+                  name="karunia"
                   value="Penglihatan"
-                  onChange={(v) => onChangeRadio(v.target.value)}
+                  onChange={(v) => onChangeRadio("karunia", v.target.value)}
                   checked={form.karunia === "Penglihatan"}
                 />
                 <label
@@ -229,9 +234,9 @@ const SunshineForm: FC = () => {
                 <input
                   type="radio"
                   id="Menulis"
-                  name="drone"
+                  name="karunia"
                   value="Menulis"
-                  onChange={(v) => onChangeRadio(v.target.value)}
+                  onChange={(v) => onChangeRadio("karunia", v.target.value)}
                   checked={form.karunia === "Menulis"}
                 />
                 <label className="text-lg ml-2 font-light" htmlFor="Menulis">
@@ -243,9 +248,9 @@ const SunshineForm: FC = () => {
                 <input
                   type="radio"
                   id="Pendoa"
-                  name="drone"
+                  name="karunia"
                   value="Pendoa"
-                  onChange={(v) => onChangeRadio(v.target.value)}
+                  onChange={(v) => onChangeRadio("karunia", v.target.value)}
                   checked={form.karunia === "Pendoa"}
                 />
                 <label className="text-lg ml-2 font-light" htmlFor="Pendoa">
@@ -257,9 +262,9 @@ const SunshineForm: FC = () => {
                 <input
                   type="radio"
                   id="Musik"
-                  name="drone"
+                  name="karunia"
                   value="Musik"
-                  onChange={(v) => onChangeRadio(v.target.value)}
+                  onChange={(v) => onChangeRadio("karunia", v.target.value)}
                   checked={form.karunia === "Musik"}
                 />
                 <label className="text-lg ml-2 font-light" htmlFor="Musik">
@@ -280,13 +285,15 @@ const SunshineForm: FC = () => {
               <div>
                 <input
                   type="radio"
-                  id="Ya"
-                  name="drone"
+                  id="isPresentKomYa"
+                  name="kom"
                   value="Ya"
-                  onChange={(v) => onChangeRadio(v.target.value)}
+                  onChange={(v) =>
+                    onChangeRadio("isPresentKom", v.target.value)
+                  }
                   checked={form.isPresentKom === "Ya"}
                 />
-                <label className="text-lg ml-2 font-light" htmlFor="Ya">
+                <label className="text-lg ml-2 font-light" htmlFor="isPresentKomYa">
                   Ya
                 </label>
               </div>
@@ -294,13 +301,15 @@ const SunshineForm: FC = () => {
               <div>
                 <input
                   type="radio"
-                  id="Tidak"
-                  name="drone"
+                  id="isPresentKomTidak"
+                  name="kom"
                   value="Tidak"
-                  onChange={(v) => onChangeRadio(v.target.value)}
+                  onChange={(v) =>
+                    onChangeRadio("isPresentKom", v.target.value)
+                  }
                   checked={form.isPresentKom === "Tidak"}
                 />
-                <label className="text-lg ml-2 font-light" htmlFor="Tidak">
+                <label className="text-lg ml-2 font-light" htmlFor="isPresentKomTidak">
                   Tidak
                 </label>
               </div>
@@ -319,9 +328,11 @@ const SunshineForm: FC = () => {
                 <input
                   type="radio"
                   id="Creative Team (Social Media)"
-                  name="drone"
+                  name="kerinduanBidang"
                   value="Creative Team (Social Media)"
-                  onChange={(v) => onChangeRadio(v.target.value)}
+                  onChange={(v) =>
+                    onChangeRadio("kerinduanBidang", v.target.value)
+                  }
                   checked={
                     form.kerinduanBidang === "Creative Team (Social Media)"
                   }
@@ -338,9 +349,11 @@ const SunshineForm: FC = () => {
                 <input
                   type="radio"
                   id="Production Team (Cameraman, Soundman, Multimedia, Photography)"
-                  name="drone"
+                  name="kerinduanBidang"
                   value="Production Team (Cameraman, Soundman, Multimedia, Photography)"
-                  onChange={(v) => onChangeRadio(v.target.value)}
+                  onChange={(v) =>
+                    onChangeRadio("kerinduanBidang", v.target.value)
+                  }
                   checked={
                     form.kerinduanBidang ===
                     "Production Team (Cameraman, Soundman, Multimedia, Photography)"
@@ -358,9 +371,11 @@ const SunshineForm: FC = () => {
                 <input
                   type="radio"
                   id="Pastoral Ministry (Kunjungan, Kedukaan)"
-                  name="drone"
+                  name="kerinduanBidang"
                   value="Pastoral Ministry (Kunjungan, Kedukaan)"
-                  onChange={(v) => onChangeRadio(v.target.value)}
+                  onChange={(v) =>
+                    onChangeRadio("kerinduanBidang", v.target.value)
+                  }
                   checked={
                     form.kerinduanBidang ===
                     "Pastoral Ministry (Kunjungan, Kedukaan)"
@@ -378,9 +393,11 @@ const SunshineForm: FC = () => {
                 <input
                   type="radio"
                   id="Music (WL,Singer,Padus, Alat Musik)"
-                  name="drone"
+                  name="kerinduanBidang"
                   value="Music (WL,Singer,Padus, Alat Musik)"
-                  onChange={(v) => onChangeRadio(v.target.value)}
+                  onChange={(v) =>
+                    onChangeRadio("kerinduanBidang", v.target.value)
+                  }
                   checked={
                     form.kerinduanBidang ===
                     "Music (WL,Singer,Padus, Alat Musik)"
@@ -398,9 +415,11 @@ const SunshineForm: FC = () => {
                 <input
                   type="radio"
                   id="Prayer Ministry"
-                  name="drone"
+                  name="kerinduanBidang"
                   value="Prayer Ministry"
-                  onChange={(v) => onChangeRadio(v.target.value)}
+                  onChange={(v) =>
+                    onChangeRadio("kerinduanBidang", v.target.value)
+                  }
                   checked={form.kerinduanBidang === "Prayer Ministry"}
                 />
                 <label
@@ -415,9 +434,11 @@ const SunshineForm: FC = () => {
                 <input
                   type="radio"
                   id="Dancer (Darash Dance Crew)"
-                  name="drone"
+                  name="kerinduanBidang"
                   value="Dancer (Darash Dance Crew)"
-                  onChange={(v) => onChangeRadio(v.target.value)}
+                  onChange={(v) =>
+                    onChangeRadio("kerinduanBidang", v.target.value)
+                  }
                   checked={
                     form.kerinduanBidang === "Dancer (Darash Dance Crew)"
                   }
@@ -434,9 +455,11 @@ const SunshineForm: FC = () => {
                 <input
                   type="radio"
                   id="Kids Ministry"
-                  name="drone"
+                  name="kerinduanBidang"
                   value="Kids Ministry"
-                  onChange={(v) => onChangeRadio(v.target.value)}
+                  onChange={(v) =>
+                    onChangeRadio("kerinduanBidang", v.target.value)
+                  }
                   checked={form.kerinduanBidang === "Kids Ministry"}
                 />
                 <label
@@ -451,9 +474,11 @@ const SunshineForm: FC = () => {
                 <input
                   type="radio"
                   id="Article Writer"
-                  name="drone"
+                  name="kerinduanBidang"
                   value="Article Writer"
-                  onChange={(v) => onChangeRadio(v.target.value)}
+                  onChange={(v) =>
+                    onChangeRadio("kerinduanBidang", v.target.value)
+                  }
                   checked={form.kerinduanBidang === "Article Writer"}
                 />
                 <label

@@ -1,8 +1,6 @@
 import React, { FC } from "react";
 import AuthLayout from "../../../core/components/commons/layouts/AuthLayout";
-import DatePicker from "react-datepicker";
-// css for react datepicker
-import "react-datepicker/dist/react-datepicker.css";
+import DatePickerInput from "../../../core/components/commons/datepicker";
 
 interface PropsForm {
   name: string;
@@ -13,6 +11,7 @@ interface PropsForm {
   domisili: string;
   kategoriKesaksian: string;
   kesaksian: string;
+  tglLahir: Date | null;
 }
 
 const ArticleForm: FC = () => {
@@ -25,11 +24,11 @@ const ArticleForm: FC = () => {
     domisili: "",
     kategoriKesaksian: "Bisnis/Pekerjaan/Keuangan",
     kesaksian: "",
+    tglLahir: new Date(),
   });
   //   const [kategoriKesaksian, setKategoriKesaksian] = React.useState(
   //     "Bisnis/Pekerjaan/Keuangan"
   //   );
-  const [startDate, setStartDate] = React.useState(new Date());
 
   const onChangeRadioGender = React.useCallback((target: any): void => {
     if (target.checked) {
@@ -113,11 +112,13 @@ const ArticleForm: FC = () => {
             >
               Tanggal Lahir (Day/Month/Year)
             </label>
-            <DatePicker
-              className="appearance-none border rounded-[20px] border-gray border-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+            <DatePickerInput
+              className="w-full"
               dateFormat="dd/MM/yyyy"
-              selected={startDate}
-              onChange={(date: Date) => setStartDate(date)}
+              selectedDate={form.tglLahir}
+              onChange={(date: Date | null) =>
+                setForm({ ...form, tglLahir: date })
+              }
             />
           </div>
 

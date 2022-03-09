@@ -1,4 +1,8 @@
 module.exports = {
+  plugins: [
+    require("@tailwindcss/forms")({ strategy: "class" }),
+    // ...
+  ],
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./core/components/**/*.{js,ts,jsx,tsx}",
@@ -12,5 +16,4 @@ module.exports = {
       },
     },
   },
-  plugins: [],
 };
