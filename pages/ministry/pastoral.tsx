@@ -52,7 +52,7 @@ const pastoral: NextPage = () => {
                       <p className="my-5">{detail.subtitile}</p>
                       <a
                         className="block uppercase sm:inline-block py-4 px-10 rounded-[15px] mb-4 sm:mb-0 sm:mr-3 text-lg text-white text-center font-semibold leading-none border bg-primary"
-                        href="#"
+                        href="https://wa.me/62817190197"
                       >
                         CHAT FOR MORE INFO
                       </a>
@@ -65,7 +65,7 @@ const pastoral: NextPage = () => {
                       <p className="my-5">{detail.subtitile}</p>
                       <a
                         className="block uppercase sm:inline-block py-4 px-10 rounded-[15px] mb-4 sm:mb-0 sm:mr-3 text-lg text-white text-center font-semibold leading-none border bg-primary"
-                        href="#"
+                        href="https://wa.me/62817190197"
                       >
                         CHAT FOR MORE INFO
                       </a>
