@@ -10,10 +10,10 @@ const prayer_counseling: NextPage = () => {
       <MainLayout>
         <Banner
           title="Prayer & Counseling"
-          imgUrl="/assets/img/prayer/prayer.png"
+          imgUrl="/assets/img/prayer/newprayer.png"
         />
 
-        <div className="px-[40px] mx-auto text-center mt-[90px] w-1/2">
+        <div className="px-[40px] mx-auto text-center mt-[90px] w-full lg:w-1/2">
           <h2 className="font-bold text-3xl">
             NEED <span className="text-primary">PRAYER ?</span>
           </h2>
@@ -26,8 +26,9 @@ const prayer_counseling: NextPage = () => {
           </p>
           <br />
           <a
-            className="block uppercase sm:inline-block py-4 px-10 w-[350px] m-auto rounded-[15px] mb-4 sm:mb-0 sm:mr-3 text-lg text-black text-center font-semibold leading-none border border-primary border-4 bg-transparent hover:bg-primary hover:border-transparent hover:text-white"
-            href="#"
+            className="block uppercase sm:inline-block py-4 lg:px-10 w-full lg:w-[350px] m-auto rounded-[15px] mb-4 sm:mb-0 sm:mr-3 text-lg text-black text-center font-semibold leading-none border border-primary border-4 bg-transparent hover:bg-primary hover:border-transparent hover:text-white"
+            href="https://api.whatsapp.com/send?phone=6281210250040&text=Shalom%20ERC%20Prayer%20Call%20Center%2C%20mohon%20doakan%20saya%20mengenai%20.....%20"
+            target={`_blank`}
           >
             <div className="flex text-center w-full m-auto justify-center">
               <BsWhatsapp /> &nbsp; PRAYER CALL CENTER
@@ -36,7 +37,7 @@ const prayer_counseling: NextPage = () => {
         </div>
 
         <div className="px-[40px] mx-auto text-center py-[60px] mt-[50px] bg-gray-100">
-          <div className="w-1/2 mx-auto">
+          <div className="w-full lg:w-1/2 mx-auto">
             <h2 className="font-bold text-3xl">
               NEED <span className="text-primary">COUNSELING ?</span>
             </h2>
@@ -48,7 +49,7 @@ const prayer_counseling: NextPage = () => {
               love to pray with you!
             </p>
             <br />
-            <form className=" px-8 pt-6 pb-8 mb-4">
+            {/* <form className=" px-8 pt-6 pb-8 mb-4">
               <div className="mb-4">
                 <label
                   className="block text-left text-xl text-gray-700 text-sm mb-2"
@@ -102,13 +103,14 @@ const prayer_counseling: NextPage = () => {
                   placeholder="Sinopsis Message"
                 ></textarea>
               </div>
-            </form>
+            </form> */}
             <a
-              className="block uppercase sm:inline-block py-2 px-8 w-[280px] m-auto rounded-[15px] mb-4 sm:mb-0 sm:mr-3 text-lg text-black text-center font-semibold leading-none border border-primary border-2 bg-transparent hover:bg-primary hover:border-transparent hover:text-white"
-              href="#"
+              className="block uppercase sm:inline-block py-4 px-10 w-full lg:w-[350px] m-auto rounded-[15px] mb-4 sm:mb-0 sm:mr-3 text-lg text-black text-center font-semibold leading-none border border-primary border-4 bg-transparent hover:bg-primary hover:border-transparent hover:text-white"
+              href="https://api.whatsapp.com/send?phone=6281210250040&text=Shalom%20ERC%20Prayer%20Call%20Center%2C%20mohon%20doakan%20saya%20mengenai%20.....%20"
+              target={`_blank`}
             >
               <div className="flex text-center w-full m-auto justify-center">
-                Send Counseling
+                <BsWhatsapp /> &nbsp; PRAYER CALL CENTER
               </div>
             </a>
           </div>

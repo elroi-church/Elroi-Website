@@ -16,13 +16,13 @@ const Schedule: NextPage<PropsSchedule> = (props: PropsSchedule) => {
       <h1 className="font-bold text-[50px] text-center px-[80px] py-[120px]">
         {titleSchedule}
       </h1>
-      <div className="flex">
-        <div className="lg:w-1/2 w-full">
-          <div className="h-fit w-full overflow-hidden mb-3 rounded-r-[30px] shadow-lg">
-            <img src={`${imgUrl}`} className="w-full" alt="" />
+      <div className="flex flex-wrap lg:flex-nowrap">
+        <div className="w-full lg:w-1/2 mx-10 lg:mx-0">
+          <div className="h-fit w-full overflow-hidden lg:mb-3 rounded-xl lg:rounded-[0px] lg:rounded-r-[30px] shadow-lg">
+            <img src={`${imgUrl}`} className="w-full h-96 object-fill" alt="" />
           </div>
         </div>
-        <div className="w-1/2 my-auto ml-[8%]">
+        <div className="w-full lg:w-1/2 my-auto lg:ml-[8%] flex lg:block justify-around lg:justify-start">
           {payload.length > 0 &&
             payload?.map((data, index) => {
               return (

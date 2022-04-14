@@ -6,13 +6,13 @@ const TermConditions: NextPage<Term> = (props: Term) => {
 
   return (
     <div>
-      <div className="flex">
-        <div className="w-1/2 ml-10">
+      <div className="flex flex-wrap lg:flex-nowrap">
+        <div className="w-full lg:w-1/2 mx-10 lg:mx-0 lg:ml-10">
           <h1 className="font-bold text-4xl mb-8">Terms & Conditions</h1>
           <div className="block">
             {term.length > 0 &&
               term.map((data, idx) => {
-                return <p key={idx}>{data.title}</p>;
+                return <p className="mb-5" key={idx}>{data.title}</p>;
               })}
 
             <div className="mt-6">
@@ -25,9 +25,9 @@ const TermConditions: NextPage<Term> = (props: Term) => {
             </div>
           </div>
         </div>
-        <div className="w-1/2">
-          <div className="h-fit w-full overflow-hidden mb-3 rounded-l-[30px] shadow-lg">
-            <img src={`${imgUrl}`} className="w-full" alt="Term condition" />
+        <div className="w-full lg:w-1/2 order-first lg:order-last mx-10 lg:mx-0">
+          <div className="w-full overflow-hidden mb-3 rounded-xl lg:rounded-[0px] lg:rounded-l-[30px] shadow-lg">
+            <img src={`${imgUrl}`} className="w-full h-96 object-cover" alt="Term condition" />
           </div>
         </div>
       </div>
