@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import Head from "next/head";
 import React from "react";
 import { AiOutlineInstagram } from "react-icons/ai";
 import Banner from "../../core/components/commons/banner";
@@ -40,6 +41,9 @@ const etc: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <title>Elroi Church Sawangan - Elroi Training Center</title>
+      </Head>
       <MainLayout>
         <Banner
           title="El-Roi Training Center"

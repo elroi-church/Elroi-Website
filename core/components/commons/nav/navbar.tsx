@@ -3,6 +3,7 @@ import React, { FunctionComponent, useEffect, useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import MobileNav from "./MobileNav";
 import ProfileDropdown from "./ProfileDropdown";
+import Link from "next/link";
 
 // Navbar tailwind component
 const Navbar: FunctionComponent = () => {
@@ -68,51 +69,47 @@ const Navbar: FunctionComponent = () => {
         </div>
         <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
           <li>
-            <a
-              className={`text-sm text-black-400 ${
-                path.toLowerCase() === "home" ||
-                router.pathname === "/" ||
-                path.toLowerCase() === "giving"
-                  ? isActive
-                  : "hover:text-gray-500"
-              }`}
-              href="#"
-              onClick={() => router.push("/", undefined, { shallow: true })}
-            >
-              Home
-            </a>
+            <Link href="/" passHref>
+              <a
+                className={`text-sm text-black-400 ${
+                  path.toLowerCase() === "home" ||
+                  router.pathname === "/" ||
+                  path.toLowerCase() === "giving"
+                    ? isActive
+                    : "hover:text-gray-500"
+                }`}
+              >
+                Home
+              </a>
+            </Link>
           </li>
 
           <li>
-            <a
-              className={`text-sm text-black-400 ${
-                path.toLowerCase() === "about"
-                  ? isActive
-                  : "hover:text-gray-500"
-              }`}
-              href="#"
-              onClick={() =>
-                router.push("/about", undefined, { shallow: true })
-              }
-            >
-              About
-            </a>
+            <Link href="/about" passHref>
+              <a
+                className={`text-sm text-black-400 ${
+                  path.toLowerCase() === "about"
+                    ? isActive
+                    : "hover:text-gray-500"
+                }`}
+              >
+                About
+              </a>
+            </Link>
           </li>
 
           <li>
-            <a
-              className={`text-sm text-black-400 ${
-                path.toLowerCase() === "sermon"
-                  ? isActive
-                  : "hover:text-gray-500"
-              }`}
-              href="#"
-              onClick={() =>
-                router.push("/sermon", undefined, { shallow: true })
-              }
-            >
-              Sermons
-            </a>
+            <Link href="/sermon" passHref>
+              <a
+                className={`text-sm text-black-400 ${
+                  path.toLowerCase() === "sermon"
+                    ? isActive
+                    : "hover:text-gray-500"
+                }`}
+              >
+                Sermons
+              </a>
+            </Link>
           </li>
 
           {/* <li>
@@ -159,85 +156,72 @@ const Navbar: FunctionComponent = () => {
                 <>
                   <div className="absolute left-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-64">
                     <div className="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
-                      <a
-                        className={`block px-4 py-2 mt-2 text-sm rounded-lg dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline ${
-                          path.toLowerCase().search("ministry/baptism") !== -1
-                            ? isActive + " w-full"
-                            : "hover:bg-primary hover:text-gray-500 bg-transparent dark-mode:bg-transparent dark-mode:hover:bg-primary-600"
-                        }`}
-                        href="#"
-                        onClick={() =>
-                          router.push("/ministry/baptism", undefined, {
-                            shallow: true,
-                          })
-                        }
-                      >
-                        Water Baptism
-                      </a>
-                      <a
-                        className={`block px-4 py-2 mt-2 text-sm rounded-lg  dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline ${
-                          path.toLowerCase().search("ministry/pastoral") !== -1
-                            ? isActive + " w-full"
-                            : "hover:bg-primary hover:text-gray-500 bg-transparent dark-mode:bg-transparent dark-mode:hover:bg-primary-600"
-                        }`}
-                        href="#"
-                        onClick={() =>
-                          router.push("/ministry/pastoral", undefined, {
-                            shallow: true,
-                          })
-                        }
-                      >
-                        Pastoral
-                      </a>
-                      <a
-                        className={`block px-4 py-2 mt-2 text-sm rounded-lg  dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline ${
-                          path.toLowerCase().search("ministry/child_dedication") !== -1
-                            ? isActive + " w-full"
-                            : "hover:bg-primary hover:text-gray-500 bg-transparent dark-mode:bg-transparent dark-mode:hover:bg-primary-600"
-                        }`}
-                        href="#"
-                        onClick={() =>
-                          router.push("/ministry/child_dedication", undefined, {
-                            shallow: true,
-                          })
-                        }
-                      >
-                        Child Dedication
-                      </a>
-                      <a
-                        className={`block px-4 py-2 mt-2 text-sm rounded-lg  dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline ${
-                          path.toLowerCase().search("ministry/prayer_counseling") !== -1
-                            ? isActive + " w-full"
-                            : "hover:bg-primary hover:text-gray-500 bg-transparent dark-mode:bg-transparent dark-mode:hover:bg-primary-600"
-                        }`}
-                        href="#"
-                        onClick={() =>
-                          router.push(
-                            "/ministry/prayer_counseling",
-                            undefined,
-                            {
+                      <Link href="/ministry/baptism" passHref>
+                        <a
+                          className={`block px-4 py-2 mt-2 text-sm rounded-lg dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline ${
+                            path.toLowerCase().search("ministry/baptism") !== -1
+                              ? isActive + " w-full"
+                              : "hover:bg-primary hover:text-gray-500 bg-transparent dark-mode:bg-transparent dark-mode:hover:bg-primary-600"
+                          }`}
+                        >
+                          Water Baptism
+                        </a>
+                      </Link>
+                      <Link href="/ministry/pastoral" passHref>
+                        <a
+                          className={`block px-4 py-2 mt-2 text-sm rounded-lg  dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline ${
+                            path.toLowerCase().search("ministry/pastoral") !==
+                            -1
+                              ? isActive + " w-full"
+                              : "hover:bg-primary hover:text-gray-500 bg-transparent dark-mode:bg-transparent dark-mode:hover:bg-primary-600"
+                          }`}
+                          href="#"
+                          onClick={() =>
+                            router.push("/ministry/pastoral", undefined, {
                               shallow: true,
-                            }
-                          )
-                        }
-                      >
-                        Prayer And Counseling
-                      </a>
-                      <a
-                        className={`block px-4 py-2 mt-2 text-sm rounded-lg  dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline ${
-                          path.toLowerCase().search("ministry/etc") !== -1
-                            ? isActive + " w-full"
-                            : "hover:bg-primary hover:text-gray-500 bg-transparent dark-mode:bg-transparent dark-mode:hover:bg-primary-600"
-                        }`}
-                        href="#"
-                        onClick={() =>
-                          router.push("/ministry/etc", undefined, {
-                            shallow: true,
-                          })
-                        }
-                      >
-                        ETC
-                      </a>
+                            })
+                          }
+                        >
+                          Pastoral
+                        </a>
+                      </Link>
+                      <Link href="/ministry/child-dedication" passHref>
+                        <a
+                          className={`block px-4 py-2 mt-2 text-sm rounded-lg  dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline ${
+                            path
+                              .toLowerCase()
+                              .search("ministry/child-dedication") !== -1
+                              ? isActive + " w-full"
+                              : "hover:bg-primary hover:text-gray-500 bg-transparent dark-mode:bg-transparent dark-mode:hover:bg-primary-600"
+                          }`}
+                        >
+                          Child Dedication
+                        </a>
+                      </Link>
+                      <Link href="/ministry/prayer-counseling" passHref>
+                        <a
+                          className={`block px-4 py-2 mt-2 text-sm rounded-lg  dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline ${
+                            path
+                              .toLowerCase()
+                              .search("ministry/prayer_counseling") !== -1
+                              ? isActive + " w-full"
+                              : "hover:bg-primary hover:text-gray-500 bg-transparent dark-mode:bg-transparent dark-mode:hover:bg-primary-600"
+                          }`}
+                        >
+                          Prayer And Counseling
+                        </a>
+                      </Link>
+                      <Link href="/ministry/etc" passHref>
+                        <a
+                          className={`block px-4 py-2 mt-2 text-sm rounded-lg  dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline ${
+                            path.toLowerCase().search("ministry/etc") !== -1
+                              ? isActive + " w-full"
+                              : "hover:bg-primary hover:text-gray-500 bg-transparent dark-mode:bg-transparent dark-mode:hover:bg-primary-600"
+                          }`}
+                        >
+                          ETC
+                        </a>
+                      </Link>
                     </div>
                   </div>
                 </>
@@ -246,67 +230,55 @@ const Navbar: FunctionComponent = () => {
           </li>
 
           <li>
-            <a
-              className={`text-sm text-black-400 ${
-                path.toLowerCase().search("online") !== -1
-                  ? isActive
-                  : "hover:text-gray-500"
-              }`}
-              href="#"
-              onClick={() =>
-                router.push("/online", undefined, { shallow: true })
-              }
-            >
-              Online
-            </a>
+            <Link href="/online" passHref>
+              <a
+                className={`text-sm text-black-400 ${
+                  path.toLowerCase().search("online") !== -1
+                    ? isActive
+                    : "hover:text-gray-500"
+                }`}
+              >
+                Online
+              </a>
+            </Link>
           </li>
 
           <li>
-            <a
-              className={`text-sm text-black-400 ${
-                path.toLowerCase().search("koperasi") !== -1
-                  ? isActive
-                  : "hover:text-gray-500"
-              }`}
-              href="#"
-              onClick={() =>
-                router.push("/koperasi", undefined, { shallow: true })
-              }
-            >
-              Koperasi
-            </a>
+            <Link href="/koperasi" passHref>
+              <a
+                className={`text-sm text-black-400 ${
+                  path.toLowerCase().search("koperasi") !== -1
+                    ? isActive
+                    : "hover:text-gray-500"
+                }`}
+              >
+                Koperasi
+              </a>
+            </Link>
           </li>
 
           <li>
-            <a
-              className={`text-sm text-black-400 ${
-                path.toLowerCase().search("colour") !== -1
-                  ? isActive
-                  : "hover:text-gray-500"
-              }`}
-              href="#"
-              onClick={() =>
-                router.push("/colour", undefined, { shallow: true })
-              }
-            >
-              The Rainbow
-            </a>
+            <Link href="/colour" passHref>
+              <a
+                className={`text-sm text-black-400 ${
+                  path.toLowerCase().search("colour") !== -1
+                    ? isActive
+                    : "hover:text-gray-500"
+                }`}
+              >
+                The Rainbow
+              </a>
+            </Link>
           </li>
         </ul>
         {session && session.user ? (
           <ProfileDropdown />
         ) : (
-          <a
-            className="hidden lg:inline-block py-2 px-8 text-sm text-white bg-primary hover:bg-primary-darker font-bold rounded-md transition duration-200"
-            href="#"
-            onClick={() =>
-              router.push("/auth/login", undefined, {
-                shallow: true,
-              })
-            }
-          >
-            Sign In
-          </a>
+          <Link href="/auth/login" passHref>
+            <a className="hidden lg:inline-block py-2 px-8 text-sm text-white bg-primary hover:bg-primary-darker font-bold rounded-md transition duration-200">
+              Sign In
+            </a>
+          </Link>
         )}
       </nav>
       <MobileNav isOpenMenu={isOpenMenu} menuHandler={mobileMenuHandler} />

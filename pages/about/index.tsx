@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React, { FunctionComponent } from "react";
 import MainLayout from "../../core/components/commons/layouts/MainLayout";
 import Navbar from "../../core/components/commons/nav/navbar";
@@ -35,6 +36,9 @@ const index: FunctionComponent = () => {
 
   return (
     <>
+      <Head>
+        <title>Elroi Church Sawangan - About</title>
+      </Head>
       <MainLayout>
         <section className="w-full">
           <div className="px-4 mx-auto w-full">

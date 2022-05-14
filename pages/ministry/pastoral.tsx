@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import Head from "next/head";
 import React from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import Banner from "../../core/components/commons/banner";
@@ -28,6 +29,9 @@ const pastoral: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <title>Elroi Church Sawangan - Pastoral</title>
+      </Head>
       <MainLayout>
         <Banner
           title="Pastoral Ministry "

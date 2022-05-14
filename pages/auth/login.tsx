@@ -4,12 +4,17 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
+import Head from "next/head";
+import Link from "next/link";
 
 const Login: NextPage = () => {
   const router = useRouter();
   return (
     // Tailwind Login Form
     <>
+      <Head>
+        <title>Elroi Church Sawangan - Login</title>
+      </Head>
       <MainLayout>
         <section
           className="pb-10 bg-center bg-cover flex justify-center items-center"
@@ -73,7 +78,9 @@ const Login: NextPage = () => {
                   <button
                     className="bg-primary hover:bg-primary-darker text-white font-bold py-2 px-4 rounded-[20px] focus:outline-none focus:shadow-outline w-2/3 mx-auto"
                     type="button"
-                    onClick={() => router.push("/dashboard", undefined, { shallow: true })}
+                    onClick={() =>
+                      router.push("/dashboard", undefined, { shallow: true })
+                    }
                   >
                     Sign In
                   </button>
@@ -82,16 +89,18 @@ const Login: NextPage = () => {
                 <div className="flex items-center flex-col">
                   <p className="font-light">
                     Don’t have an Account ?
-                    <span
-                      className="font-semibold hover:cursor-pointer ml-2"
-                      onClick={() =>
-                        router.push("/auth/register", undefined, {
-                          shallow: true,
-                        })
-                      }
-                    >
-                      Sign Up
-                    </span>
+                    <Link href="/auth/register" passHref>
+                      <a
+                        className="font-semibold hover:cursor-pointer ml-2"
+                        onClick={() =>
+                          router.push("/auth/register", undefined, {
+                            shallow: true,
+                          })
+                        }
+                      >
+                        Sign Up
+                      </a>
+                    </Link>
                   </p>
                   <br />
                   <div className="font-light w-full flex items-center justify-center">
