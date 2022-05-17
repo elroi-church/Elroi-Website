@@ -4,7 +4,7 @@ import { SessionProvider } from "next-auth/react";
 import { useEffect } from "react";
 import { analytics } from "../utils/firebase";
 import { useRouter } from "next/router";
-import { logEvent } from "firebase/analytics";
+import { logEvent, setCurrentScreen } from "firebase/analytics";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const router = useRouter();
@@ -15,6 +15,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     if (process.env.NODE_ENV === "production") {
       console.log("masuk");
       const handleRouteChange = (url: any) => {
+        setCurrentScreen(analytics, url);
         logEvent(analytics, "page_view", { url });
       };
       router.events.on("routeChangeComplete", handleRouteChange);
