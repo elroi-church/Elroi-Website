@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import Head from "next/head";
 import React from "react";
 import Banner from "../../core/components/commons/banner";
 import MainLayout from "../../core/components/commons/layouts/MainLayout";
@@ -7,6 +8,9 @@ import Schedule from "../../core/components/commons/schedule";
 const baptism: NextPage = () => {
   return (
     <>
+      <Head>
+        <title>Elroi Church Sawangan - Ministry of Baptism</title>
+      </Head>
       <MainLayout>
         <Banner
           title="Heaven’s Party"

@@ -1,4 +1,6 @@
 import type { NextPage } from "next";
+import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
@@ -10,6 +12,9 @@ const Register: NextPage = () => {
   return (
     // Tailwind Register
     <>
+      <Head>
+        <title>Elroi Church Sawangan - Register</title>
+      </Head>
       <MainLayout>
         <section
           className="pb-10 bg-center bg-cover flex justify-center items-center"
@@ -20,7 +25,7 @@ const Register: NextPage = () => {
         >
           <div className="mt-[70px] w-full">
             <div className="w-1/2 mx-auto">
-              <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+              <form className="bg-white shadow-md rounded-2xl px-8 pt-6 pb-8 mb-4">
                 <div className="mb-4">
                   {/* <h2 className="font-bold text-3xl text-center">Log In</h2> */}
                   <img
@@ -101,14 +106,11 @@ const Register: NextPage = () => {
                 <div className="flex items-center flex-col">
                   <p className="font-light">
                     Already Account ?
-                    <span
-                      className="font-semibold hover:cursor-pointer ml-2"
-                      onClick={() =>
-                        router.push("/auth/login", undefined, { shallow: true })
-                      }
-                    >
-                      Sign In
-                    </span>
+                    <Link href="/auth/login" passHref>
+                      <a className="font-semibold hover:cursor-pointer ml-2">
+                        Sign In
+                      </a>
+                    </Link>
                   </p>
                   <br />
                 </div>

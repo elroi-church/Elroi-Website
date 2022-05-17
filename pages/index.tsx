@@ -9,11 +9,15 @@ import {
 import { HiOutlineUsers } from "react-icons/hi";
 import { FaFacebook, FaTiktok } from "react-icons/fa";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const Home: NextPage = () => {
   const router = useRouter();
   return (
     <>
+      <Head>
+        <title>Elroi Church Sawangan - Home</title>
+      </Head>
       <MainLayout>
         <section
           className="pb-10 bg-center bg-cover"

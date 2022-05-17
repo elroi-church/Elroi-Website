@@ -4,6 +4,7 @@ import MainLayout from "../../core/components/commons/layouts/MainLayout";
 import axios from "axios";
 import { appConfig } from "../../config/config";
 import { Sermon } from "../../core/features/sermon/entities/sermon.entity";
+import Head from "next/head";
 
 interface SermonProps {
   recentSermons: Sermon[];
@@ -29,6 +30,9 @@ const SermonPage: FunctionComponent<SermonProps> = ({ recentSermons }) => {
   const [sermon, setSermon] = useState(recentSermons);
   return (
     <>
+      <Head>
+        <title>Elroi Church Sawangan - Sermon</title>
+      </Head>
       <MainLayout>
         <div className="flex flex-col md:flex-row justify-between my-20 lg:px-[200px] items-center">
           <h2 className="text-[30px] font-bold">Sermons</h2>
