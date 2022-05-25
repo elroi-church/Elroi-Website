@@ -258,15 +258,15 @@ const Navbar: FunctionComponent = () => {
           </li>
 
           <li>
-            <Link href="/colour" passHref>
+            <Link href="/blog" passHref>
               <a
                 className={`text-sm text-black-400 ${
-                  path.toLowerCase().search("colour") !== -1
+                  path.toLowerCase().search("blog") !== -1
                     ? isActive
                     : "hover:text-gray-500"
                 }`}
               >
-                The Rainbow
+                Blog
               </a>
             </Link>
           </li>

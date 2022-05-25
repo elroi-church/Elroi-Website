@@ -43,13 +43,13 @@ const ColourArticle: NextPage = () => {
           <form className=" px-8 pt-6 pb-8 mb-4">
             <div className="mb-4">
               <label
-                className="block text-left text-xl text-gray-700 text-sm mb-2"
+                className="block text-left  text-gray-700 text-sm mb-2"
                 htmlFor="judulartikel"
               >
                 Judul Artikel
               </label>
               <input
-                className="appearance-none border rounded-[10px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                className="appearance-none rounded-[10px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 id="judulartikel"
                 type="text"
                 placeholder="Judul Artikel"
@@ -57,13 +57,13 @@ const ColourArticle: NextPage = () => {
             </div>
             <div className="mb-4">
               <label
-                className="block text-left text-xl text-gray-700 text-sm mb-2"
+                className="block text-left  text-gray-700 text-sm mb-2"
                 htmlFor="tempaltgl"
               >
                 Tempat, Tanggal
               </label>
               <input
-                className="appearance-none border rounded-[10px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                className="appearance-none  rounded-[10px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 id="tempaltgl"
                 type="text"
                 placeholder="Tempat, Tanggal"
@@ -71,20 +71,20 @@ const ColourArticle: NextPage = () => {
             </div>
             <div className="mb-4">
               <label
-                className="block text-left text-xl text-gray-700 text-sm mb-2"
+                className="block text-left  text-gray-700 text-sm mb-2"
                 htmlFor="partikel"
               >
                 Pembuat Artikel
               </label>
               <input
-                className="appearance-none border rounded-[10px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                className="appearance-none  rounded-[10px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 id="partikel"
                 type="text"
                 placeholder="Pembuat Artikel"
               />
             </div>
             <div className="mb-4">
-              <label className="block text-left text-xl text-gray-700 text-sm mb-2">
+              <label className="block text-left  text-gray-700 text-sm mb-2">
                 Pembuka
               </label>
               <textarea
@@ -95,7 +95,7 @@ const ColourArticle: NextPage = () => {
               ></textarea>
             </div>
             <div className="mb-4">
-              <label className="block text-left text-xl text-gray-700 text-sm mb-2">
+              <label className="block text-left  text-gray-700 text-sm mb-2">
                 Isi Artikel
               </label>
               <textarea
@@ -106,7 +106,7 @@ const ColourArticle: NextPage = () => {
               ></textarea>
             </div>
             <div className="mb-4">
-              <label className="block text-left text-xl text-gray-700 text-sm mb-2">
+              <label className="block text-left  text-gray-700 text-sm mb-2">
                 Penutup
               </label>
               <textarea

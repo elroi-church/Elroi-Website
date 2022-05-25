@@ -20,7 +20,9 @@ const cool: NextPage = () => {
             />
           </div>
           <div className="w-1/2 my-auto ml-20 text-center">
-            <p className="text-[40px] tracking-wide">e-cool setiap Sabtu jam 7 malam</p>
+            <p className="text-[40px] tracking-wide">
+              e-cool setiap Sabtu jam 7 malam
+            </p>
             <br />
             <div className="text-center w-full">
               <a
