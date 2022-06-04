@@ -37,7 +37,7 @@ const index: FunctionComponent = () => {
   return (
     <>
       <Head>
-        <title>Elroi Church Sawangan - About</title>
+        <title>History of Elroichurch - ERC | Elroi Church Sawangan</title>
       </Head>
       <MainLayout>
         <section className="w-full">

@@ -9,7 +9,7 @@ const prayer_counseling: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Elroi Church Sawangan - Prayer Counseling</title>
+        <title>Prayer & Counseling - ERC | Elroi Church Sawangan</title>
       </Head>
       <MainLayout>
         <Banner

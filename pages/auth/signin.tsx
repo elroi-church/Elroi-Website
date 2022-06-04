@@ -5,6 +5,7 @@ import {
   LiteralUnion,
   signIn,
 } from "next-auth/react";
+import { useEffect } from "react";
 import MainLayout from "../../core/components/commons/layouts/MainLayout";
 
 export default function SignIn({
@@ -15,6 +16,10 @@ export default function SignIn({
     ClientSafeProvider
   >;
 }) {
+  useEffect(() => {
+    console.log(providers);
+  }, [providers]);
+
   return (
     <>
       <MainLayout>
@@ -57,6 +62,7 @@ export default function SignIn({
                   <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="button"
+                    onClick={() => signIn("credentials")}
                   >
                     Sign In
                   </button>

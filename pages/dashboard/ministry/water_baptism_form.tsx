@@ -134,13 +134,13 @@ const WaterBaptismForm: FC = () => {
               <div className="grid grid-cols-3 gap-3">
                 <div className="mb-4">
                   <label
-                    className="block text-left text-xl text-gray-700 text-sm mb-2"
+                    className="block text-left  text-gray-700 text-sm mb-2"
                     htmlFor="name"
                   >
                     RT/RW
                   </label>
                   <input
-                    className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                    className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                     id="name"
                     type="text"
                     value={form.rtrw}
@@ -150,13 +150,13 @@ const WaterBaptismForm: FC = () => {
 
                 <div className="mb-4">
                   <label
-                    className="block text-left text-xl text-gray-700 text-sm mb-2"
+                    className="block text-left  text-gray-700 text-sm mb-2"
                     htmlFor="name"
                   >
                     Kecamatan
                   </label>
                   <input
-                    className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                    className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                     id="name"
                     type="text"
                     value={form.kecamatan}
@@ -168,13 +168,13 @@ const WaterBaptismForm: FC = () => {
 
                 <div className="mb-4">
                   <label
-                    className="block text-left text-xl text-gray-700 text-sm mb-2"
+                    className="block text-left  text-gray-700 text-sm mb-2"
                     htmlFor="name"
                   >
                     Kode Pos
                   </label>
                   <input
-                    className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                    className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                     id="name"
                     type="text"
                     value={form.kodePos}
@@ -188,13 +188,13 @@ const WaterBaptismForm: FC = () => {
 
             <div className="mb-4">
               <label
-                className="block text-left text-xl text-gray-700 text-sm mb-2"
+                className="block text-left  text-gray-700 text-sm mb-2"
                 htmlFor="name"
               >
                 Nomor Telepon
               </label>
               <input
-                className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 id="name"
                 type="text"
                 value={form.notelp}
@@ -204,7 +204,7 @@ const WaterBaptismForm: FC = () => {
 
             <div className="mb-4">
               <label
-                className="block text-left text-xl text-gray-700 text-sm"
+                className="block text-left  text-gray-700 text-sm"
                 htmlFor="name"
               >
                 Jenis Kelamin
@@ -243,13 +243,13 @@ const WaterBaptismForm: FC = () => {
             <div className="mb-4 grid grid-cols-2 gap-3">
               <div>
                 <label
-                  className="block text-left text-xl text-gray-700 text-sm mb-2"
+                  className="block text-left  text-gray-700 text-sm mb-2"
                   htmlFor="name"
                 >
                   Tempat Lahir
                 </label>
                 <input
-                  className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                  className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                   id="name"
                   type="text"
                   value={form.tempatLahir}
@@ -260,7 +260,7 @@ const WaterBaptismForm: FC = () => {
               </div>
               <div>
                 <label
-                  className="block text-left text-xl text-gray-700 text-sm mb-2"
+                  className="block text-left  text-gray-700 text-sm mb-2"
                   htmlFor="name"
                 >
                   Tanggal Lahir (Day/Month/Year)
@@ -278,13 +278,13 @@ const WaterBaptismForm: FC = () => {
 
             <div className="mb-4">
               <label
-                className="block text-left text-xl text-gray-700 text-sm mb-2"
+                className="block text-left  text-gray-700 text-sm mb-2"
                 htmlFor="name"
               >
                 Nama Ayah
               </label>
               <input
-                className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 id="name"
                 type="text"
                 value={form.fatherName}
@@ -296,13 +296,13 @@ const WaterBaptismForm: FC = () => {
 
             <div className="mb-4">
               <label
-                className="block text-left text-xl text-gray-700 text-sm mb-2"
+                className="block text-left  text-gray-700 text-sm mb-2"
                 htmlFor="name"
               >
                 Nama Ibu
               </label>
               <input
-                className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 id="name"
                 type="text"
                 value={form.fatherName}
@@ -314,7 +314,7 @@ const WaterBaptismForm: FC = () => {
 
             <div className="mb-4 text-left">
               <label
-                className="block text-left text-xl text-gray-700 text-sm mb-2"
+                className="block text-left  text-gray-700 text-sm mb-2"
                 htmlFor="name"
               >
                 Tanggal Akan Dibaptis (Day/Month/Year)
@@ -331,13 +331,13 @@ const WaterBaptismForm: FC = () => {
 
             <div className="mb-4">
               <label
-                className="block text-left text-xl text-gray-700 text-sm mb-2"
+                className="block text-left  text-gray-700 text-sm mb-2"
                 htmlFor="name"
               >
                 Cabang
               </label>
               <input
-                className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 id="name"
                 type="text"
                 value={form.branch}
@@ -347,13 +347,13 @@ const WaterBaptismForm: FC = () => {
 
             <div className="mb-4">
               <label
-                className="block text-left text-xl text-gray-700 text-sm mb-2"
+                className="block text-left  text-gray-700 text-sm mb-2"
                 htmlFor="name"
               >
                 Pendeta Pembaptis
               </label>
               <input
-                className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 id="name"
                 type="text"
                 value={form.pendeta}
@@ -365,13 +365,13 @@ const WaterBaptismForm: FC = () => {
           <div style={{ display: page === 1 ? "" : "none" }}>
             <div className="mb-4">
               <label
-                className="block text-left text-xl text-gray-700 text-sm mb-2"
+                className="block text-left  text-gray-700 text-sm mb-2"
                 htmlFor="name"
               >
                 Nama Lengkap
               </label>
               <input
-                className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 id="name"
                 type="text"
                 value={form.childName}
@@ -383,7 +383,7 @@ const WaterBaptismForm: FC = () => {
 
             <div className="mb-4">
               <label
-                className="block text-left text-xl text-gray-700 text-sm mb-2"
+                className="block text-left  text-gray-700 text-sm mb-2"
                 htmlFor="name"
               >
                 Alamat Lengkap
@@ -403,13 +403,13 @@ const WaterBaptismForm: FC = () => {
               <div className="grid grid-cols-3 gap-3">
                 <div className="mb-4">
                   <label
-                    className="block text-left text-xl text-gray-700 text-sm mb-2"
+                    className="block text-left  text-gray-700 text-sm mb-2"
                     htmlFor="name"
                   >
                     RT/RW
                   </label>
                   <input
-                    className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                    className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                     id="name"
                     type="text"
                     value={form.childRtrw}
@@ -421,13 +421,13 @@ const WaterBaptismForm: FC = () => {
 
                 <div className="mb-4">
                   <label
-                    className="block text-left text-xl text-gray-700 text-sm mb-2"
+                    className="block text-left  text-gray-700 text-sm mb-2"
                     htmlFor="name"
                   >
                     Kecamatan
                   </label>
                   <input
-                    className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                    className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                     id="name"
                     type="text"
                     value={form.childKecamatan}
@@ -439,13 +439,13 @@ const WaterBaptismForm: FC = () => {
 
                 <div className="mb-4">
                   <label
-                    className="block text-left text-xl text-gray-700 text-sm mb-2"
+                    className="block text-left  text-gray-700 text-sm mb-2"
                     htmlFor="name"
                   >
                     Kode Pos
                   </label>
                   <input
-                    className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                    className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                     id="name"
                     type="text"
                     value={form.childKodePos}
@@ -459,13 +459,13 @@ const WaterBaptismForm: FC = () => {
 
             <div className="mb-4">
               <label
-                className="block text-left text-xl text-gray-700 text-sm mb-2"
+                className="block text-left  text-gray-700 text-sm mb-2"
                 htmlFor="name"
               >
                 Nomor Telepon
               </label>
               <input
-                className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 id="name"
                 type="text"
                 value={form.childNotelp}
@@ -478,13 +478,13 @@ const WaterBaptismForm: FC = () => {
             <div className="mb-4 grid grid-cols-2 gap-3">
               <div>
                 <label
-                  className="block text-left text-xl text-gray-700 text-sm mb-2"
+                  className="block text-left text-gray-700 text-sm mb-2"
                   htmlFor="name"
                 >
                   Tempat Lahir
                 </label>
                 <input
-                  className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                  className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                   id="name"
                   type="text"
                   value={form.childTempatLahir}
@@ -495,7 +495,7 @@ const WaterBaptismForm: FC = () => {
               </div>
               <div>
                 <label
-                  className="block text-left text-xl text-gray-700 text-sm mb-2"
+                  className="block text-left  text-gray-700 text-sm mb-2"
                   htmlFor="name"
                 >
                   Tanggal Lahir (Day/Month/Year)
@@ -534,13 +534,13 @@ const WaterBaptismForm: FC = () => {
             </div>
             <div className="mb-4">
               <label
-                className="block text-left text-xl text-gray-700 text-sm mb-2"
+                className="block text-left  text-gray-700 text-sm mb-2"
                 htmlFor="name"
               >
                 Nama (Ayah)
               </label>
               <input
-                className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 id="name"
                 type="text"
                 value={form.childFatherName}
@@ -552,13 +552,13 @@ const WaterBaptismForm: FC = () => {
 
             <div className="mb-4">
               <label
-                className="block text-left text-xl text-gray-700 text-sm mb-2"
+                className="block text-left  text-gray-700 text-sm mb-2"
                 htmlFor="name"
               >
                 Nama (Ibu)
               </label>
               <input
-                className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 id="name"
                 type="text"
                 value={form.childMotherName}
@@ -570,13 +570,13 @@ const WaterBaptismForm: FC = () => {
 
             <div className="mb-4">
               <label
-                className="block text-left text-xl text-gray-700 text-sm mb-2"
+                className="block text-left  text-gray-700 text-sm mb-2"
                 htmlFor="name"
               >
                 Alamat Lengkap
               </label>
               <textarea
-                className="form-control block w-full font-bold px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-[10px] transitionease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                className="form-control block w-full  px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-[10px] transitionease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 id="exampleFormControlTextarea1"
                 rows={3}
                 value={form.childParentAddress}
@@ -590,13 +590,13 @@ const WaterBaptismForm: FC = () => {
               <div className="grid grid-cols-3 gap-3">
                 <div className="mb-4">
                   <label
-                    className="block text-left text-xl text-gray-700 text-sm mb-2"
+                    className="block text-left  text-gray-700 text-sm mb-2"
                     htmlFor="name"
                   >
                     RT/RW
                   </label>
                   <input
-                    className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                    className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                     id="name"
                     type="text"
                     value={form.childParentRtrw}
@@ -608,13 +608,13 @@ const WaterBaptismForm: FC = () => {
 
                 <div className="mb-4">
                   <label
-                    className="block text-left text-xl text-gray-700 text-sm mb-2"
+                    className="block text-left  text-gray-700 text-sm mb-2"
                     htmlFor="name"
                   >
                     Kecamatan
                   </label>
                   <input
-                    className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                    className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                     id="name"
                     type="text"
                     value={form.childParentKecamatan}

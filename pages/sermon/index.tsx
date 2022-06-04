@@ -31,7 +31,7 @@ const SermonPage: FunctionComponent<SermonProps> = ({ recentSermons }) => {
   return (
     <>
       <Head>
-        <title>Elroi Church Sawangan - Sermon</title>
+        <title>Sermon - ERC | Elroi Church Sawangan</title>
       </Head>
       <MainLayout>
         <div className="flex flex-col md:flex-row justify-between my-20 lg:px-[200px] items-center">

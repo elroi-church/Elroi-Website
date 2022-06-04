@@ -16,7 +16,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Elroi Church Sawangan - Home</title>
+        <title>Home - ERC | Elroi Church Sawangan</title>
       </Head>
       <MainLayout>
         <section

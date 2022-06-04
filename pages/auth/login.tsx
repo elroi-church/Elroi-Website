@@ -3,12 +3,28 @@ import MainLayout from "../../core/components/commons/layouts/MainLayout";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { useRouter } from "next/router";
-import { signIn } from "next-auth/react";
+import { getCsrfToken, getProviders, signIn } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
+import { useState } from "react";
 
 const Login: NextPage = () => {
   const router = useRouter();
+
+  const [state, setState] = useState({
+    username: "",
+    password: "",
+  });
+
+  const onSubmitLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    await signIn("credentials", {
+      username: state.username,
+      password: state.password,
+    });
+  };
+
   return (
     // Tailwind Login Form
     <>
@@ -25,7 +41,10 @@ const Login: NextPage = () => {
         >
           <div className="mt-[70px] w-full">
             <div className="w-full lg:w-1/2 px-5 mx-auto">
-              <form className="bg-white shadow-md rounded-2xl px-8 pt-6 pb-8 mb-4">
+              <form
+                className="bg-white shadow-md rounded-2xl px-8 pt-6 pb-8 mb-4"
+                onSubmit={onSubmitLogin}
+              >
                 <div className="mb-4">
                   {/* <h2 className="font-bold text-3xl text-center">Log In</h2> */}
                   <img
@@ -38,15 +57,18 @@ const Login: NextPage = () => {
                 <div className="mb-4">
                   <label
                     className="block text-gray-700 text-sm font-bold mb-2"
-                    htmlFor="email"
+                    htmlFor="username"
                   >
-                    Email Address
+                    Username or Email
                   </label>
                   <input
                     className="shadow appearance-none border rounded-[20px] w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="email"
+                    id="username"
                     type="text"
-                    placeholder="Email Address"
+                    onChange={(e) =>
+                      setState({ ...state, username: e.target.value })
+                    }
+                    placeholder="Username"
                   />
                 </div>
                 <div className="mb-6">
@@ -60,6 +82,9 @@ const Login: NextPage = () => {
                     className="shadow appearance-none border rounded-[20px] w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                     id="password"
                     type="password"
+                    onChange={(e) =>
+                      setState({ ...state, password: e.target.value })
+                    }
                     placeholder="******************"
                   />
                   {/* <p className="text-red-500 text-xs italic">
@@ -77,10 +102,7 @@ const Login: NextPage = () => {
                 <div className="flex justify-center">
                   <button
                     className="bg-primary hover:bg-primary-darker text-white font-bold py-2 px-4 rounded-[20px] focus:outline-none focus:shadow-outline w-2/3 mx-auto"
-                    type="button"
-                    onClick={() =>
-                      router.push("/dashboard", undefined, { shallow: true })
-                    }
+                    type="submit"
                   >
                     Sign In
                   </button>

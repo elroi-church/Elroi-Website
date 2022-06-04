@@ -10,6 +10,7 @@ const Schedule: NextPage<PropsSchedule> = (props: PropsSchedule) => {
     bgColor = "bg-white",
     termconditions = [],
     imgUrlTerm,
+    registerUrl,
   } = props;
   return (
     <div className={`${bgColor}`}>
@@ -36,7 +37,11 @@ const Schedule: NextPage<PropsSchedule> = (props: PropsSchedule) => {
       </div>
       <div className="py-[50px]"></div>
       <div className="my-[40px]">
-        <TermConditions term={termconditions} imgUrl={`${imgUrlTerm}`} />
+        <TermConditions
+          term={termconditions}
+          imgUrl={`${imgUrlTerm}`}
+          registerUrl={registerUrl}
+        />
       </div>
       <div className="pb-8"></div>
     </div>
@@ -52,6 +57,7 @@ interface PropsSchedule {
   payload?: Array<PayloadType>;
   termconditions?: Array<TermType>;
   imgUrlTerm?: string;
+  registerUrl?: string;
 }
 
 interface PayloadType {
