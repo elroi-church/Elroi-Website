@@ -1,9 +1,22 @@
 import { Menu, Transition } from "@headlessui/react";
 import { signOut } from "next-auth/react";
-import { Fragment, SVGProps, useEffect, useRef, useState } from "react";
+import {
+  Fragment,
+  FunctionComponent,
+  SVGProps,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { FaChevronDown, FaUser } from "react-icons/fa";
 
-export default function ProfileDropdownAuth() {
+interface ProfileDropdownAuthProps {
+  profileImage?: string | null;
+}
+
+const ProfileDropdownAuth: FunctionComponent<ProfileDropdownAuthProps> = ({
+  profileImage,
+}) => {
   return (
     <div className="text-right hidden lg:inline-block text-sm text-white bg-transparent font-bold rounded-md transition duration-200">
       <Menu as="div" className="relative inline-block text-left">
@@ -11,7 +24,12 @@ export default function ProfileDropdownAuth() {
           <Menu.Button className="inline-flex justify-center w-full text-sm font-medium text-white rounded-md bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
             <img
               className="rounded-full border border-gray-100 shadow-sm w-12 h-12 bg-cover"
-              src="https://randomuser.me/api/portraits/women/81.jpg"
+              referrerPolicy="no-referrer"
+              src={
+                profileImage
+                  ? profileImage
+                  : "https://randomuser.me/api/portraits/women/81.jpg"
+              }
               alt="user image"
             />
           </Menu.Button>
@@ -149,7 +167,9 @@ export default function ProfileDropdownAuth() {
       </Menu>
     </div>
   );
-}
+};
+
+export default ProfileDropdownAuth;
 
 function EditInactiveIcon(
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>

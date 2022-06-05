@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import Head from "next/head";
 import React from "react";
 import MainLayout from "../../core/components/commons/layouts/MainLayout";
 
@@ -17,6 +18,9 @@ const Koperasi: NextPage = () => {
   ];
   return (
     <>
+      <Head>
+        <title>Koperasi - ERC | Elroi Church Sawangan</title>
+      </Head>
       <MainLayout>
         <section
           className="pb-10 bg-center bg-cover"
@@ -100,7 +104,9 @@ const Koperasi: NextPage = () => {
         </div>
         <div className="py-[80px]">
           <div className="m-auto w-[90%] md:w-2/3 text-center">
-            <h1 className="font-bold text-3xl md:text-[50px] mb-3">UNIQUE SELLING POINT</h1>
+            <h1 className="font-bold text-3xl md:text-[50px] mb-3">
+              UNIQUE SELLING POINT
+            </h1>
             {uniqueSelling?.map((item, idx) => (
               <div className="p-5 bg-primary rounded-xl mb-5" key={idx}>
                 <p className="text-2xl font-light text-white">{item}</p>
@@ -110,7 +116,9 @@ const Koperasi: NextPage = () => {
         </div>
         <div className="py-[80px] bg-gray-100">
           <div className="m-auto w-[90%] md:w-2/3 text-center">
-            <h1 className="font-bold text-3xl md:text-[50px] mb-3">IURAN ANGGOTA</h1>
+            <h1 className="font-bold text-3xl md:text-[50px] mb-3">
+              IURAN ANGGOTA
+            </h1>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="p-5 bg-primary rounded-xl bg-gray-400">
@@ -128,9 +136,14 @@ const Koperasi: NextPage = () => {
             </div>
           </div>
           <div className="m-auto w-[90%] md:w-2/3 text-center mt-10">
-            <h1 className="font-bold text-3xl md:text-[50px] mb-3">KETENTUAN IURAN</h1>
+            <h1 className="font-bold text-3xl md:text-[50px] mb-3">
+              KETENTUAN IURAN
+            </h1>
             {ketentuanIuran?.map((item, idx) => (
-              <div className="p-5 outline outline-primary rounded-xl mb-5" key={idx}>
+              <div
+                className="p-5 outline outline-primary rounded-xl mb-5"
+                key={idx}
+              >
                 <p className="text-2xl font-light text-black">{item}</p>
               </div>
             ))}

@@ -9,7 +9,7 @@ const childDedication: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Elroi Church Sawangan - Ministry of Child Dedication</title>
+        <title>Child Dedication - ERC | Elroi Church Sawangan</title>
       </Head>
       <MainLayout>
         <Banner

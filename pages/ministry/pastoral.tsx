@@ -30,7 +30,7 @@ const pastoral: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Elroi Church Sawangan - Pastoral</title>
+        <title>Pastoral - ERC | Elroi Church Sawangan</title>
       </Head>
       <MainLayout>
         <Banner

@@ -5,9 +5,15 @@ import MobileNav from "./MobileNav";
 import ProfileDropdown from "./ProfileDropdown";
 import { AiOutlineHome } from "react-icons/ai";
 import ProfileDropdownAuth from "./ProfileDropdownAuth";
+import Link from "next/link";
+import { Session } from "next-auth";
+
+interface NavbarAuthProps {
+  session: Session;
+}
 
 // Navbar tailwind component
-const NavbarAuth: FunctionComponent = () => {
+const NavbarAuth: FunctionComponent<NavbarAuthProps> = ({ session }) => {
   const containerImage = [
     "/assets/img/about/about1.png",
     "/assets/img/about/about2.png",
@@ -16,12 +22,6 @@ const NavbarAuth: FunctionComponent = () => {
   ];
 
   const [openDropdown, setOpenDropdown] = useState(false);
-
-  const { data: session } = useSession();
-
-  useEffect(() => {
-    console.log(session);
-  }, [session]);
 
   const isActive =
     "lg:inline-block px-4 bg-primary hover:bg-primary-darker rounded-md transition duration-200";
@@ -40,19 +40,22 @@ const NavbarAuth: FunctionComponent = () => {
       return "block";
     }
   };
+
   // console.log(router.pathname.substring(1));
 
   return (
     <>
       <nav className="relative lg:px-[70px] flex justify-between items-center bg-white shadow-lg w-full z-50 rounded-b-[35px]">
-        <a className="text-3xl font-bold leading-none" href="#">
-          <img
-            className="h-24"
-            src="/assets/img/logo_erc.png"
-            alt=""
-            width="auto"
-          />
-        </a>
+        <Link href="/" passHref>
+          <a className="text-3xl font-bold leading-none" href="#">
+            <img
+              className="h-24"
+              src="/assets/img/logo_erc.png"
+              alt=""
+              width="auto"
+            />
+          </a>
+        </Link>
         <div className="lg:hidden">
           <button
             className="navbar-burger flex items-center text-orange-600 p-3"
@@ -69,9 +72,9 @@ const NavbarAuth: FunctionComponent = () => {
           </button>
         </div>
         <div className="flex items-center">
-          <h4>Hello, Hizqia</h4>
+          <h4>{session.user?.name}</h4>
           <span className="pl-6">
-            <ProfileDropdownAuth />
+            <ProfileDropdownAuth profileImage={session.user?.image} />
           </span>
           <AiOutlineHome className="text-5xl pl-6" />
         </div>

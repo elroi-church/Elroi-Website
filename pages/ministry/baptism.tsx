@@ -9,11 +9,11 @@ const baptism: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Elroi Church Sawangan - Ministry of Baptism</title>
+        <title>Water Baptism - ERC | Elroi Church Sawangan</title>
       </Head>
       <MainLayout>
         <Banner
-          title="Heaven’s Party"
+          title="Water Baptism"
           imgUrl="/assets/img/ministry/baptism.png"
         />
         <Schedule
@@ -27,6 +27,7 @@ const baptism: NextPage = () => {
             { title: "Water Baptism", subtitle: "1 January 2022" },
           ]}
           imgUrlTerm="/assets/img/ministry/baptism2.png"
+          registerUrl="/dashboard/ministry/water_baptism_form"
           termconditions={[
             {
               title: "1. Bawa pas photo berwarna ukuran 3x4 sebanyak 2 lembar",
