@@ -35,7 +35,7 @@ const Index: FunctionComponent = () => {
           <div className="flex justify-between items-center mb-4">
             <span>
               <h3 className="text-xl font-bold leading-none text-gray-900 dark:text-black mb-2">
-                Today’s trends
+                Today`s trends
               </h3>
               <p className="text-sm font-light">as of 25 May 2019, 09:41 PM</p>
             </span>

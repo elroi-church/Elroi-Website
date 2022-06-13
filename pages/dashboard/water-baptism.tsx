@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import AuthLayout from "../../../core/components/commons/layouts/AuthLayout";
-import DatePickerInput from "../../../core/components/commons/datepicker";
+import DatePickerInput from "../../core/components/commons/datepicker";
+import AuthLayout from "../../core/components/commons/layouts/AuthLayout";
 
 interface PropsForm {
   name: string;
@@ -93,20 +93,20 @@ const WaterBaptismForm: FC = () => {
 
   return (
     <AuthLayout>
-      <div className="font-bold text-3xl text-center w-[90%]">
-        FORM WATER BAPTISM
+      <div className="font-bold text-3xl text-center px-5">
+        Water Baptism Form
         <form onSubmit={handleSubmit}>
           {/* section for page 1 */}
           <div style={{ display: page === 0 ? "" : "none" }}>
             <div className="mb-4">
               <label
-                className="block text-left text-xl text-gray-700 text-sm mb-2"
+                className="block text-left text-gray-700 text-sm mb-2"
                 htmlFor="name"
               >
                 Nama Lengkap
               </label>
               <input
-                className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                className="appearance-none rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 id="name"
                 type="text"
                 value={form.name}
@@ -116,7 +116,7 @@ const WaterBaptismForm: FC = () => {
 
             <div className="mb-4">
               <label
-                className="block text-left text-xl text-gray-700 text-sm mb-2"
+                className="block text-left  text-gray-700 text-sm mb-2"
                 htmlFor="name"
               >
                 Alamat Lengkap
@@ -511,7 +511,7 @@ const WaterBaptismForm: FC = () => {
               </div>
             </div>
             <div className="text-left py-14">
-              <div className="text-xl mb-5">
+              <div className="text-xl font-bold mb-5">
                 DENGAN INI MENYATAKAN DENGAN SESUNGGUHNYA, BAHWA SAYA:
               </div>
               <div className="text-xl mb-3">
@@ -526,9 +526,9 @@ const WaterBaptismForm: FC = () => {
             </div>
           </div>
           {/* section for page 3 */}
-          <div style={{ display: page === 2 ? "" : "none" }}>
+          <div>
             <div className="mb-4 mt-10">
-              <div className="font-light text-left">
+              <div className="font-bold text-left">
                 YANG BERTANDA TANGAN DIBAWAH INI :
               </div>
             </div>
@@ -626,13 +626,13 @@ const WaterBaptismForm: FC = () => {
 
                 <div className="mb-4">
                   <label
-                    className="block text-left text-xl text-gray-700 text-sm mb-2"
+                    className="block text-left  text-gray-700 text-sm mb-2"
                     htmlFor="name"
                   >
                     Kode Pos
                   </label>
                   <input
-                    className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                    className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                     id="name"
                     type="text"
                     value={form.childParentKodePos}
@@ -645,7 +645,7 @@ const WaterBaptismForm: FC = () => {
             </div>
 
             <div className="mb-4 mt-10 w-[90%]">
-              <div className="font-light text-left">
+              <div className="font-bold text-left">
                 DENGAN INI MENYATAKAN DENGAN SESUNGGUHNYA. BAHWA KAMI
                 MENGIJINKAN ANAK KAMI :
               </div>
@@ -653,13 +653,13 @@ const WaterBaptismForm: FC = () => {
 
             <div className="mb-4">
               <label
-                className="block text-left text-xl text-gray-700 text-sm mb-2"
+                className="block text-left text-gray-700 text-sm mb-2"
                 htmlFor="name"
               >
                 Nama
               </label>
               <input
-                className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                className="appearance-none rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 id="name"
                 type="text"
                 value={form.childNameConfirmation}
@@ -672,13 +672,13 @@ const WaterBaptismForm: FC = () => {
             <div className="mb-4 grid grid-cols-2 gap-3">
               <div>
                 <label
-                  className="block text-left text-xl text-gray-700 text-sm mb-2"
+                  className="block text-left text-gray-700 text-sm mb-2"
                   htmlFor="name"
                 >
                   Tempat Lahir
                 </label>
                 <input
-                  className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                  className="appearance-none rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                   id="name"
                   type="text"
                   value={form.childTempatLahir}
@@ -689,7 +689,7 @@ const WaterBaptismForm: FC = () => {
               </div>
               <div>
                 <label
-                  className="block text-left text-xl text-gray-700 text-sm mb-2"
+                  className="block text-left text-gray-700 text-sm mb-2"
                   htmlFor="name"
                 >
                   Tanggal Lahir (Day/Month/Year)
@@ -706,7 +706,7 @@ const WaterBaptismForm: FC = () => {
             </div>
 
             <div className="mb-4 mt-10 w-[90%]">
-              <div className="font-light text-left">
+              <div className="font-bold text-left">
                 UNTUK MENERIMA SAKRAMEN BAPTISAN PADA
               </div>
             </div>
@@ -714,13 +714,13 @@ const WaterBaptismForm: FC = () => {
             <div className="mb-4 grid grid-cols-2 gap-3">
               <div>
                 <label
-                  className="block text-left text-xl text-gray-700 text-sm mb-2"
+                  className="block text-left  text-gray-700 text-sm mb-2"
                   htmlFor="name"
                 >
                   Hari
                 </label>
                 <input
-                  className="appearance-none border rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                  className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                   id="name"
                   type="text"
                   value={form.childDayBaptism}
@@ -731,7 +731,7 @@ const WaterBaptismForm: FC = () => {
               </div>
               <div>
                 <label
-                  className="block text-left text-xl text-gray-700 text-sm mb-2"
+                  className="block text-left  text-gray-700 text-sm mb-2"
                   htmlFor="name"
                 >
                   Tanggal (Day/Month/Year)
@@ -751,13 +751,13 @@ const WaterBaptismForm: FC = () => {
               <div className="text-xl mb-5">
                 DENGAN INI MENYATAKAN DENGAN SESUNGGUHNYA, BAHWA SAYA:
               </div>
-              <div className="text-xl mb-3">
+              <div className="text-xl font-medium mb-3">
                 1. Dalam Keadaan sehat jasmani dan Rohani.
               </div>
-              <div className="text-xl mb-3">
+              <div className="text-xl font-medium mb-3">
                 2. Tanpa Paksaandari pihak manapun juga
               </div>
-              <div className="text-xl mb-3">
+              <div className="text-xl font-medium mb-3">
                 3. Dengan Keinginan dan Kerinduan saya sendiri.
               </div>
             </div>
@@ -771,7 +771,7 @@ const WaterBaptismForm: FC = () => {
               onClick={() => setPage(page - 1)}
               style={{ display: page >= 1 ? "" : "none" }}
             >
-              <button className="block uppercase sm:inline-block py-3 px-8 w-[280px] m-auto rounded-[15px] mb-4 sm:mb-0 sm:mr-3 text-lg text-center font-semibold leading-none border border-primary border-2 bg-primary border-transparent text-white hover:cursor-pointer">
+              <button className="block uppercase sm:inline-block py-3 px-8 w-[280px] m-auto rounded-[15px] mb-4 sm:mb-0 sm:mr-3 text-lg text-center font-semibold leading-none  border-primary border-2 bg-primary border-transparent text-white hover:cursor-pointer">
                 Back Page
               </button>
             </div>
@@ -793,7 +793,7 @@ const WaterBaptismForm: FC = () => {
               <input
                 type="submit"
                 value="Save / Submit"
-                className="block uppercase sm:inline-block py-3 px-8 w-[280px] m-auto rounded-[15px] mb-4 sm:mb-0 sm:mr-3 text-lg text-center font-semibold leading-none  border-primary border-2 bg-primary border-transparent text-white hover:cursor-pointer"
+                className="block uppercase sm:inline-block py-3 px-8 w-[280px] m-auto rounded-[15px] mb-4 sm:mb-0 sm:mr-3 text-lg text-center font-semibold leading-none border border-primary border-2 bg-primary border-transparent text-white hover:cursor-pointer"
               />
             </div>
           </div>

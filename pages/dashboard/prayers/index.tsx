@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import { Column } from "react-table";
-import Datatable from "../../../core/components/commons/datatable/index";
 import AuthLayout from "../../../core/components/commons/layouts/AuthLayout";
 import { useRouter } from "next/router";
+import ReactTable from "../../../core/components/commons/datatable/index";
 
-const History = () => {
+const Prayers = () => {
   const router = useRouter();
   const [totalData, setTotalData] = useState(0);
   const [lastPage, setLastPage] = useState(0);
@@ -86,7 +86,7 @@ const History = () => {
             <span className="ml-2 text-gray-400 font-medium">{totalData}</span>
           </h2>
         </header>
-        <Datatable
+        <ReactTable
           tableOptions={{
             columns: coolColumns,
             data: [
@@ -116,4 +116,4 @@ const History = () => {
   );
 };
 
-export default History;
+export default Prayers;

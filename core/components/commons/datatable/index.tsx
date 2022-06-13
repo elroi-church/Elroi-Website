@@ -1,5 +1,3 @@
-/* eslint-disable react/display-name */
-/* eslint-disable react/jsx-key */
 import { matchSorter } from "match-sorter";
 import React, { ChangeEvent, ReactNode, useCallback, useEffect } from "react";
 // import styled from "styled-components";
@@ -15,8 +13,9 @@ import {
   useAsyncDebounce,
   useRowSelect,
   useSortBy,
+  SortingRule,
 } from "react-table";
-import { json } from "stream/consumers";
+
 import useDeepCompareEffect from "use-deep-compare-effect";
 
 // import {
@@ -37,20 +36,40 @@ interface TableResultProps<T extends object> {
   onHandlePageChange?: (page: number) => void;
   onHandlePageSizeChange?: (pageSize: number) => void;
   onHandleFilterChange?: (filters: any) => void;
+  onHandleSortBy?: (sortValues: Array<SortingRule<T>>) => void;
   // customPagination?: CustomPagination;
 }
 
 // Our table component
-const Datatable = <T extends object>(props: TableResultProps<T>) => {
+const ReactTable = <T extends object>(props: TableResultProps<T>) => {
   // const TableResult: React.FC<TableResultProps<T extends object>> = ({
   //   columns, data, defaultPageSize, manualFilters, manualGlobalFilter, manualPagination,
   // }: TableResultProps<ExampleData>) => {
+  const filterTypes = React.useMemo(
+    () => ({
+      // Add a new fuzzyTextFilterFn filter type.
+      fuzzyText: fuzzyTextFilterFn,
+      // Or, override the default text filter to use
+      // "startWith"
+      text: (rows, id, filterValue) => {
+        return rows.filter((row) => {
+          const rowValue = row.values[id];
+          return rowValue !== undefined
+            ? String(rowValue)
+                .toLowerCase()
+                .startsWith(String(filterValue).toLowerCase())
+            : true;
+        });
+      },
+    }),
+    []
+  );
 
-  const GlobalFilter: React.FC<any> = ({
+  function GlobalFilter({
     preGlobalFilteredRows,
     globalFilter,
     setGlobalFilter,
-  }) => {
+  }) {
     const count = preGlobalFilteredRows.length;
     const [value, setValue] = React.useState(globalFilter);
     const onChange = useAsyncDebounce((value) => {
@@ -59,7 +78,7 @@ const Datatable = <T extends object>(props: TableResultProps<T>) => {
 
     return (
       <div className="p-2">
-        Search:
+        Search:{" "}
         <input
           value={value || ""}
           className="form-input w-full"
@@ -75,17 +94,17 @@ const Datatable = <T extends object>(props: TableResultProps<T>) => {
         />
       </div>
     );
-  };
+  }
 
   // Define a default UI for filtering
-  const DefaultColumnFilter: React.FC<any> = ({
+  function DefaultColumnFilter({
     column: { filterValue, preFilteredRows, setFilter },
-  }) => {
+  }) {
     const count = preFilteredRows.length;
 
     return (
       <input
-        className="form-input w-full"
+        className="input input-bordered input-md w-full "
         value={filterValue || ""}
         onChange={(e) => {
           setFilter(e.target.value || undefined); // Set the filter on the table
@@ -96,150 +115,150 @@ const Datatable = <T extends object>(props: TableResultProps<T>) => {
         placeholder={`Search ${count} records...`}
       />
     );
-  };
+  }
 
   // This is a custom filter UI for selecting
   // a unique option from a list
-  //   function SelectColumnFilter({
-  //     column: { filterValue, setFilter, preFilteredRows, id },
-  //   }) {
-  //     // Calculate the options for filtering
-  //     // using the preFilteredRows
-  //     const options = React.useMemo(() => {
-  //       const options = new Set();
-  //       preFilteredRows.forEach((row) => {
-  //         options.add(row.values[id]);
-  //       });
-  //       return [...options.values()];
-  //     }, [id, preFilteredRows]);
+  function SelectColumnFilter({
+    column: { filterValue, setFilter, preFilteredRows, id },
+  }) {
+    // Calculate the options for filtering
+    // using the preFilteredRows
+    const options = React.useMemo(() => {
+      const options = new Set();
+      preFilteredRows.forEach((row) => {
+        options.add(row.values[id]);
+      });
+      return [...options.values()];
+    }, [id, preFilteredRows]);
 
-  //     // Render a multi-select box
-  //     return (
-  //       <select
-  //         value={filterValue}
-  //         onChange={(e) => {
-  //           setFilter(e.target.value || undefined);
-  //         }}
-  //       >
-  //         <option value="">All</option>
-  //         {options.map((option: any, i) => (
-  //           <option key={i} value={option}>
-  //             {option}
-  //           </option>
-  //         ))}
-  //       </select>
-  //     );
-  //   }
+    // Render a multi-select box
+    return (
+      <select
+        value={filterValue}
+        onChange={(e) => {
+          setFilter(e.target.value || undefined);
+        }}
+      >
+        <option value="">All</option>
+        {options.map((option: any, i) => (
+          <option key={i} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    );
+  }
 
   // This is a custom filter UI that uses a
   // slider to set the filter value between a column's
   // min and max values
-  //   function SliderColumnFilter({
-  //     column: { filterValue, setFilter, preFilteredRows, id },
-  //   }) {
-  //     // Calculate the min and max
-  //     // using the preFilteredRows
+  function SliderColumnFilter({
+    column: { filterValue, setFilter, preFilteredRows, id },
+  }) {
+    // Calculate the min and max
+    // using the preFilteredRows
 
-  //     const [min, max] = React.useMemo(() => {
-  //       let min = preFilteredRows.length ? preFilteredRows[0].values[id] : 0;
-  //       let max = preFilteredRows.length ? preFilteredRows[0].values[id] : 0;
-  //       preFilteredRows.forEach((row) => {
-  //         min = Math.min(row.values[id], min);
-  //         max = Math.max(row.values[id], max);
-  //       });
-  //       return [min, max];
-  //     }, [id, preFilteredRows]);
+    const [min, max] = React.useMemo(() => {
+      let min = preFilteredRows.length ? preFilteredRows[0].values[id] : 0;
+      let max = preFilteredRows.length ? preFilteredRows[0].values[id] : 0;
+      preFilteredRows.forEach((row) => {
+        min = Math.min(row.values[id], min);
+        max = Math.max(row.values[id], max);
+      });
+      return [min, max];
+    }, [id, preFilteredRows]);
 
-  //     return (
-  //       <>
-  //         <input
-  //           type="range"
-  //           min={min}
-  //           max={max}
-  //           value={filterValue || min}
-  //           onChange={(e) => {
-  //             console.log(e.target.value);
-  //             setFilter(parseInt(e.target.value, 10));
-  //           }}
-  //         />
-  //         <button onClick={() => setFilter(undefined)}>Off</button>
-  //       </>
-  //     );
-  //   }
+    return (
+      <>
+        <input
+          type="range"
+          min={min}
+          max={max}
+          value={filterValue || min}
+          onChange={(e) => {
+            console.log(e.target.value);
+            setFilter(parseInt(e.target.value, 10));
+          }}
+        />
+        <button onClick={() => setFilter(undefined)}>Off</button>
+      </>
+    );
+  }
 
   // This is a custom UI for our 'between' or number range
   // filter. It uses two number boxes and filters rows to
   // ones that have values between the two
-  //   function NumberRangeColumnFilter({
-  //     column: { filterValue = [], preFilteredRows, setFilter, id },
-  //   }) {
-  //     const [min, max] = React.useMemo(() => {
-  //       let min = preFilteredRows.length ? preFilteredRows[0].values[id] : 0;
-  //       let max = preFilteredRows.length ? preFilteredRows[0].values[id] : 0;
-  //       preFilteredRows.forEach((row) => {
-  //         min = Math.min(row.values[id], min);
-  //         max = Math.max(row.values[id], max);
-  //       });
-  //       return [min, max];
-  //     }, [id, preFilteredRows]);
+  function NumberRangeColumnFilter({
+    column: { filterValue = [], preFilteredRows, setFilter, id },
+  }) {
+    const [min, max] = React.useMemo(() => {
+      let min = preFilteredRows.length ? preFilteredRows[0].values[id] : 0;
+      let max = preFilteredRows.length ? preFilteredRows[0].values[id] : 0;
+      preFilteredRows.forEach((row) => {
+        min = Math.min(row.values[id], min);
+        max = Math.max(row.values[id], max);
+      });
+      return [min, max];
+    }, [id, preFilteredRows]);
 
-  //     return (
-  //       <div
-  //         style={{
-  //           display: "flex",
-  //         }}
-  //       >
-  //         <input
-  //           value={filterValue[0] || ""}
-  //           type="number"
-  //           className="form-input w-1/3"
-  //           onChange={(e) => {
-  //             const val = e.target.value;
-  //             setFilter((old = []) => [
-  //               val ? parseInt(val, 10) : undefined,
-  //               old[1],
-  //             ]);
-  //           }}
-  //           placeholder={`Min (${min})`}
-  //           // style={{
-  //           //   width: "70px",
-  //           //   marginRight: "0.5rem",
-  //           // }}
-  //         />
-  //         to
-  //         <input
-  //           value={filterValue[1] || ""}
-  //           type="number"
-  //           className="form-input w-full"
-  //           onChange={(e) => {
-  //             const val = e.target.value;
-  //             setFilter((old = []) => [
-  //               old[0],
-  //               val ? parseInt(val, 10) : undefined,
-  //             ]);
-  //           }}
-  //           placeholder={`Max (${max})`}
-  //           // style={{
-  //           //   width: "70px",
-  //           //   marginLeft: "0.5rem",
-  //           // }}
-  //         />
-  //       </div>
-  //     );
-  //   }
+    return (
+      <div
+        style={{
+          display: "flex",
+        }}
+      >
+        <input
+          value={filterValue[0] || ""}
+          type="number"
+          className="form-input w-1/3"
+          onChange={(e) => {
+            const val = e.target.value;
+            setFilter((old = []) => [
+              val ? parseInt(val, 10) : undefined,
+              old[1],
+            ]);
+          }}
+          placeholder={`Min (${min})`}
+          // style={{
+          //   width: "70px",
+          //   marginRight: "0.5rem",
+          // }}
+        />
+        to
+        <input
+          value={filterValue[1] || ""}
+          type="number"
+          className="form-input w-full"
+          onChange={(e) => {
+            const val = e.target.value;
+            setFilter((old = []) => [
+              old[0],
+              val ? parseInt(val, 10) : undefined,
+            ]);
+          }}
+          placeholder={`Max (${max})`}
+          // style={{
+          //   width: "70px",
+          //   marginLeft: "0.5rem",
+          // }}
+        />
+      </div>
+    );
+  }
 
-  function fuzzyTextFilterFn(rows: any, id: any, filterValue: any) {
+  function fuzzyTextFilterFn(rows: any, id, filterValue) {
     return matchSorter(rows, filterValue, {
       keys: [(row: any) => row.values[id]],
     });
   }
 
   // Let the table remove the filter if the string is empty
-  fuzzyTextFilterFn.autoRemove = (val: any) => !val;
+  fuzzyTextFilterFn.autoRemove = (val) => !val;
 
   // Define a custom filter filter function!
-  function filterGreaterThan(rows: any, id: any, filterValue: any) {
-    return rows.filter((row: any) => {
+  function filterGreaterThan(rows: any, id, filterValue) {
+    return rows.filter((row) => {
       const rowValue = row.values[id];
       return rowValue >= filterValue;
     });
@@ -249,7 +268,7 @@ const Datatable = <T extends object>(props: TableResultProps<T>) => {
   // when given the new filter value and returns true, the filter
   // will be automatically removed. Normally this is just an undefined
   // check, but here, we want to remove the filter if it's not a number
-  filterGreaterThan.autoRemove = (val: string) => typeof val !== "number";
+  filterGreaterThan.autoRemove = (val) => typeof val !== "number";
 
   const defaultColumn = React.useMemo(
     () => ({
@@ -272,12 +291,12 @@ const Datatable = <T extends object>(props: TableResultProps<T>) => {
   }
 
   const IndeterminateCheckbox: React.FC<IndeterminateCheckboxProps> =
-    React.forwardRef(({ indeterminate, ...rest }, _ref) => {
-      const defaultRef: any = React.useRef<HTMLInputElement>();
-      const resolvedRef: any = defaultRef;
+    React.forwardRef(({ indeterminate, ...rest }, ref) => {
+      const defaultRef = React.useRef<HTMLInputElement>();
+      const resolvedRef = defaultRef;
 
       React.useEffect(() => {
-        resolvedRef.current.indeterminate = indeterminate;
+        resolvedRef!.current!.indeterminate = indeterminate;
       }, [resolvedRef, indeterminate]);
 
       return (
@@ -296,12 +315,14 @@ const Datatable = <T extends object>(props: TableResultProps<T>) => {
     getTableProps,
     getTableBodyProps,
     headerGroups,
+    rows,
     page,
     prepareRow,
     state,
     visibleColumns,
     preGlobalFilteredRows,
     setGlobalFilter,
+
     // setFilter,
     // the rest of these things are super handy, too ;)
     canPreviousPage,
@@ -312,7 +333,9 @@ const Datatable = <T extends object>(props: TableResultProps<T>) => {
     nextPage,
     previousPage,
     setPageSize,
-    state: { pageIndex, pageSize },
+    selectedFlatRows,
+
+    state: { pageIndex, pageSize, selectedRowIds },
   } = useTable(
     {
       // columns: props.tableOptions?.columns || [],
@@ -328,11 +351,11 @@ const Datatable = <T extends object>(props: TableResultProps<T>) => {
       manualSortBy: props.tableOptions?.manualSortBy,
       manualFilters: props.tableOptions?.manualFilters,
       manualGlobalFilter: props.tableOptions?.manualGlobalFilter,
-      manualPagination: props.tableOptions?.manualPagination,
+      manualPagination: props.tableOptions?.manualPagination || false,
       pageCount: props.tableOptions?.pageCount ?? -1,
       autoResetPage: false,
       columns: props.tableOptions?.columns as Column<object>[],
-    } as any,
+    },
     useFilters, // useFilters!
     useGlobalFilter, // useGlobalFilter!,
     useSortBy,
@@ -345,25 +368,23 @@ const Datatable = <T extends object>(props: TableResultProps<T>) => {
           id: "selection",
           // The header can use the table's getToggleAllRowsSelectedProps method
           // to render a checkbox
-          Header: ({ getToggleAllRowsSelectedProps }: any) =>
-            (
-              <div>
-                <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
-              </div>
-            ) as any,
+          Header: ({ getToggleAllRowsSelectedProps }) => (
+            <div>
+              <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
+            </div>
+          ),
           // The cell can use the individual row's getToggleRowSelectedProps method
           // to the render a checkbox
-          Cell: ({ row }: any) =>
-            (
-              <div>
-                <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-              </div>
-            ) as any,
+          Cell: ({ row }) => (
+            <div>
+              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+            </div>
+          ),
         },
         ...columns,
-      ]) as any;
+      ]);
     }
-  ) as any;
+  );
 
   /**
    * @description custom on change page handler
@@ -398,6 +419,14 @@ const Datatable = <T extends object>(props: TableResultProps<T>) => {
   }, [state.pageIndex, props]);
 
   /**
+   * Watch for change in sortBy   */
+  useEffect(() => {
+    if (props.onHandleSortBy) {
+      props.onHandleSortBy(state.sortBy);
+    }
+  }, [state.sortBy, props]);
+
+  /**
    * Watch for change in filter value
    */
   useDeepCompareEffect(() => {
@@ -424,9 +453,9 @@ const Datatable = <T extends object>(props: TableResultProps<T>) => {
       <div className="overflow-auto">
         <table className="table-auto w-full" {...getTableProps()}>
           <thead className="text-xs font-semibold uppercase text-gray-500 bg-gray-50 border-t border-b border-gray-200">
-            {headerGroups.map((headerGroup: any) => (
+            {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column: any) => (
+                {headerGroup.headers.map((column) => (
                   <th
                     className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap"
                     {...column.getHeaderProps(column.getSortByToggleProps())}
@@ -450,7 +479,7 @@ const Datatable = <T extends object>(props: TableResultProps<T>) => {
                 ))}
               </tr>
             ))}
-            {props?.tableOptions?.disableGlobalFilter ? null : (
+            {props!.tableOptions!.disableGlobalFilter ? null : (
               <tr>
                 <th
                   colSpan={visibleColumns.length}
@@ -471,11 +500,11 @@ const Datatable = <T extends object>(props: TableResultProps<T>) => {
             className="text-sm divide-y divide-gray-200 overflow-auto"
             {...getTableBodyProps()}
           >
-            {page.map((row: any) => {
+            {page.map((row, i) => {
               prepareRow(row);
               return (
                 <tr {...row.getRowProps()}>
-                  {row.cells.map((cell: any) => {
+                  {row.cells.map((cell) => {
                     return (
                       <td
                         className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap"
@@ -496,11 +525,11 @@ const Datatable = <T extends object>(props: TableResultProps<T>) => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-8 px-5 pb-5">
         <div className="flex w-full flex-col sm:flex-row mb-5 sm:mb-0">
           <div className="mb-3">
-            Page
+            Page{" "}
             <strong>
               {pageIndex + 1} of {pageOptions.length}
-            </strong>
-            | Go to page:
+            </strong>{" "}
+            | Go to page:{" "}
             <input
               type="number"
               className="form-input w-full"
@@ -532,32 +561,32 @@ const Datatable = <T extends object>(props: TableResultProps<T>) => {
             disabled={!canPreviousPage}
           >
             {"<<"}
-          </button>
+          </button>{" "}
           <button
             className="btn bg-white border-gray-200 hover:border-gray-300 text-indigo-500 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:border-gray-200"
             onClick={() => onChangePage(null, PageChangeType.Previous)}
             disabled={!canPreviousPage}
           >
             {"<"}
-          </button>
+          </button>{" "}
           <button
             className="btn bg-white border-gray-200 hover:border-gray-300 text-indigo-500 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:border-gray-200"
             onClick={() => onChangePage(null, PageChangeType.Next)}
             disabled={!canNextPage}
           >
             {">"}
-          </button>
+          </button>{" "}
           <button
             className="btn bg-white border-gray-200 hover:border-gray-300 text-indigo-500 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:border-gray-200"
             onClick={() => onChangePage(pageCount - 1)}
             disabled={!canNextPage}
           >
             {">>"}
-          </button>
+          </button>{" "}
         </div>
       </div>
     </>
   );
 };
 
-export default Datatable;
+export default ReactTable;
