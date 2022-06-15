@@ -4,6 +4,10 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import MobileNav from "./MobileNav";
 import ProfileDropdown from "./ProfileDropdown";
 import Link from "next/link";
+import { FaBars, FaWindowClose } from "react-icons/fa";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { toggleModal } from "../../../features/commons/modalSlice";
 
 // Navbar tailwind component
 const Navbar: FunctionComponent = () => {
@@ -28,7 +32,14 @@ const Navbar: FunctionComponent = () => {
   const router = useRouter();
   const path = router.pathname.substring(1);
 
+  const dispatch = useAppDispatch();
+  const isOpen = useAppSelector((state) => state.modal.isOpen);
+
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+
+  function onToggleModal() {
+    dispatch(toggleModal());
+  }
 
   const mobileMenuHandler = (): string => {
     if (isOpenMenu) {
@@ -43,7 +54,7 @@ const Navbar: FunctionComponent = () => {
 
   return (
     <>
-      <nav className="relative lg:px-[60px] flex justify-between items-center bg-white shadow-lg w-full z-50">
+      <nav className="relative lg:px-[60px] flex justify-between items-center bg-white shadow-lg w-full z-30">
         <Link href={`/`} passHref>
           <a className="text-3xl font-bold leading-none">
             <img
@@ -54,7 +65,7 @@ const Navbar: FunctionComponent = () => {
             />
           </a>
         </Link>
-        <div className="lg:hidden">
+        {/* <div className="lg:hidden">
           <button
             className="navbar-burger flex items-center text-orange-600 p-3"
             onClick={mobileMenuHandler}
@@ -68,7 +79,7 @@ const Navbar: FunctionComponent = () => {
               <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
             </svg>
           </button>
-        </div>
+        </div> */}
         <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
           <li>
             <Link href="/" passHref>
@@ -273,15 +284,27 @@ const Navbar: FunctionComponent = () => {
             </Link>
           </li>
         </ul>
-        {session && session.user ? (
-          <ProfileDropdown />
-        ) : (
-          <Link href="/auth/login" passHref>
-            <a className="hidden lg:inline-block py-2 px-8 text-sm text-white bg-primary hover:bg-primary-darker font-bold rounded-md transition duration-200">
-              Sign In
-            </a>
-          </Link>
-        )}
+        <div className="flex flex-row">
+          {session && session.user ? (
+            <ProfileDropdown />
+          ) : (
+            <Link href="/auth/login" passHref>
+              <a className="hidden lg:inline-block py-2 px-8 text-sm text-white bg-primary hover:bg-primary-darker font-bold rounded-md transition duration-200">
+                Sign In
+              </a>
+            </Link>
+          )}
+          <div
+            className="ml-2 mr-3 flex flex-row items-center"
+            onClick={mobileMenuHandler}
+          >
+            {isOpen ? (
+              <AiOutlineClose className="transform transition-all" size={18} />
+            ) : (
+              <AiOutlineMenu className="transform transition-all" size={18} />
+            )}
+          </div>
+        </div>
       </nav>
       <MobileNav isOpenMenu={isOpenMenu} menuHandler={mobileMenuHandler} />
     </>

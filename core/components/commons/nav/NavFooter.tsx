@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const NavFooter: FunctionComponent = () => {
   return (
-    <footer className="py-5 relative w-full border-t-2 mt-20">
+    <footer className="py-5 relative w-full border-t-2">
       <div className="container px-4 mx-auto">
         <div className="flex flex-wrap -mx-4 mb-8 lg:mb-16">
           <div className="w-full lg:w-1/3 px-4 mb-12 lg:mb-0">
@@ -15,8 +15,10 @@ const NavFooter: FunctionComponent = () => {
                 width="auto"
               />
             </a>
+            <h2 className="text-xl font-bold">ERC Sawangan</h2>
             <p className="mt-5 mb-6 max-w-xs text-gray-500 leading-loose">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Jl. Raya Muchtar No.73, Sawangan Baru, Kec. Sawangan, Kota Depok,
+              Jawa Barat 16511
             </p>
             <div>
               <a className="inline-block h-6 mr-8" href="#">

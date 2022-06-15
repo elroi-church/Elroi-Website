@@ -1,6 +1,7 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { blogCategoryApi } from "../features/blog/api/blog-category.api";
 import { blogPostApi } from "../features/blog/api/blog-post.api";
+import modalSlice from "../features/commons/modalSlice";
 
 export const store = configureStore({
   reducer: {
@@ -8,6 +9,7 @@ export const store = configureStore({
     // Since we don't have any yet, leave this empty
     [blogPostApi.reducerPath]: blogPostApi.reducer,
     [blogCategoryApi.reducerPath]: blogCategoryApi.reducer,
+    modal: modalSlice
   },
 });
 

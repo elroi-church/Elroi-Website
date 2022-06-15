@@ -13,7 +13,9 @@ import {
 } from "react-icons/fa";
 import Banner from "../../core/components/commons/banner";
 import MainLayout from "../../core/components/commons/layouts/MainLayout";
+import { useGetAllBlogCategoryQuery } from "../../core/features/blog/api/blog-category.api";
 import { useGetAllBlogPostQuery } from "../../core/features/blog/api/blog-post.api";
+import { BlogCategory } from "../../core/features/blog/dtos/models/blog-category.entity";
 import { BlogPost } from "../../core/features/blog/dtos/models/blog-post.entity";
 
 const Blog: NextPage = () => {
@@ -68,11 +70,24 @@ const Blog: NextPage = () => {
   const [pageNumbers, setPageNumbers] = React.useState<number[]>([]);
 
   const [blogPosts, setBlogPosts] = React.useState<BlogPost[]>([]);
+  const [blogCategories, setBlogCategories] = React.useState<BlogCategory[]>(
+    []
+  );
 
   const { data } = useGetAllBlogPostQuery(
     {
       page: currentPage,
       limit: pageSize,
+      status: "Published",
+    },
+    {
+      skip: false,
+      refetchOnMountOrArgChange: true,
+    }
+  );
+
+  const { data: blogCategoryData } = useGetAllBlogCategoryQuery(
+    {
       status: "Published",
     },
     {
@@ -92,6 +107,12 @@ const Blog: NextPage = () => {
       setPrevPage(data.prevPage);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (blogCategoryData) {
+      setBlogCategories(blogCategoryData.data);
+    }
+  }, [blogCategoryData]);
 
   useEffect(() => {
     if (router.query.page) {
@@ -135,38 +156,17 @@ const Blog: NextPage = () => {
                   All Categories
                 </a>
               </li>
-              <li className="w-full md:w-auto px-2">
-                <a
-                  className="inline-block w-full py-2 px-4 mb-4 md:mb-0 text-sm text-coolGray-400 hover:text-yellow-500 hover:bg-yellow-200 font-bold rounded-md hover:shadow-sm"
-                  href="#"
-                >
-                  Technology
-                </a>
-              </li>
-              <li className="w-full md:w-auto px-2">
-                <a
-                  className="inline-block w-full py-2 px-4 mb-4 md:mb-0 text-sm text-coolGray-400 hover:text-yellow-500 hover:bg-yellow-200 font-bold rounded-md hover:shadow-sm"
-                  href="#"
-                >
-                  Development
-                </a>
-              </li>
-              <li className="w-full md:w-auto px-2">
-                <a
-                  className="inline-block w-full py-2 px-4 mb-4 md:mb-0 text-sm text-coolGray-400 hover:text-yellow-500 hover:bg-yellow-200 font-bold rounded-md hover:shadow-sm"
-                  href="#"
-                >
-                  Marketing
-                </a>
-              </li>
-              <li className="w-full md:w-auto px-2">
-                <a
-                  className="inline-block w-full py-2 px-4 text-sm text-coolGray-400 hover:text-yellow-500 hover:bg-yellow-200 font-bold rounded-md hover:shadow-sm"
-                  href="#"
-                >
-                  Start-up
-                </a>
-              </li>
+
+              {blogCategories.map((category) => (
+                <li className="w-full md:w-auto px-2" key={category._id}>
+                  <a
+                    className="inline-block w-full py-2 px-4 mb-4 md:mb-0 text-sm text-coolGray-400 hover:text-yellow-500 hover:bg-yellow-200 font-bold rounded-md hover:shadow-sm"
+                    href="#"
+                  >
+                    {category.name}
+                  </a>
+                </li>
+              ))}
             </ul>
             <div className="flex flex-wrap items-center -mx-4 mb-12 md:mb-16">
               {blogPosts.map((blogPost, index) => (

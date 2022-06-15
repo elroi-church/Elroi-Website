@@ -5,6 +5,7 @@ import axios from "axios";
 import { appConfig } from "../../config/config";
 import { Sermon } from "../../core/features/sermon/entities/sermon.entity";
 import Head from "next/head";
+import Link from "next/link";
 
 interface SermonProps {
   recentSermons: Sermon[];
@@ -16,8 +17,6 @@ export const getServerSideProps: GetServerSideProps<SermonProps> = async () => {
   );
 
   const recentSermons = res.data?.data;
-
-  console.log(res);
 
   return {
     props: {
@@ -65,14 +64,27 @@ const SermonPage: FunctionComponent<SermonProps> = ({ recentSermons }) => {
               return (
                 <div key={idx} className="mb-5">
                   <div className="flex flex-col justify-center items-center overflow-hidden rounded-[30px] w-[90%] md:w-full shadow-lg mx-auto">
-                    <img
-                      src={sermon.thumbnailURL}
-                      className="h-auto w-full object-cover"
-                      alt="Term condition"
-                    />
+                    <a
+                      href={`${sermon.youtubeURL}`}
+                      target={"_blank"}
+                      rel="noreferrer"
+                    >
+                      <img
+                        src={sermon.thumbnailURL}
+                        className="h-auto w-full object-cover"
+                        alt="Term condition"
+                      />
+                    </a>
                   </div>
                   <div className="text-black mt-4 md:text-left text-center">
-                    <h2 className="font-bold">{sermon.title}</h2>
+                    <a
+                      href={`${sermon.youtubeURL}`}
+                      target={"_blank"}
+                      rel="noreferrer"
+                    >
+                      <h2 className="font-bold">{sermon.title}</h2>
+                    </a>
+
                     <p className="font-light">{sermon.content}</p>
                   </div>
                 </div>
