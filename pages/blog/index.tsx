@@ -130,7 +130,7 @@ const Blog: NextPage = () => {
         <title>Blog - ERC | Elroi Church Sawangan</title>
       </Head>
       <MainLayout>
-        <Banner title="The Rainbow" imgUrl="/assets/img/colour/colour.png" />
+        <Banner title="Articles" imgUrl="/assets/img/colour/colour.png" />
         <section className="py-24 bg-white">
           <div className="container px-4 mx-auto">
             <div className="mb-8 md:mb-16 md:max-w-5xl">
@@ -174,17 +174,20 @@ const Blog: NextPage = () => {
                   className="flex flex-wrap w-full xl:w-1/3 px-4 mb-8 md:-mx-4"
                   key={index}
                 >
-                  <div className="w-full md:px-4">
-                    <Link href={`blog/posts/${blogPost.slug}`} passHref>
-                      <a className="inline-block mb-6 md:mb-0 overflow-hidden rounded-md">
-                        <img
-                          src={blogPost.coverImage?.url}
-                          alt={`${blogPost.title} - image`}
-                          className="object-cover"
-                        />
-                      </a>
-                    </Link>
-                  </div>
+                  {blogPost.coverImage && (
+                    <div className="w-full md:px-4">
+                      <Link href={`blog/posts/${blogPost.slug}`} passHref>
+                        <a className="inline-block mb-6 md:mb-0 overflow-hidden rounded-md">
+                          <img
+                            src={blogPost.coverImage?.url}
+                            alt={`${blogPost.title} - image`}
+                            className="object-cover"
+                          />
+                        </a>
+                      </Link>
+                    </div>
+                  )}
+
                   <div className="flex flex-col justify-around w-full md:flex-1 md:px-4">
                     <Link href={`blog/posts/${blogPost.slug}`} passHref>
                       <a className="inline-block mb-4 text-2xl leading-tight text-coolGray-800 hover:text-coolGray-900 font-bold hover:underline">

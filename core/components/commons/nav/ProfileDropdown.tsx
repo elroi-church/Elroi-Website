@@ -1,20 +1,31 @@
 import { Menu, Transition } from "@headlessui/react";
+import { DefaultSession, Session } from "next-auth";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { Fragment, SVGProps, useEffect, useRef, useState } from "react";
 import { FaChevronDown, FaUser } from "react-icons/fa";
 
-export default function ProfileDropdown() {
+interface Props {
+  session: Session;
+}
+
+const ProfileDropdown: React.FC<Props> = ({ session }: Props) => {
+  const user = session.user;
+
   return (
-    <div className="text-right hidden lg:inline-block text-sm text-white bg-primary hover:bg-primary-darker font-bold rounded-md transition duration-200">
+    <div className="text-right text-sm text-white  font-bold rounded-md transition duration-200">
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <Menu.Button className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-            <FaUser className="w-3 h-3 mt-1 mr-2 text-white hover:text-gray-300" />
-            Profile
-            <FaChevronDown
-              className="w-3 h-3 mt-1 ml-2 -mr-1 text-white hover:text-gray-300"
-              aria-hidden="true"
+          <Menu.Button className="">
+            <img
+              className="rounded-full border border-gray-100 shadow-sm w-12 h-12 bg-cover"
+              referrerPolicy="no-referrer"
+              src={
+                user?.image
+                  ? user.image
+                  : "https://randomuser.me/api/portraits/women/81.jpg"
+              }
+              alt="user image"
             />
           </Menu.Button>
         </div>
@@ -75,4 +86,6 @@ export default function ProfileDropdown() {
       </Menu>
     </div>
   );
-}
+};
+
+export default ProfileDropdown;

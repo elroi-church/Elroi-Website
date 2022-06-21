@@ -22,10 +22,6 @@ const Navbar: FunctionComponent = () => {
 
   const { data: session } = useSession();
 
-  useEffect(() => {
-    console.log(session);
-  }, [session]);
-
   const isActive =
     "lg:inline-block px-4 bg-primary hover:bg-primary-darker rounded-md transition duration-200";
 
@@ -286,7 +282,7 @@ const Navbar: FunctionComponent = () => {
         </ul>
         <div className="flex flex-row">
           {session && session.user ? (
-            <ProfileDropdown />
+            <ProfileDropdown session={session} />
           ) : (
             <Link href="/auth/login" passHref>
               <a className="hidden lg:inline-block py-2 px-8 text-sm text-white bg-primary hover:bg-primary-darker font-bold rounded-md transition duration-200">
