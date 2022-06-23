@@ -1,3 +1,6 @@
-import { BaseFilterRequest } from "../../../core/base-filter.request";
+import { BaseFilterRequest } from "../../../api/api.type";
 
-export class BlogCategoryFilterRequest extends BaseFilterRequest {}
+
+export class BlogCategoryFilterRequest extends BaseFilterRequest {
+  
+}

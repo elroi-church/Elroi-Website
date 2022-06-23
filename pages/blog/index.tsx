@@ -87,9 +87,7 @@ const Blog: NextPage = () => {
   );
 
   const { data: blogCategoryData } = useGetAllBlogCategoryQuery(
-    {
-      status: "Published",
-    },
+    {},
     {
       skip: false,
       refetchOnMountOrArgChange: true,
