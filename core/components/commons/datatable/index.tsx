@@ -291,8 +291,9 @@ const ReactTable = <T extends object>(props: TableResultProps<T>) => {
   }
 
   const IndeterminateCheckbox: React.FC<IndeterminateCheckboxProps> =
-    React.forwardRef(({ indeterminate, ...rest }, ref) => {
-      const defaultRef = React.useRef<HTMLInputElement>();
+    React.forwardRef(({ indeterminate, ...rest }) => {
+      const defaultRef =
+        React.useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>;
       const resolvedRef = defaultRef;
 
       React.useEffect(() => {
@@ -310,6 +311,7 @@ const ReactTable = <T extends object>(props: TableResultProps<T>) => {
         </>
       );
     });
+  IndeterminateCheckbox.displayName = "IndeterminateCheckbox";
 
   const {
     getTableProps,
@@ -453,12 +455,13 @@ const ReactTable = <T extends object>(props: TableResultProps<T>) => {
       <div className="overflow-auto">
         <table className="table-auto w-full" {...getTableProps()}>
           <thead className="text-xs font-semibold uppercase text-gray-500 bg-gray-50 border-t border-b border-gray-200">
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
+            {headerGroups.map((headerGroup, index) => (
+              <tr {...headerGroup.getHeaderGroupProps()} key={index}>
                 {headerGroup.headers.map((column) => (
                   <th
                     className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap"
                     {...column.getHeaderProps(column.getSortByToggleProps())}
+                    key={column.id}
                   >
                     <div className="font-semibold text-left">
                       {column.render("Header")}
@@ -503,12 +506,13 @@ const ReactTable = <T extends object>(props: TableResultProps<T>) => {
             {page.map((row, i) => {
               prepareRow(row);
               return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map((cell) => {
+                <tr {...row.getRowProps()} key={i}>
+                  {row.cells.map((cell, key) => {
                     return (
                       <td
                         className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap"
                         {...cell.getCellProps()}
+                        key={key}
                       >
                         {cell.render("Cell")}
                       </td>
