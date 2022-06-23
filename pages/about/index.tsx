@@ -70,7 +70,7 @@ const index: FunctionComponent = () => {
             </h1>
           </div>
         </section>
-        <section className="py-20 w-full">
+        <section className="py-20 w-full container mx-auto">
           <div className="flex flex-wrap items-center mb-16 w-full">
             {listAbout?.map((about, idx) => {
               return (
@@ -89,7 +89,7 @@ const index: FunctionComponent = () => {
                       </div>
                       <div className="w-full order-first lg:order-last lg:w-1/3 mb-8 lg:mb-0">
                         <img
-                          className="w-[90%] lg:w-full h-full m-auto lg:m-0 rounded-[20px] lg:rounded-[0px] lg:rounded-l-xl"
+                          className="w-full lg:w-full h-full m-auto lg:m-0 lg:rounded-[0px] lg:rounded-l-xl"
                           src={about.img}
                           alt=""
                         />
@@ -99,7 +99,7 @@ const index: FunctionComponent = () => {
                     <>
                       <div className="w-full lg:w-1/3 mb-8 lg:mb-0">
                         <img
-                          className="w-[90%] lg:w-full h-full m-auto lg:m-0 rounded-[20px] lg:rounded-[0px] lg:rounded-r-xl"
+                          className="w-full lg:w-full h-full m-auto lg:m-0  lg:rounded-[0px] lg:rounded-r-xl"
                           src={about.img}
                           alt=""
                         />
@@ -124,7 +124,7 @@ const index: FunctionComponent = () => {
           </h1>
           <br />
           <br />
-          <div className="w-2/3 m-auto">
+          <div className="w-full lg:w-2/3 m-auto px-5">
             <p className="leading-loose lg:text-3xl lg:leading-[3rem] mb-3">
               Lukas 1 : (17) dan ia akan berjalan mendahului Tuhan dalam roh dan
               kuasa Elia untuk membuat hati bapa-bapa berbalik kepada
@@ -151,15 +151,15 @@ const index: FunctionComponent = () => {
           </div>
         </section>
         <section>
-          <div className="m-auto w-2/3 my-[80px] text-center">
+          <div className="m-auto w-full lg:w-2/3 my-[80px] text-center">
             <h1 className="font-bold text-4xl mb-3">
               MEET THE <span className="text-primary">PASTOR</span>
             </h1>
             <br />
-            <br />
+
             <div className="lg:flex">
               <div className="w-full lg:w-1/2">
-                <div className="h-fit w-full overflow-hidden mb-3 rounded-[30px] shadow-lg">
+                <div className="h-fit w-full overflow-hidden mb-3 lg:rounded-[30px] shadow-lg">
                   <img
                     src="/assets/img/about/meetpastor.png"
                     className="w-full"
@@ -167,10 +167,10 @@ const index: FunctionComponent = () => {
                   />
                 </div>
               </div>
-              <div className="w-full lg:w-1/2 ml-10 my-auto text-left">
-                <h2 className="text-3xl font-semibold"> Senior Pastor</h2>
-                <p className="text-xl"> Ps. M. Riza Solihin</p>
-                <p className="text-xl"> Ps. Elsa Imelda</p>
+              <div className="w-full lg:w-1/2 lg:ml-10 my-auto text-left px-5">
+                <h2 className="text-2xl font-semibold"> Senior Pastor</h2>
+                <p className="text-xl my-2"> Ps. M. Riza Solihin</p>
+                <p className="text-xl my-2"> Ps. Elsa Imelda</p>
               </div>
             </div>
           </div>

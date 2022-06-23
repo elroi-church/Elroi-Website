@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import { analytics } from "../utils/firebase";
 import { useRouter } from "next/router";
 import { logEvent, setCurrentScreen } from "firebase/analytics";
+import { store } from "../core/store";
+import { Provider } from "react-redux";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const router = useRouter();
@@ -27,7 +29,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
 
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
     </SessionProvider>
   );
 }

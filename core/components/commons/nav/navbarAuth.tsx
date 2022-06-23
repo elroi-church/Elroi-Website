@@ -45,19 +45,33 @@ const NavbarAuth: FunctionComponent<NavbarAuthProps> = ({ session }) => {
 
   return (
     <>
-      <nav className="relative lg:px-[70px] flex justify-between items-center bg-white shadow-lg w-full z-50 rounded-b-[35px]">
-        <Link href="/" passHref>
-          <a className="text-3xl font-bold leading-none" href="#">
-            <img
-              className="h-24"
-              src="/assets/img/logo_erc.png"
-              alt=""
-              width="auto"
-            />
-          </a>
-        </Link>
-        <div className="lg:hidden">
-          <button
+      <nav className="relative px-5 py-2 flex justify-between items-center bg-white shadow-lg w-full z-50 rounded-b-[35px]">
+        <div className="flex flex-row items-center">
+          <Link href="/" passHref>
+            <a className="text-3xl font-bold leading-none" href="#">
+              <img
+                className="h-24"
+                src="/assets/img/logo_erc.png"
+                alt=""
+                width="auto"
+              />
+            </a>
+          </Link>
+          <div className="lg:hidden">
+            <label
+              htmlFor="my-drawer-2"
+              className="navbar-burger drawer-button lg:hidden"
+            >
+              <svg
+                className="block h-4 w-4 fill-current"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Mobile menu</title>
+                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+              </svg>
+            </label>
+            {/* <button
             className="navbar-burger flex items-center text-orange-600 p-3"
             onClick={mobileMenuHandler}
           >
@@ -69,17 +83,18 @@ const NavbarAuth: FunctionComponent<NavbarAuthProps> = ({ session }) => {
               <title>Mobile menu</title>
               <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
             </svg>
-          </button>
+          </button> */}
+          </div>
         </div>
         <div className="flex items-center">
           <h4>{session.user?.name}</h4>
           <span className="pl-6">
             <ProfileDropdownAuth profileImage={session.user?.image} />
           </span>
-          <AiOutlineHome className="text-5xl pl-6" />
         </div>
       </nav>
-      <MobileNav isOpenMenu={isOpenMenu} menuHandler={mobileMenuHandler} />
+
+      {/* <MobileNav isOpenMenu={isOpenMenu} menuHandler={mobileMenuHandler} /> */}
     </>
   );
 };

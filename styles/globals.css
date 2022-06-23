@@ -10,10 +10,24 @@
 
 html,
 body,
-body > div:first-child,
+body>div:first-child,
 div#__next,
 div#__next {
   height: 100%;
+  
+}
+
+.modal {
+  transition: opacity 0.25s ease;
+}
+
+main .modal-active {
+  overflow-x: hidden;
+  overflow-y: visible !important;
+}
+
+.opacity-95 {
+  opacity: .95;
 }
 
 .scrolling-wrapper-flexbox {
@@ -21,9 +35,11 @@ div#__next {
   flex-wrap: nowrap;
   overflow-x: auto;
 }
+
 .scrolling-wrapper-flexbox .card {
   flex: 0 0 auto;
 }
+
 .scrolling-wrapper-flexbox::-webkit-scrollbar {
   display: none;
 }
@@ -131,3 +147,4 @@ input {
 .react-datepicker__day--range-end {
   @apply bg-blue-500 text-white hover:text-gray-700 hover:bg-white;
 }
+

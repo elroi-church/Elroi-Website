@@ -27,7 +27,7 @@ const baptism: NextPage = () => {
             { title: "Water Baptism", subtitle: "1 January 2022" },
           ]}
           imgUrlTerm="/assets/img/ministry/baptism2.png"
-          registerUrl="/dashboard/ministry/water_baptism_form"
+          registerUrl="/dashboard/water-baptism"
           termconditions={[
             {
               title: "1. Bawa pas photo berwarna ukuran 3x4 sebanyak 2 lembar",
