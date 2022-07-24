@@ -13,7 +13,7 @@ const CheckBox: React.FC<Props> = (props) => {
   const { checked, value, cb, item } = props;
   return (
     <div>
-      <div className={`${styles.round} ${checked ? styles.checked : ''}`}>
+      <div className={`${styles.round} ${checked ? styles.checked : ""}`}>
         <input
           type="checkbox"
           id="checkbox"
@@ -21,7 +21,7 @@ const CheckBox: React.FC<Props> = (props) => {
           readOnly
           checked={checked}
         />
-        <label htmlFor="checkbox" onClick={() => cb(value)} ></label>
+        <label htmlFor="checkbox" onClick={() => cb(value)}></label>
       </div>
     </div>
   );
