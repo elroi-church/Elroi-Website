@@ -1,7 +1,11 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
+import { cityApi } from "../features/area/api/city.api";
+import { stateApi } from "../features/area/api/state.api";
 import { blogCategoryApi } from "../features/blog/api/blog-category.api";
 import { blogPostApi } from "../features/blog/api/blog-post.api";
 import modalSlice from "../features/commons/modalSlice";
+import { familyMemberApi } from "../features/family/api/family-member.api";
+import { familyApi } from "../features/family/api/family.api";
 
 export const store = configureStore({
   reducer: {
@@ -9,6 +13,13 @@ export const store = configureStore({
     // Since we don't have any yet, leave this empty
     [blogPostApi.reducerPath]: blogPostApi.reducer,
     [blogCategoryApi.reducerPath]: blogCategoryApi.reducer,
+
+    [familyApi.reducerPath]: familyApi.reducer,
+    [familyMemberApi.reducerPath]: familyMemberApi.reducer,
+
+    [cityApi.reducerPath]: cityApi.reducer,
+    [stateApi.reducerPath]: stateApi.reducer,
+
     modal: modalSlice
   },
 });

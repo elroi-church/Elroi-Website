@@ -1,8 +1,9 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import MainLayout from "../core/components/commons/layouts/MainLayout";
-import kidsCss from "../styles/kids.module.css";
+import MainLayout from "../../core/components/commons/layouts/MainLayout";
+import DrpGrowWithUs from "../../core/components/drp/DrpGrowWithUs";
+import kidsCss from "../../styles/kids.module.css";
 
 const Kids: NextPage = () => {
   return (
@@ -11,160 +12,18 @@ const Kids: NextPage = () => {
         <title>Kids Church - ERC | Elroi Church Sawangan</title>
       </Head>
       <MainLayout>
-        <div className="py-20 md:py-28">
-          <div className="container px-4 mx-auto">
-            <div className="flex flex-wrap xl:items-center -mx-4">
-              <div className="w-full md:w-1/2 px-4 mb-16 md:mb-0">
-                <h1 className="mb-6 text-3xl md:text-5xl lg:text-6xl leading-tight font-bold tracking-tight">
-                  Join Our <span className="text-[#E2BE9A]">Kids Church</span>
-                </h1>
-                <p className="mb-8 text-lg md:text-xl text-coolGray-500 font-medium">
-                  We’re different. Flex is the only saas business platform that
-                  lets you run your business on one platform, seamlessly across
-                  all digital channels.
-                </p>
-                <div className="flex flex-wrap">
-                  <div className="w-full md:w-auto py-1 md:py-0 md:mr-4">
-                    <a
-                      className="inline-block py-5 px-7 w-full text-base md:text-lg leading-4 text-yellow-50 font-medium text-center bg-primary-light hover:bg-yellow-600 focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 border border-yellow-500 rounded-md shadow-sm"
-                      href="#"
-                    >
-                      Request a Demo
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="w-full md:w-1/2 px-4">
-                <div className="relative mx-auto md:mr-0 max-w-max">
-                  <img
-                    className="relative rounded-7xl"
-                    src="/assets/kids/kids_img.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         {/* Kids Speakers */}
 
-        <section className="bg-[#E2BE9A] min-h-screen py-10">
+        <section className="bg-black min-h-screen py-10">
+          <DrpGrowWithUs />
+
           <section
             className="py-24 text-white"
             style={{
               backgroundImage: `url('flex-ui-assets/elements/pattern-white.svg')`,
               backgroundPosition: "center",
             }}
-          >
-            <div className="container px-4 mx-auto">
-              <div className="flex flex-wrap items-center -mx-4 mb-16">
-                <div className="w-full md:w-1/2 px-4 mb-16 md:mb-0">
-                  <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-yellow-500 bg-yellow-100 font-medium uppercase rounded-full shadow-sm">
-                    09 January 2022
-                  </span>
-                  <h2 className="mb-6 text-4xl md:text-5xl leading-tight font-bold tracking-tighter">
-                    DIBENARKAN KARENA KETAATAN
-                  </h2>
-                  <p className="text-lg md:text-xl text-coolGray-500 font-medium mb-5">
-                    from Rachel Nisius | 09 January 2022
-                  </p>
-                  <p className="text-lg md:text-xl text-coolGray-500 font-medium">
-                    Lorem ipsum dolor sit amet, conse ctetur adipiscing elit.
-                    Viverra lorem egestas sed scelerisque ac quis pharetra,
-                    sociis. Tellus velit neque ut malesuada non. Diam, quis
-                    viverra tristique fermentum lacus, urna suspendisse molestie
-                    nunc. Morbi ipsum neque tellus scelerisque nulla.
-                  </p>
-                </div>
-                <div className="w-full md:w-1/2 px-4">
-                  {/* relative mx-auto md:mr-0 max-w-max overflow-hidden rounded-7xl */}
-                  <div className={`${kidsCss.videoWrapper} `}>
-                    <iframe
-                      className="rounded-3xl"
-                      width="560"
-                      height="315"
-                      src="https://www.youtube.com/embed/Ig4rJ0Q6Ufc"
-                      title="YouTube video player"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                </div>
-              </div>
-              <section className="py-20 flex justify-center">
-                <h2 className="text-6xl font-extrabold italic text-center text-white drop-shadow-xl uppercase">
-                  Kids Sermons
-                </h2>
-              </section>
-              <div className="flex flex-wrap -mx-4 text-center md:text-left">
-                <div className="w-full  md:w-1/3 px-4 mb-8">
-                  <div className="inline-flex items-center justify-center mb-4 w-12 h-12 text-xl text-white bg-yellow-500 font-semibold rounded-full">
-                    1
-                  </div>
-                  <h3 className="mb-2 text-xl font-bold">
-                    Measure your performance
-                  </h3>
-                  <p className="font-medium text-coolGray-500">
-                    Stay connected with your team and make quick decisions
-                    wherever you are.
-                  </p>
-                </div>
-                <div className="w-full  md:w-1/3 px-4 mb-8">
-                  <div className="inline-flex items-center justify-center mb-4 w-12 h-12 text-xl text-white bg-yellow-500 font-semibold rounded-full">
-                    2
-                  </div>
-                  <h3 className="mb-2 text-xl font-bold">Custom analytics</h3>
-                  <p className="font-medium text-coolGray-500">
-                    Get a complete sales dashboard in the cloud. See activity,
-                    revenue and social metrics all in one place.
-                  </p>
-                </div>
-                <div className="w-full  md:w-1/3 px-4 mb-8">
-                  <div className="inline-flex items-center justify-center mb-4 w-12 h-12 text-xl text-white bg-yellow-500 font-semibold rounded-full">
-                    3
-                  </div>
-                  <h3 className="mb-2 text-xl font-bold">Team Management</h3>
-                  <p className="font-medium text-coolGray-500">
-                    Our calendar lets you know what is happening with customer
-                    and projects so you
-                  </p>
-                </div>
-                <div className="w-full  md:w-1/3 px-4 mb-8 md:mb-0">
-                  <div className="inline-flex items-center justify-center mb-4 w-12 h-12 text-xl text-white bg-yellow-500 font-semibold rounded-full">
-                    4
-                  </div>
-                  <h3 className="mb-2 text-xl font-bold">Build your website</h3>
-                  <p className="font-medium text-coolGray-500">
-                    A tool that lets you build a dream website even if you know
-                    nothing about web design or programming.
-                  </p>
-                </div>
-                <div className="w-full  md:w-1/3 px-4 mb-8 md:mb-0">
-                  <div className="inline-flex items-center justify-center mb-4 w-12 h-12 text-xl text-white bg-yellow-500 font-semibold rounded-full">
-                    5
-                  </div>
-                  <h3 className="mb-2 text-xl font-bold">
-                    Connect multiple apps
-                  </h3>
-                  <p className="font-medium text-coolGray-500">
-                    The first business platform to bring together all of your
-                    products from one place.
-                  </p>
-                </div>
-                <div className="w-full  md:w-1/3 px-4">
-                  <div className="inline-flex items-center justify-center mb-4 w-12 h-12 text-xl text-white bg-yellow-500 font-semibold rounded-full">
-                    6
-                  </div>
-                  <h3 className="mb-2 text-xl font-bold">Easy setup</h3>
-                  <p className="font-medium text-coolGray-500">
-                    End to End Business Platform, Sales Management, Marketing
-                    Automation, Help Desk
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
+          ></section>
 
           <section className="py-20 flex justify-center">
             <h2 className="text-6xl font-extrabold italic text-center text-white drop-shadow-xl">

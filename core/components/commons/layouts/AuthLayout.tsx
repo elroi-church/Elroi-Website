@@ -135,6 +135,19 @@ const AuthLayout: FunctionComponent<AuthLayoutProps> = ({
                 </a>
               </Link>
             </MenuCollapse>
+            <MenuCollapse title={"Family"} path="dashboard/articles">
+              <Link href="/dashboard/family" passHref>
+                <a
+                  className={`btn-link text-xl py-2 mt-2 pl-4  ${
+                    path.toLowerCase() === "dashboard/articles/add"
+                      ? isActive
+                      : "text-black hover:text-gray-500"
+                  }`}
+                >
+                  My Family
+                </a>
+              </Link>
+            </MenuCollapse>
           </ul>
         </div>
       </div>

@@ -51,7 +51,7 @@ const MobileNav: React.FC<Props> = ({ isOpenMenu, menuHandler }) => {
 
   return (
     <div
-      className={`navbar-menu fixed top-0 left-0 bottom-0 w-full z-50 opacity-95 transition-all ${
+      className={`navbar-menu fixed top-0 left-0 bottom-0 w-full z-50 transition-all ${
         isOpenMenu ? "block" : "hidden"
       }`}
     >
@@ -66,7 +66,7 @@ const MobileNav: React.FC<Props> = ({ isOpenMenu, menuHandler }) => {
               width="auto"
             />
           </a>
-          <button className="navbar-close" onClick={menuButtonHandler}>
+          <button className="navbar-close mr-3" onClick={menuButtonHandler}>
             <svg
               className="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500"
               xmlns="http://www.w3.org/2000/svg"
