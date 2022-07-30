@@ -6,4 +6,7 @@ export class Family{
   state_id?: number;
   postalCode?: string;
   district?: string;
+  hamlet?: string;
+  familyPhoneNumber?: string;
+  neighbourhood?: string;
 }

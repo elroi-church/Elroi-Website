@@ -21,6 +21,18 @@ export const familyApi = createApi({
         };
       },
     }),
+    getMyFamily: builder.query<
+      PaginationResponse<Family[]>,
+      FamilyFilterRequest
+    >({
+      query: (data) => {
+        return {
+          method: "GET",
+          url: "/api/families/my-family",
+          params: data,
+        };
+      },
+    }),
     getFamilyDetail: builder.query<BaseResponse<Family>, { id: string }>({
       query: (data) => {
         return {
@@ -92,6 +104,7 @@ export const familyApi = createApi({
 
 export const {
   useGetAllFamilyQuery,
+  useGetMyFamilyQuery,
   useCreateFamilyMutation,
   useDeleteFamilyMutation,
   useGetFamilyDetailQuery,

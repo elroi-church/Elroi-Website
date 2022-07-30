@@ -46,7 +46,9 @@ const SideBar: React.FC = () => {
                 }`}
                 href="#"
                 onClick={() =>
-                  router.push("/dashboard/history", undefined, { shallow: true })
+                  router.push("/dashboard/history", undefined, {
+                    shallow: true,
+                  })
                 }
               >
                 History

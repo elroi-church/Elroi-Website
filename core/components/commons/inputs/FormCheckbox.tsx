@@ -13,21 +13,21 @@ import { ErrorMessage } from "@hookform/error-message";
 import { Input, InputProps } from "./InputField";
 import { FormErrorMessage } from "./FormErrorMessage";
 
-export type FormInputProps<TFormValues> = {
+export type FormCheckboxProps<TFormValues> = {
   name: Path<TFormValues>;
   rules?: RegisterOptions;
   register?: UseFormRegister<TFormValues>;
   errors?: Partial<DeepMap<TFormValues, FieldError>>;
 } & Omit<InputProps, "name">;
 
-export const FormInput = <TFormValues extends Record<string, unknown>>({
+export const FormCheckbox = <TFormValues extends Record<string, unknown>>({
   name,
   register,
   rules,
   errors,
   className,
   ...props
-}: FormInputProps<TFormValues>): JSX.Element => {
+}: FormCheckboxProps<TFormValues>): JSX.Element => {
   // If the name is in a FieldArray, it will be 'fields.index.fieldName' and errors[name] won't return anything, so we are using lodash get
   const errorMessages = get(errors, name);
   const hasError = !!(errors && errorMessages);

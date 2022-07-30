@@ -7,6 +7,8 @@ import { useRouter } from "next/router";
 import { logEvent, setCurrentScreen } from "firebase/analytics";
 import { store } from "../core/store";
 import { Provider } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const router = useRouter();
@@ -32,6 +34,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
       <Provider store={store}>
         <Component {...pageProps} />
       </Provider>
+      <ToastContainer />
     </SessionProvider>
   );
 }

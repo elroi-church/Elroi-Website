@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { useCallback, useEffect, useState } from "react";
 import { FaEdit, FaEye, FaPlus, FaTrash } from "react-icons/fa";
 import { Column } from "react-table";
-import AuthLayout from "../../../core/components/commons/layouts/AuthLayout";
-import { useRouter } from "next/router";
 import ReactTable from "../../../core/components/commons/datatable/index";
-import { useGetAllFamilyQuery } from "../../../core/features/family/api/family.api";
+import AuthLayout from "../../../core/components/commons/layouts/AuthLayout";
+import {
+  useDeleteFamilyMutation,
+  useGetMyFamilyQuery,
+} from "../../../core/features/family/api/family.api";
 import { Family } from "../../../core/features/family/models/family";
 
 const FamilyList = () => {
@@ -17,18 +20,16 @@ const FamilyList = () => {
   const [params, setParams] = React.useState([]);
   const [familyList, setFamilyList] = useState<Family[]>([]);
 
-  const handleChangePage = (page: number) => {
-    setCurrentPage(page + 1);
-  };
-
-  const handlePageSizeChange = (pageSize: number) => {
-    setPageSize(pageSize);
-  };
-
-  const { data, isLoading, error } = useGetAllFamilyQuery({
-    page: currentPage,
-    limit: 10,
-  });
+  const { data, isLoading, error, refetch } = useGetMyFamilyQuery(
+    {
+      page: currentPage,
+      limit: 10,
+    },
+    {
+      skip: false,
+      refetchOnMountOrArgChange: true,
+    }
+  );
 
   useEffect(() => {
     if (data) {
@@ -37,6 +38,34 @@ const FamilyList = () => {
       setFamilyList(data.data);
     }
   }, [data]);
+
+  const [deleteFamily] = useDeleteFamilyMutation();
+
+  const handleChangePage = (page: number) => {
+    setCurrentPage(page + 1);
+  };
+
+  const handlePageSizeChange = (pageSize: number) => {
+    setPageSize(pageSize);
+  };
+
+  const onDelete = useCallback(
+    async (id: string) => {
+      try {
+        const confirm = window.confirm("Are you sure to delete this family?");
+        if (confirm) {
+          await deleteFamily({
+            id,
+          }).unwrap();
+
+          refetch();
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    [deleteFamily, refetch]
+  );
 
   const familyColumns = React.useMemo<Column<any>[]>(
     () => [
@@ -79,7 +108,7 @@ const FamilyList = () => {
             </button>
             <button
               className="btn bg-white border-gray-200 hover:border-gray-300 text-red-500"
-              onClick={() => {}}
+              onClick={() => onDelete(row.original._id)}
             >
               <FaTrash />
             </button>
@@ -87,8 +116,9 @@ const FamilyList = () => {
         ),
       },
     ],
-    [router]
+    [onDelete, router]
   );
+
   return (
     <AuthLayout>
       <div className="bg-white shadow-lg rounded-sm border border-gray-200 relative">

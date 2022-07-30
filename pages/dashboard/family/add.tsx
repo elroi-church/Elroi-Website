@@ -1,10 +1,13 @@
+import { ErrorMessage } from "@hookform/error-message";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { skipToken } from "@reduxjs/toolkit/dist/query";
 import { useRouter } from "next/router";
 import React, { FC, useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import Select from "react-select";
+import Select, { CSSObjectWithLabel } from "react-select";
+import { toast } from "react-toastify";
 import * as yup from "yup";
+import { FormErrorMessage } from "../../../core/components/commons/inputs/FormErrorMessage";
 import { FormInput } from "../../../core/components/commons/inputs/FormInput";
 import { FormTextarea } from "../../../core/components/commons/inputs/FormTextarea";
 import AuthLayout from "../../../core/components/commons/layouts/AuthLayout";
@@ -13,15 +16,7 @@ import { useGetAllStateQuery } from "../../../core/features/area/api/state.api";
 import { City } from "../../../core/features/area/models/city.model";
 import { State } from "../../../core/features/area/models/state.model";
 import { useCreateFamilyMutation } from "../../../core/features/family/api/family.api";
-
-export type FamilyInformation = {
-  name: string;
-  state_id: number;
-  city_id: number;
-  address?: string;
-  district?: string;
-  postalCode?: string;
-};
+import { FamilyInformation } from "../../../core/features/family/models/family.type";
 
 export type SelectOption<T> = {
   value: T;
@@ -30,12 +25,13 @@ export type SelectOption<T> = {
 
 const schema = yup
   .object({
-    name: yup.string().required(),
-    state_id: yup.number().positive().integer().required(),
-    city_id: yup.number().positive().integer().required(),
-    address: yup.string().required(),
+    name: yup.string().required("Name is required"),
+    state_id: yup.number().positive().integer().required("State is required"),
+    city_id: yup.number().positive().integer().required("City is required"),
+    address: yup.string().required("Address is required"),
     district: yup.string().required(),
-    postalCode: yup.string().required(),
+    postalCode: yup.string().required("Postal code is required"),
+    familyPhoneNumber: yup.string().required("Phone number is required"),
   })
   .required();
 
@@ -106,7 +102,17 @@ const WaterBaptismForm: FC = () => {
 
   const onSubmit = async (data: FamilyInformation) => {
     try {
-      const { name, state_id, city_id, address, district, postalCode } = data;
+      const {
+        name,
+        state_id,
+        city_id,
+        address,
+        district,
+        postalCode,
+        familyPhoneNumber,
+        hamlet,
+        neighbourhood,
+      } = data;
 
       await createFamily({
         name,
@@ -115,11 +121,20 @@ const WaterBaptismForm: FC = () => {
         address,
         district,
         postalCode,
+        familyPhoneNumber,
+        hamlet,
+        neighbourhood,
       }).unwrap();
 
       router.push("/dashboard/family");
-    } catch (e) {
-      console.log(e);
+      toast("Success Menambahkan Data", {
+        type: "success",
+        autoClose: 2000,
+      });
+    } catch (error) {
+      toast("Gagal Menambahkan Data", {
+        type: "error",
+      });
     }
   };
 
@@ -135,71 +150,6 @@ const WaterBaptismForm: FC = () => {
         </h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          {/* Section KKJ Information */}
-          <section className="shadow-md border border-gray-100 rounded-lg p-5 mb-5">
-            <h2 className="text-lg text-left mb-5">KKJ Information</h2>
-
-            <div className="mb-4">
-              <label
-                className="block text-left text-gray-700 text-sm mb-2"
-                htmlFor="name"
-              >
-                NO KKJ
-              </label>
-              <input
-                className="appearance-none rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none input-disabled"
-                id="name"
-                type="text"
-                disabled
-              />
-            </div>
-
-            <div className="mb-4">
-              <label
-                className="block text-left text-gray-700 text-sm mb-2"
-                htmlFor="name"
-              >
-                Rayon
-              </label>
-              <input
-                className="appearance-none rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none input-disabled"
-                id="name"
-                type="text"
-                disabled
-              />
-            </div>
-
-            <div className="mb-4">
-              <label
-                className="block text-left text-gray-700 text-sm mb-2"
-                htmlFor="name"
-              >
-                Cabang
-              </label>
-              <input
-                className="appearance-none rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none input-disabled"
-                id="name"
-                type="text"
-                disabled
-              />
-            </div>
-
-            <div className="mb-4">
-              <label
-                className="block text-left text-gray-700 text-sm mb-2"
-                htmlFor="name"
-              >
-                Tanggal Process
-              </label>
-              <input
-                className="appearance-none rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none input-disabled"
-                id="name"
-                type="text"
-                disabled={true}
-              />
-            </div>
-          </section>
-
           {/* Section Family Information  */}
           <section className="shadow-md border border-gray-100 rounded-lg p-5 mb-5">
             <h2 className="text-lg text-left mb-5">Family Information</h2>
@@ -237,15 +187,39 @@ const WaterBaptismForm: FC = () => {
               <Controller<FamilyInformation>
                 control={control}
                 name="state_id"
-                render={({ field: { onChange, value, name, ref } }) => (
+                render={({
+                  field: { onChange, value, name, ref },
+                  fieldState,
+                }) => (
                   <Select
                     ref={ref}
                     name={name}
                     classNamePrefix="addl-class"
+                    styles={{
+                      control: (styles) => ({
+                        ...styles,
+                        borderColor: fieldState.error
+                          ? "red !important"
+                          : styles.borderColor,
+                        "&:hover": {
+                          borderColor: fieldState.error
+                            ? "red !important"
+                            : (styles["&:hover"] as CSSObjectWithLabel)
+                                .borderColor,
+                        },
+                      }),
+                    }}
                     options={stateList}
                     value={stateList.find((c) => c.value === Number(value))}
                     onChange={(val) => onChange(val?.value)}
                   />
+                )}
+              />
+              <ErrorMessage
+                errors={errors}
+                name={"state_id"}
+                render={({ message }) => (
+                  <FormErrorMessage>{message}</FormErrorMessage>
                 )}
               />
             </div>
@@ -260,15 +234,39 @@ const WaterBaptismForm: FC = () => {
               <Controller<FamilyInformation>
                 control={control}
                 name="city_id"
-                render={({ field: { onChange, value, name, ref } }) => (
+                render={({
+                  field: { onChange, value, name, ref },
+                  fieldState,
+                }) => (
                   <Select
                     ref={ref}
                     name={name}
                     classNamePrefix="addl-class"
                     options={cityList}
+                    styles={{
+                      control: (styles) => ({
+                        ...styles,
+                        borderColor: fieldState.error
+                          ? "red !important"
+                          : styles.borderColor,
+                        "&:hover": {
+                          borderColor: fieldState.error
+                            ? "red !important"
+                            : (styles["&:hover"] as CSSObjectWithLabel)
+                                .borderColor,
+                        },
+                      }),
+                    }}
                     value={cityList.find((c) => c.value === Number(value))}
                     onChange={(val) => onChange(val?.value)}
                   />
+                )}
+              />
+              <ErrorMessage
+                errors={errors}
+                name={"city_id"}
+                render={({ message }) => (
+                  <FormErrorMessage>{message}</FormErrorMessage>
                 )}
               />
             </div>
@@ -284,6 +282,33 @@ const WaterBaptismForm: FC = () => {
                 errors={errors}
               />
               <FormInput<FamilyInformation>
+                name="familyPhoneNumber"
+                label={"No Telfon Keluarga"}
+                className={"mb-2"}
+                id={"familyPhoneNumber"}
+                register={register}
+                placeholder={"Harap isi No Telfon keluarga"}
+                errors={errors}
+              />
+              <FormInput<FamilyInformation>
+                name="hamlet"
+                label={"RW"}
+                className={"mb-2"}
+                id={"hamlet"}
+                register={register}
+                placeholder={"Harap isi RW"}
+                errors={errors}
+              />
+              <FormInput<FamilyInformation>
+                name="neighbourhood"
+                label={"RT"}
+                className={"mb-2"}
+                id={"neighbourhood"}
+                register={register}
+                placeholder={"Harap isi RT"}
+                errors={errors}
+              />
+              <FormInput<FamilyInformation>
                 name="postalCode"
                 label={"Kode Pos"}
                 className={"mb-2"}
@@ -293,29 +318,14 @@ const WaterBaptismForm: FC = () => {
                 errors={errors}
               />
             </div>
-          </section>
-
-          <div
-            className={`${page >= 1 ? "flex" : ""} justify-between w-full mt-5`}
-          >
-            <div
-              className="text-left"
-              onClick={() => setPage(page - 1)}
-              style={{ display: page >= 1 ? "" : "none" }}
-            >
-              <button className="block uppercase sm:inline-block py-3 px-8 w-[280px] m-auto rounded-[15px] mb-4 sm:mb-0 sm:mr-3 text-lg text-center font-semibold leading-none  border-primary border-2 bg-primary border-transparent text-white hover:cursor-pointer">
-                Back Page
-              </button>
-            </div>
-
             <div className="text-right">
               <input
                 type="submit"
                 value="Save / Submit"
-                className="block uppercase sm:inline-block py-3 px-8 w-[280px] m-auto rounded-[15px] mb-4 sm:mb-0 sm:mr-3 text-lg text-center font-semibold leading-none border border-primary border-2 bg-primary border-transparent text-white hover:cursor-pointer"
+                className="block uppercase sm:inline-block py-3 px-8 w-[280px] m-auto rounded-[15px] mb-4 sm:mb-0 sm:mr-3 text-lg text-center font-semibold leading-none border-primary border-2 bg-primary border-transparent text-white hover:cursor-pointer"
               />
             </div>
-          </div>
+          </section>
         </form>
       </div>
     </AuthLayout>

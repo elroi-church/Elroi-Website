@@ -1,6 +1,7 @@
 export enum FamilyRole {
-  Head = "Head Of Family",
+  Head = "Head",
   Spouse = "Spouse",
   Child = "Child",
-  Other = "Other",
+  Others = "Others",
+  Relatives = "Relatives",
 }

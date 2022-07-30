@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { FormInput } from "../../../../core/components/commons/inputs/FormInput";
 import AuthLayout from "../../../../core/components/commons/layouts/AuthLayout";
@@ -13,27 +13,19 @@ import { City } from "../../../../core/features/area/models/city.model";
 import { State } from "../../../../core/features/area/models/state.model";
 import { useGetAllStateQuery } from "../../../../core/features/area/api/state.api";
 import { FormSelect } from "../../../../core/components/commons/inputs/FormReactSelect";
-import { FamilyMember } from "../../../../core/features/family/components/FamilyMember";
+import { FamilyMemberSection } from "../../../../core/features/family/components/FamilyMemberSection";
+import { Family } from "../../../../core/features/family/models/family";
+import {
+  useGetFamilyDetailQuery,
+  useUpdateFamilyMutation,
+} from "../../../../core/features/family/api/family.api";
+import { FamilyInformation } from "../../../../core/features/family/models/family.type";
+import { FamilyRole } from "../../../../core/features/family/models/enums/family-role.enum";
+import { toast } from "react-toastify";
 
 export type SelectOption<T> = {
   value: T;
   label: string;
-};
-
-enum FamilyRole {
-  Head = "Head Of Family",
-  Spouse = "Spouse",
-  Child = "Child",
-  Other = "Other",
-}
-
-export type FamilyInformation = {
-  name: string;
-  state_id: number;
-  city_id: number;
-  address?: string;
-  district?: string;
-  postalCode?: string;
 };
 
 export type FamilyMemberInformation = {
@@ -48,12 +40,13 @@ export type FamilyMemberInformation = {
 
 const schema = yup
   .object({
-    name: yup.string().required(),
-    state_id: yup.number().positive().integer().required(),
-    city_id: yup.number().positive().integer().required(),
-    address: yup.string().required(),
+    name: yup.string().required("Name is required"),
+    state_id: yup.number().positive().integer().required("State is required"),
+    city_id: yup.number().positive().integer().required("City is required"),
+    address: yup.string().required("Address is required"),
     district: yup.string().required(),
-    postalCode: yup.string().required(),
+    postalCode: yup.string().required("Postal code is required"),
+    familyPhoneNumber: yup.string().required("Phone number is required"),
   })
   .required();
 
@@ -62,16 +55,33 @@ const FamilyEdit: FC = () => {
 
   const id = router.query.id as string;
 
+  const [familyInformation, setFamilyInformation] = useState<Family>();
+
   const {
     register,
     handleSubmit,
     watch,
     control,
+    reset,
     formState: { errors },
   } = useForm<FamilyInformation>({
     mode: "onChange",
     resolver: yupResolver(schema),
   });
+
+  const { data: familyData } = useGetFamilyDetailQuery(
+    id ? { id: id } : skipToken,
+    {
+      refetchOnMountOrArgChange: true,
+      skip: false,
+    }
+  );
+
+  useEffect(() => {
+    if (familyData) {
+      reset(familyData.data);
+    }
+  }, [familyData, reset]);
 
   /* React State */
   const [cityList, setCityList] = useState<SelectOption<number>[]>([]);
@@ -96,6 +106,8 @@ const FamilyEdit: FC = () => {
       setStateList([]);
     };
   }, [stateData]);
+
+  const [updateFamily] = useUpdateFamilyMutation();
 
   const { data: cityData } = useGetAllCityQuery(
     watch("state_id") ? { state_id: watch("state_id") } : skipToken,
@@ -124,78 +136,114 @@ const FamilyEdit: FC = () => {
   const [page, setPage] = React.useState<number>(0);
 
   // create function handle submit form
-  const onSubmit = (data: any): void => {};
+  const onSubmit = async (data: FamilyInformation): Promise<void> => {
+    try {
+      const {
+        name,
+        state_id,
+        city_id,
+        address,
+        district,
+        postalCode,
+        familyPhoneNumber,
+        hamlet,
+        neighbourhood,
+      } = data;
+
+      await updateFamily({
+        _id: id,
+        name,
+        state_id,
+        city_id,
+        address,
+        district,
+        postalCode,
+        familyPhoneNumber,
+        hamlet,
+        neighbourhood,
+      }).unwrap();
+
+      router.push("/dashboard/family");
+      toast("Success Mengupdate Data", {
+        type: "success",
+        autoClose: 2000,
+      });
+    } catch (e) {
+      toast("Gagal Menambahkan Data", {
+        type: "error",
+      });
+    }
+  };
 
   return (
     <AuthLayout>
       <div className="px-5">
         Kartu Keluarga Jemaat
+        {/* Section KKJ Information */}
+        <section className="shadow-md border border-gray-100 rounded-lg p-5 mb-5">
+          <h2 className="text-lg text-left mb-5">KKJ Information</h2>
+
+          <div className="mb-4">
+            <label
+              className="block text-left text-gray-700 text-sm mb-2"
+              htmlFor="name"
+            >
+              NO KKJ
+            </label>
+            <input
+              className="appearance-none rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none input-disabled"
+              id="name"
+              type="text"
+              disabled
+            />
+          </div>
+
+          <div className="mb-4">
+            <label
+              className="block text-left text-gray-700 text-sm mb-2"
+              htmlFor="name"
+            >
+              Rayon
+            </label>
+            <input
+              className="appearance-none rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none input-disabled"
+              id="name"
+              type="text"
+              disabled
+            />
+          </div>
+
+          <div className="mb-4">
+            <label
+              className="block text-left text-gray-700 text-sm mb-2"
+              htmlFor="name"
+            >
+              Cabang
+            </label>
+            <input
+              className="appearance-none rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none input-disabled"
+              id="name"
+              type="text"
+              disabled
+            />
+          </div>
+
+          <div className="mb-4">
+            <label
+              className="block text-left text-gray-700 text-sm mb-2"
+              htmlFor="name"
+            >
+              Tanggal Process
+            </label>
+            <input
+              className="appearance-none rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none input-disabled"
+              id="name"
+              type="text"
+              disabled={true}
+            />
+          </div>
+        </section>
         <form onSubmit={handleSubmit(onSubmit)}>
-          {/* Section KKJ Information */}
-          <section className="shadow-md border border-gray-100 rounded-lg p-5 mb-5">
-            <h2 className="text-lg text-left mb-5">KKJ Information</h2>
-
-            <div className="mb-4">
-              <label
-                className="block text-left text-gray-700 text-sm mb-2"
-                htmlFor="name"
-              >
-                NO KKJ
-              </label>
-              <input
-                className="appearance-none rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none input-disabled"
-                id="name"
-                type="text"
-                disabled
-              />
-            </div>
-
-            <div className="mb-4">
-              <label
-                className="block text-left text-gray-700 text-sm mb-2"
-                htmlFor="name"
-              >
-                Rayon
-              </label>
-              <input
-                className="appearance-none rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none input-disabled"
-                id="name"
-                type="text"
-                disabled
-              />
-            </div>
-
-            <div className="mb-4">
-              <label
-                className="block text-left text-gray-700 text-sm mb-2"
-                htmlFor="name"
-              >
-                Cabang
-              </label>
-              <input
-                className="appearance-none rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none input-disabled"
-                id="name"
-                type="text"
-                disabled
-              />
-            </div>
-
-            <div className="mb-4">
-              <label
-                className="block text-left text-gray-700 text-sm mb-2"
-                htmlFor="name"
-              >
-                Tanggal Process
-              </label>
-              <input
-                className="appearance-none rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none input-disabled"
-                id="name"
-                type="text"
-                disabled={true}
-              />
-            </div>
-          </section>
-
           {/* Section Family Information  */}
           <section className="shadow-md border border-gray-100 rounded-lg p-5 mb-5">
             <h2 className="text-lg text-left mb-5">Family Information</h2>
@@ -280,6 +328,33 @@ const FamilyEdit: FC = () => {
                 errors={errors}
               />
               <FormInput<FamilyInformation>
+                name="familyPhoneNumber"
+                label={"No Telfon Keluarga"}
+                className={"mb-2"}
+                id={"familyPhoneNumber"}
+                register={register}
+                placeholder={"Harap isi No Telfon keluarga"}
+                errors={errors}
+              />
+              <FormInput<FamilyInformation>
+                name="hamlet"
+                label={"RW"}
+                className={"mb-2"}
+                id={"hamlet"}
+                register={register}
+                placeholder={"Harap isi RW"}
+                errors={errors}
+              />
+              <FormInput<FamilyInformation>
+                name="neighbourhood"
+                label={"RT"}
+                className={"mb-2"}
+                id={"neighbourhood"}
+                register={register}
+                placeholder={"Harap isi RT"}
+                errors={errors}
+              />
+              <FormInput<FamilyInformation>
                 name="postalCode"
                 label={"Kode Pos"}
                 className={"mb-2"}
@@ -289,157 +364,18 @@ const FamilyEdit: FC = () => {
                 errors={errors}
               />
             </div>
-          </section>
 
-          {/* Section Partner */}
-          <FamilyMember familyId={id} />
-
-          {/* Section Childrens */}
-          {/* <section className="shadow-md border border-gray-100 rounded-lg p-5 mb-5">
-            <div className="mb-4">
-              <label
-                className="block text-left  text-gray-700 text-sm mb-2"
-                htmlFor="name"
-              >
-                Nama Lengkap
-              </label>
-              <input
-                className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                id="name"
-                type="text"
-                value={form.kecamatan}
-                onChange={(v) =>
-                  setForm({ ...form, kecamatan: v.target.value })
-                }
-              />
-            </div>
-
-            <div className="mb-4">
-              <label
-                className="block text-left  text-gray-700 text-sm mb-2"
-                htmlFor="name"
-              >
-                Tempat Lahir
-              </label>
-              <input
-                className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                id="name"
-                type="text"
-                value={form.kecamatan}
-                onChange={(v) =>
-                  setForm({ ...form, kecamatan: v.target.value })
-                }
-              />
-            </div>
-
-            <div className="mb-4">
-              <label
-                className="block text-left  text-gray-700 text-sm mb-2"
-                htmlFor="name"
-              >
-                Tanggal Lahir
-              </label>
-              <input
-                className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                id="name"
-                type="text"
-                value={form.kecamatan}
-                onChange={(v) =>
-                  setForm({ ...form, kecamatan: v.target.value })
-                }
-              />
-            </div>
-
-            <div className="mb-4">
-              <label
-                className="block text-left  text-gray-700 text-sm mb-2"
-                htmlFor="name"
-              >
-                Pendidikan
-              </label>
-              <input
-                className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                id="name"
-                type="text"
-                value={form.kecamatan}
-                onChange={(v) =>
-                  setForm({ ...form, kecamatan: v.target.value })
-                }
-              />
-            </div>
-
-            <div className="mb-4">
-              <label
-                className="block text-left  text-gray-700 text-sm mb-2"
-                htmlFor="name"
-              >
-                Pekerjaan
-              </label>
-              <input
-                className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                id="name"
-                type="text"
-                value={form.kecamatan}
-                onChange={(v) =>
-                  setForm({ ...form, kecamatan: v.target.value })
-                }
-              />
-            </div>
-
-            <div className="mb-4">
-              <label
-                className="block text-left  text-gray-700 text-sm mb-2"
-                htmlFor="name"
-              >
-                Baptism
-              </label>
-              <input
-                className="appearance-none  rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                id="name"
-                type="text"
-                value={form.kecamatan}
-                onChange={(v) =>
-                  setForm({ ...form, kecamatan: v.target.value })
-                }
-              />
-            </div>
-          </section> */}
-
-          <div
-            className={`${page >= 1 ? "flex" : ""} justify-between w-full mt-5`}
-          >
-            <div
-              className="text-left"
-              onClick={() => setPage(page - 1)}
-              style={{ display: page >= 1 ? "" : "none" }}
-            >
-              <button className="block uppercase sm:inline-block py-3 px-8 w-[280px] m-auto rounded-[15px] mb-4 sm:mb-0 sm:mr-3 text-lg text-center font-semibold leading-none  border-primary border-2 bg-primary border-transparent text-white hover:cursor-pointer">
-                Back Page
-              </button>
-            </div>
-
-            <div
-              className="text-right"
-              style={{ display: page < 2 ? "" : "none" }}
-              onClick={() => setPage(page + 1)}
-            >
-              <button className="block uppercase sm:inline-block py-3 px-8 w-[280px] m-auto rounded-[15px] mb-4 sm:mb-0 sm:mr-3 text-lg text-center font-semibold leading-none  border-primary border-2 bg-primary border-transparent text-white hover:cursor-pointer">
-                Next Page
-              </button>
-            </div>
-
-            <div
-              className="text-right"
-              style={{ display: page !== 2 ? "none" : "" }}
-            >
+            <div className="text-right">
               <input
                 type="submit"
                 value="Save / Submit"
-                className="block uppercase sm:inline-block py-3 px-8 w-[280px] m-auto rounded-[15px] mb-4 sm:mb-0 sm:mr-3 text-lg text-center font-semibold leading-none border border-primary border-2 bg-primary border-transparent text-white hover:cursor-pointer"
+                className="block uppercase sm:inline-block py-3 px-8 w-[280px] m-auto rounded-[15px] mb-4 sm:mb-0 sm:mr-3 text-lg text-center font-semibold leading-none border-primary border-2 bg-primary border-transparent text-white hover:cursor-pointer"
               />
             </div>
-          </div>
+          </section>
         </form>
+        {/* Section Partner */}
+        <FamilyMemberSection familyId={id} />
       </div>
     </AuthLayout>
   );
