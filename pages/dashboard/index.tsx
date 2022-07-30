@@ -30,7 +30,13 @@ const Index: FunctionComponent = () => {
 
   return (
     <AuthLayout>
-      <div className="flex mr-4">
+      {/* Welcome Card */}
+      <section className="bg-gray-100 py-10 rounded-lg shadow-xl">
+        <div className="flex flex-col items-center justify-center">
+          <h1 className="text-2xl font-bold">Welcome</h1>
+        </div>
+      </section>
+      {/* <div className="flex mr-4">
         <div className="p-4 w-3/4 bg-transparent rounded-l-lg border sm:p-8">
           <div className="flex justify-between items-center mb-4">
             <span>
@@ -203,7 +209,7 @@ const Index: FunctionComponent = () => {
             </ul>
           </div>
         </div>
-      </div>
+      </div> */}
     </AuthLayout>
   );
 };

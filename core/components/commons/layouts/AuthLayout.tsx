@@ -47,7 +47,7 @@ const AuthLayout: FunctionComponent<AuthLayoutProps> = ({
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
-            <MenuCollapse title={"Prayers"} path="dashboard/prayers">
+            {/* <MenuCollapse title={"Prayers"} path="dashboard/prayers">
               <Link href="/dashboard/prayers" passHref>
                 <a
                   className={`btn-link text-xl py-2 mt-2 pl-4  ${
@@ -110,8 +110,8 @@ const AuthLayout: FunctionComponent<AuthLayoutProps> = ({
                   Cooperative
                 </a>
               </Link>
-            </li>
-            <MenuCollapse title={"Article"} path="dashboard/articles">
+            </li> */}
+            {/* <MenuCollapse title={"Article"} path="dashboard/articles">
               <Link href="/dashboard/articles/form" passHref>
                 <a
                   className={`btn-link text-xl py-2 mt-2 pl-4  ${
@@ -134,12 +134,23 @@ const AuthLayout: FunctionComponent<AuthLayoutProps> = ({
                   Article List
                 </a>
               </Link>
-            </MenuCollapse>
-            <MenuCollapse title={"Family"} path="dashboard/articles">
+            </MenuCollapse> */}
+            <Link href="/dashboard" passHref>
+              <a
+                className={`btn-link text-xl py-2 mt-2 mb-2 pl-4  ${
+                  path.toLowerCase() === "dashboard"
+                    ? isActive
+                    : "text-black hover:text-gray-500"
+                }`}
+              >
+                Dashboard
+              </a>
+            </Link>
+            <MenuCollapse title={"Family"} path="dashboard/family">
               <Link href="/dashboard/family" passHref>
                 <a
                   className={`btn-link text-xl py-2 mt-2 pl-4  ${
-                    path.toLowerCase() === "dashboard/articles/add"
+                    path.toLowerCase() === "dashboard/family"
                       ? isActive
                       : "text-black hover:text-gray-500"
                   }`}
