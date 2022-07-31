@@ -129,7 +129,7 @@ const FamilyList = () => {
           </h2>
           <div>
             <Link href="/dashboard/family/add">
-              <a className="btn bg-white border-gray-200 hover:border-gray-300 text-indigo-500 mr-2">
+              <a className="btn btn-primary">
                 <FaPlus />
               </a>
             </Link>

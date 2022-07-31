@@ -4,14 +4,13 @@ import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { Fragment, SVGProps, useEffect, useRef, useState } from "react";
 import { FaChevronDown, FaUser } from "react-icons/fa";
+import { User } from "../../../features/user/models/user";
 
 interface Props {
-  session: Session;
+  profile: User;
 }
 
-const ProfileDropdown: React.FC<Props> = ({ session }: Props) => {
-  const user = session.user;
-
+const ProfileDropdown: React.FC<Props> = ({ profile }: Props) => {
   return (
     <div className="text-right text-sm text-white  font-bold rounded-md transition duration-200">
       <Menu as="div" className="relative inline-block text-left">
@@ -21,8 +20,8 @@ const ProfileDropdown: React.FC<Props> = ({ session }: Props) => {
               className="rounded-full border border-gray-100 shadow-sm w-12 h-12 bg-cover"
               referrerPolicy="no-referrer"
               src={
-                user?.image
-                  ? user.image
+                profile?.image
+                  ? profile.image
                   : "https://randomuser.me/api/portraits/women/81.jpg"
               }
               alt="user image"

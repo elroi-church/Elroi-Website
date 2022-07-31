@@ -1,19 +1,16 @@
-import { useRouter } from "next/router";
-import React, { FunctionComponent, useEffect, useState } from "react";
-import { signIn, signOut, useSession } from "next-auth/react";
-import MobileNav from "./MobileNav";
-import ProfileDropdown from "./ProfileDropdown";
-import { AiOutlineHome } from "react-icons/ai";
-import ProfileDropdownAuth from "./ProfileDropdownAuth";
-import Link from "next/link";
 import { Session } from "next-auth";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { FunctionComponent, useState } from "react";
+import { User } from "../../../features/user/models/user";
+import ProfileDropdownAuth from "./ProfileDropdownAuth";
 
 interface NavbarAuthProps {
-  session: Session;
+  profile: User;
 }
 
 // Navbar tailwind component
-const NavbarAuth: FunctionComponent<NavbarAuthProps> = ({ session }) => {
+const NavbarAuth: FunctionComponent<NavbarAuthProps> = ({ profile }) => {
   const containerImage = [
     "/assets/img/about/about1.png",
     "/assets/img/about/about2.png",
@@ -87,9 +84,9 @@ const NavbarAuth: FunctionComponent<NavbarAuthProps> = ({ session }) => {
           </div>
         </div>
         <div className="flex items-center">
-          <h4>{session.user?.name}</h4>
+          <h4>{profile?.name}</h4>
           <span className="pl-6">
-            <ProfileDropdownAuth profileImage={session.user?.image} />
+            <ProfileDropdownAuth profileImage={profile?.image} />
           </span>
         </div>
       </nav>

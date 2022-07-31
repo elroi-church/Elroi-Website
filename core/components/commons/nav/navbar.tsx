@@ -8,6 +8,9 @@ import { FaBars, FaWindowClose } from "react-icons/fa";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { toggleModal } from "../../../features/commons/modalSlice";
+import { User } from "../../../features/user/models/user";
+import { useGetProfileQuery } from "../../../features/auth/api/auth.api";
+import { skipToken } from "@reduxjs/toolkit/dist/query";
 
 // Navbar tailwind component
 const Navbar: FunctionComponent = () => {
@@ -20,7 +23,19 @@ const Navbar: FunctionComponent = () => {
 
   const [openDropdown, setOpenDropdown] = useState(false);
 
-  const { data: session } = useSession();
+  const [profile, setProfile] = useState<User>();
+
+  const { status } = useSession();
+
+  const { data: profileData, isLoading: profileLoading } = useGetProfileQuery(
+    status == "authenticated" ? {} : skipToken
+  );
+
+  useEffect(() => {
+    if (profileData && !profileLoading) {
+      setProfile(profileData.data);
+    }
+  }, [profileData, profileLoading]);
 
   const isActive =
     "lg:inline-block px-4 bg-primary hover:bg-primary-darker rounded-md transition duration-200";
@@ -281,8 +296,8 @@ const Navbar: FunctionComponent = () => {
           </li>
         </ul>
         <div className="flex flex-row">
-          {session && session.user ? (
-            <ProfileDropdown session={session} />
+          {profile ? (
+            <ProfileDropdown profile={profile} />
           ) : (
             <Link href="/auth/login" passHref>
               <a className="hidden lg:inline-block py-2 px-8 text-sm text-white bg-primary hover:bg-primary-darker font-bold rounded-md transition duration-200">

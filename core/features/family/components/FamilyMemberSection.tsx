@@ -6,7 +6,6 @@ import * as yup from "yup";
 import axios from "axios";
 import { FormCheckbox } from "../../../components/commons/inputs/FormCheckbox";
 import { FormInput } from "../../../components/commons/inputs/FormInput";
-import { FormSelect } from "../../../components/commons/inputs/FormReactSelect";
 import {
   useCreateFamilyMemberMutation,
   useDeleteFamilyMemberMutation,
@@ -18,6 +17,7 @@ import { FamilyRole } from "../models/enums/family-role.enum";
 import { FamilyMember } from "../models/family-member";
 import { toast } from "react-toastify";
 import { TranslateFamilyRole } from "../utils/translate-family-role";
+import { FormSelect } from "../../../components/commons/inputs/FormSelect";
 
 // export type FamilyMemberInformation = {
 //   name: string;
