@@ -3,6 +3,7 @@ import { BaseResponse } from "../../../commons/types/base-response";
 import { apiBaseQuery } from "../../api/api.query";
 import { PaginationResponse } from "../../api/api.type";
 import { User } from "../../user/models/user";
+import { RegisterRequest } from "../dtos/register.request";
 
 
 
@@ -21,6 +22,19 @@ export const authApi = createApi({
           url: "/api/auth/profile",
         };
       },
+    }),
+
+    register: builder.mutation<
+      BaseResponse<User>,
+      RegisterRequest
+    >({
+      query: (data) => {
+        return {
+          method: "POST",
+          url: "/api/auth/register",
+          data,
+        };
+      }
     }),
   
     // getauthById: builder.query<BaseResponse<auth>, { id: string }>({
@@ -51,5 +65,6 @@ export const authApi = createApi({
 });
 
 export const {
-  useGetProfileQuery
+  useGetProfileQuery,
+  useRegisterMutation,
 } = authApi;

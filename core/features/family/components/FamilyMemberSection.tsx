@@ -16,8 +16,10 @@ import {
 import { FamilyRole } from "../models/enums/family-role.enum";
 import { FamilyMember } from "../models/family-member";
 import { toast } from "react-toastify";
-import { TranslateFamilyRole } from "../utils/translate-family-role";
+import { TranslateFamilyRole } from "../utils/translate-family-role.util";
 import { FormSelect } from "../../../components/commons/inputs/FormSelect";
+import { Education } from "../../commons/enums/education.enum";
+import { TranslateEducation } from "../../commons/utils/translate-education.util";
 
 // export type FamilyMemberInformation = {
 //   name: string;
@@ -39,6 +41,7 @@ const schema = yup
     education: yup.string().nullable(),
     job: yup.string().nullable(),
     isBaptized: yup.boolean().nullable(),
+    baptismDate: yup.date().nullable(),
   })
   .required();
 
@@ -110,6 +113,9 @@ export const FamilyMemberSection: React.FC<FamilyMemberProps> = ({
       ...familyMember,
       birthDate: familyMember.birthDate
         ? dayjs(familyMember.birthDate).format("YYYY-MM-DD")
+        : null,
+      baptismDate: familyMember.baptismDate
+        ? dayjs(familyMember.baptismDate).format("YYYY-MM-DD")
         : null,
     };
 
@@ -263,7 +269,39 @@ export const FamilyMemberSection: React.FC<FamilyMemberProps> = ({
           </div>
 
           <div className="mb-4">
-            <FormInput<Partial<FamilyMember>>
+            <FormSelect<Partial<FamilyMember>>
+              name="education"
+              label={"Pendidikan"}
+              className={"mb-2"}
+              id={"Education"}
+              register={register}
+              placeholder={"Harap isi Pendidikan"}
+              errors={errors}
+            >
+              <option></option>
+              <option value={Education.Elementary}>
+                {TranslateEducation(Education.Elementary)}
+              </option>
+              <option value={Education.JuniorHigh}>
+                {TranslateEducation(Education.JuniorHigh)}
+              </option>
+              <option value={Education.SeniorHigh}>
+                {TranslateEducation(Education.SeniorHigh)}
+              </option>
+              <option value={Education.Undergraduate}>
+                {TranslateEducation(Education.Undergraduate)}
+              </option>
+              <option value={Education.Graduate}>
+                {TranslateEducation(Education.Graduate)}
+              </option>
+              <option value={Education.Postgraduate}>
+                {TranslateEducation(Education.Postgraduate)}
+              </option>
+              <option value={Education.Others}>
+                {TranslateEducation(Education.Others)}
+              </option>
+            </FormSelect>
+            {/* <FormInput<Partial<FamilyMember>>
               name="education"
               type={"text"}
               label={"Pendidikan"}
@@ -272,7 +310,7 @@ export const FamilyMemberSection: React.FC<FamilyMemberProps> = ({
               register={register}
               placeholder={"Harap isi Pendidikan"}
               errors={errors}
-            />
+            /> */}
           </div>
 
           <div className="mb-4">
@@ -292,11 +330,43 @@ export const FamilyMemberSection: React.FC<FamilyMemberProps> = ({
             <FormCheckbox<Partial<FamilyMember>>
               name="isBaptized"
               type={"text"}
-              label={"Suda di Baptis ?"}
+              label={"Sudah di Baptis ?"}
               className={"mb-2"}
               id={"isBaptized"}
               register={register}
-              placeholder={"Harap isi Pekerjaan"}
+              errors={errors}
+            />
+            {watch("isBaptized") == true && (
+              <FormInput<Partial<FamilyMember>>
+                name="baptismDate"
+                type={"date"}
+                label={"Tanggal Baptis?"}
+                className={"mb-2"}
+                id={"baptismDate"}
+                register={register}
+                errors={errors}
+              />
+            )}
+          </div>
+
+          <div className="mb-4">
+            <FormCheckbox<Partial<FamilyMember>>
+              name="isMarried"
+              label={"Sudah menikah ?"}
+              className={"mb-2"}
+              id={"isMarried"}
+              register={register}
+              errors={errors}
+            />
+          </div>
+
+          <div className="mb-4">
+            <FormCheckbox<Partial<FamilyMember>>
+              name="isDedicatedToJesus"
+              label={"Sudah diserahkan ?"}
+              className={"mb-2"}
+              id={"isDedicatedToJesus"}
+              register={register}
               errors={errors}
             />
           </div>
@@ -349,7 +419,10 @@ export const FamilyMemberSection: React.FC<FamilyMemberProps> = ({
                 <th>Tanggal Lahir</th>
                 <th>Pendidikan</th>
                 <th>Pekerjaan</th>
-                <th>Baptism</th>
+                <th>Baptis ?</th>
+                <th>Tanggal Baptis</th>
+                <th>Menikah ?</th>
+                <th>Penyerahan ?</th>
                 <th>Family Role</th>
                 <th>Action</th>
               </tr>
@@ -380,7 +453,9 @@ export const FamilyMemberSection: React.FC<FamilyMemberProps> = ({
                     </span>
                   </td>
                   <td>
-                    <span className="font-bold">{familyMember.education}</span>
+                    <span className="font-bold">
+                      {TranslateEducation(familyMember.education)}
+                    </span>
                   </td>
                   <td>
                     <span className="font-bold">{familyMember.job}</span>
@@ -388,6 +463,21 @@ export const FamilyMemberSection: React.FC<FamilyMemberProps> = ({
                   <td>
                     <span className="font-bold">
                       {familyMember.isBaptized ? "Sudah" : "Belum"}
+                    </span>
+                  </td>
+                  <td>
+                    <span className="font-bold">
+                      {dayjs(familyMember.baptismDate).format("YYYY-MM-DD")}
+                    </span>
+                  </td>
+                  <td>
+                    <span className="font-bold">
+                      {familyMember.isMarried ? "Sudah" : "Belum"}
+                    </span>
+                  </td>
+                  <td>
+                    <span className="font-bold">
+                      {familyMember.isDedicatedToJesus ? "Sudah" : "Belum"}
                     </span>
                   </td>
                   <td>

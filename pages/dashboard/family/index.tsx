@@ -106,12 +106,12 @@ const FamilyList = () => {
             >
               <FaEdit />
             </button>
-            <button
+            {/* <button
               className="btn bg-white border-gray-200 hover:border-gray-300 text-red-500"
               onClick={() => onDelete(row.original._id)}
             >
               <FaTrash />
-            </button>
+            </button> */}
           </div>
         ),
       },
