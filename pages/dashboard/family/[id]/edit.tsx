@@ -12,7 +12,7 @@ import { skipToken } from "@reduxjs/toolkit/dist/query";
 import { City } from "../../../../core/features/area/models/city.model";
 import { State } from "../../../../core/features/area/models/state.model";
 import { useGetAllStateQuery } from "../../../../core/features/area/api/state.api";
-import { FormSelect } from "../../../../core/components/commons/inputs/FormReactSelect";
+
 import { FamilyMemberSection } from "../../../../core/features/family/components/FamilyMemberSection";
 import { Family } from "../../../../core/features/family/models/family";
 import {
@@ -64,7 +64,7 @@ const FamilyEdit: FC = () => {
     control,
     reset,
     formState: { errors },
-  } = useForm<FamilyInformation>({
+  } = useForm<Family>({
     mode: "onChange",
     resolver: yupResolver(schema),
   });
@@ -136,7 +136,7 @@ const FamilyEdit: FC = () => {
   const [page, setPage] = React.useState<number>(0);
 
   // create function handle submit form
-  const onSubmit = async (data: FamilyInformation): Promise<void> => {
+  const onSubmit = async (data: Family): Promise<void> => {
     try {
       const {
         name,
@@ -184,61 +184,49 @@ const FamilyEdit: FC = () => {
           <h2 className="text-lg text-left mb-5">KKJ Information</h2>
 
           <div className="mb-4">
-            <label
-              className="block text-left text-gray-700 text-sm mb-2"
-              htmlFor="name"
-            >
-              NO KKJ
-            </label>
-            <input
-              className="appearance-none rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none input-disabled"
-              id="name"
-              type="text"
-              disabled
+            <FormInput<Partial<Family>>
+              name="code"
+              label={"NO KKJ"}
+              className={"mb-2"}
+              id={"code"}
+              register={register}
+              errors={errors}
+              disabled={true}
             />
           </div>
 
           <div className="mb-4">
-            <label
-              className="block text-left text-gray-700 text-sm mb-2"
-              htmlFor="name"
-            >
-              Rayon
-            </label>
-            <input
-              className="appearance-none rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none input-disabled"
-              id="name"
-              type="text"
-              disabled
+            <FormInput<Partial<Family>>
+              name="churchArea"
+              label={"Rayon"}
+              className={"mb-2"}
+              id={"churchArea"}
+              register={register}
+              errors={errors}
+              disabled={true}
             />
           </div>
 
           <div className="mb-4">
-            <label
-              className="block text-left text-gray-700 text-sm mb-2"
-              htmlFor="name"
-            >
-              Cabang
-            </label>
-            <input
-              className="appearance-none rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none input-disabled"
-              id="name"
-              type="text"
-              disabled
+            <FormInput<Partial<Family>>
+              name="churchName"
+              label={"Cabang"}
+              className={"mb-2"}
+              id={"churchName"}
+              register={register}
+              errors={errors}
+              disabled={true}
             />
           </div>
 
           <div className="mb-4">
-            <label
-              className="block text-left text-gray-700 text-sm mb-2"
-              htmlFor="name"
-            >
-              Tanggal Process
-            </label>
-            <input
-              className="appearance-none rounded-[20px] border-gray border-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none input-disabled"
-              id="name"
-              type="text"
+            <FormInput<Partial<Family>>
+              name="updatedAt"
+              label={"Tanggal Process"}
+              className={"mb-2"}
+              id={"updatedAt"}
+              register={register}
+              errors={errors}
               disabled={true}
             />
           </div>
@@ -249,7 +237,7 @@ const FamilyEdit: FC = () => {
             <h2 className="text-lg text-left mb-5">Family Information</h2>
 
             <div className="mb-4">
-              <FormInput<FamilyInformation>
+              <FormInput<Partial<FamilyInformation>>
                 name="name"
                 label={"Nama Keluarga"}
                 className={"mb-2"}
@@ -259,7 +247,7 @@ const FamilyEdit: FC = () => {
                 errors={errors}
               />
 
-              <FormTextarea<FamilyInformation>
+              <FormTextarea<Partial<FamilyInformation>>
                 name="address"
                 label={"Alamat Lengkap"}
                 id={"address"}
@@ -278,7 +266,7 @@ const FamilyEdit: FC = () => {
               >
                 Provinsi
               </label>
-              <Controller<FamilyInformation>
+              <Controller<Partial<FamilyInformation>>
                 control={control}
                 name="state_id"
                 render={({ field: { onChange, value, name, ref } }) => (
@@ -301,7 +289,7 @@ const FamilyEdit: FC = () => {
               >
                 Kota/Kabupaten
               </label>
-              <Controller<FamilyInformation>
+              <Controller<Partial<FamilyInformation>>
                 control={control}
                 name="city_id"
                 render={({ field: { onChange, value, name, ref } }) => (
@@ -318,7 +306,7 @@ const FamilyEdit: FC = () => {
             </div>
 
             <div className="mb-4">
-              <FormInput<FamilyInformation>
+              <FormInput<Partial<FamilyInformation>>
                 name="district"
                 label={"Kecamatan"}
                 className={"mb-2"}
@@ -327,7 +315,7 @@ const FamilyEdit: FC = () => {
                 placeholder={"Harap isi Kecamatan"}
                 errors={errors}
               />
-              <FormInput<FamilyInformation>
+              <FormInput<Partial<FamilyInformation>>
                 name="familyPhoneNumber"
                 label={"No Telfon Keluarga"}
                 className={"mb-2"}
@@ -336,7 +324,7 @@ const FamilyEdit: FC = () => {
                 placeholder={"Harap isi No Telfon keluarga"}
                 errors={errors}
               />
-              <FormInput<FamilyInformation>
+              <FormInput<Partial<FamilyInformation>>
                 name="hamlet"
                 label={"RW"}
                 className={"mb-2"}
@@ -345,7 +333,7 @@ const FamilyEdit: FC = () => {
                 placeholder={"Harap isi RW"}
                 errors={errors}
               />
-              <FormInput<FamilyInformation>
+              <FormInput<Partial<FamilyInformation>>
                 name="neighbourhood"
                 label={"RT"}
                 className={"mb-2"}
@@ -354,7 +342,7 @@ const FamilyEdit: FC = () => {
                 placeholder={"Harap isi RT"}
                 errors={errors}
               />
-              <FormInput<FamilyInformation>
+              <FormInput<Partial<FamilyInformation>>
                 name="postalCode"
                 label={"Kode Pos"}
                 className={"mb-2"}

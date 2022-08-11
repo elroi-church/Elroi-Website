@@ -1,9 +1,12 @@
+import { Session } from "next-auth";
 import { getSession, GetSessionParams, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
-import router from "next/router";
+import router, { useRouter } from "next/router";
 
-import { FunctionComponent, ReactNode, useEffect } from "react";
+import { FunctionComponent, ReactNode, useEffect, useState } from "react";
+import { useGetProfileQuery } from "../../../features/auth/api/auth.api";
+import { User } from "../../../features/user/models/user";
 import { MenuCollapse } from "../../sidebar/menu-collapse";
 import NavbarAuth from "../nav/navbarAuth";
 import NavFooter from "../nav/NavFooter";
@@ -12,18 +15,40 @@ import SideBar from "../sidebar";
 interface AuthLayoutProps {
   children: ReactNode;
   title?: string;
+  // session?: Session;
 }
 
 const AuthLayout: FunctionComponent<AuthLayoutProps> = ({
   children,
   title,
+  // session,
 }) => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+
+  const router = useRouter();
+
+  const [profile, setProfile] = useState<User>();
+
+  const { data: profileData, isLoading: profileLoading } = useGetProfileQuery(
+    {}
+  );
+
+  useEffect(() => {
+    if (!session && status === "unauthenticated") {
+      router.push("/auth/login");
+    }
+  }, [router, session, status]);
+
+  useEffect(() => {
+    if (profileData && !profileLoading) {
+      setProfile(profileData.data);
+    }
+  }, [profileData, profileLoading]);
 
   if (typeof window === "undefined") return null;
 
   if (!session) {
-    return <div>Access Denied</div>;
+    return <div>Access Denied,Redirecting ....</div>;
   }
 
   const path = router.pathname.substring(1);
@@ -38,7 +63,7 @@ const AuthLayout: FunctionComponent<AuthLayoutProps> = ({
           {title ? title : "Dashboard - ERC | Elroi Church Sawangan"}
         </title>
       </Head>
-      <NavbarAuth session={session} />
+      <NavbarAuth profile={profile!} />
       <div className="drawer drawer-mobile !h-auto">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="flex h-screen overflow-hidden drawer-content flex-col my-10 ">
@@ -159,6 +184,41 @@ const AuthLayout: FunctionComponent<AuthLayoutProps> = ({
                 </a>
               </Link>
             </MenuCollapse>
+            <MenuCollapse title={"Settings"} path="dashboard/settings">
+              <Link href="/dashboard/settings/edit-profile" passHref>
+                <a
+                  className={`btn-link text-xl py-2 mt-2 pl-4  ${
+                    path.toLowerCase() === "dashboard/settings/edit-profile"
+                      ? isActive
+                      : "text-black hover:text-gray-500"
+                  }`}
+                >
+                  Edit Profile
+                </a>
+              </Link>
+              <Link href="/dashboard/settings/change-password" passHref>
+                <a
+                  className={`btn-link text-xl py-2 mt-2 pl-4  ${
+                    path.toLowerCase() === "dashboard/settings/change-password"
+                      ? isActive
+                      : "text-black hover:text-gray-500"
+                  }`}
+                >
+                  Change Password
+                </a>
+              </Link>
+              <Link href="/dashboard/settings/change-picture" passHref>
+                <a
+                  className={`btn-link text-xl py-2 mt-2 pl-4  ${
+                    path.toLowerCase() === "dashboard/settings/change-picture"
+                      ? isActive
+                      : "text-black hover:text-gray-500"
+                  }`}
+                >
+                  Change Picture
+                </a>
+              </Link>
+            </MenuCollapse>
           </ul>
         </div>
       </div>
@@ -172,12 +232,12 @@ const AuthLayout: FunctionComponent<AuthLayoutProps> = ({
 
 export default AuthLayout;
 
-export async function getServerSideProps(
-  context: GetSessionParams | undefined
-) {
-  return {
-    props: {
-      session: await getSession(context),
-    },
-  };
-}
+// export async function getServerSideProps(
+//   context: GetSessionParams | undefined
+// ) {
+//   return {
+//     props: {
+//       session: await getSession(context),
+//     },
+//   };
+// }

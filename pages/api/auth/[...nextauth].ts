@@ -13,6 +13,7 @@ import {
   GoogleAuthProvider,
   signInWithCredential,
 } from "firebase/auth";
+import { BaseResponse } from "../../../core/features/api/api.type";
 
 interface LoginRequest {
   username: string;
@@ -50,7 +51,7 @@ export default NextAuth({
         const url = `${process.env.API_URL}/api/auth/login`;
 
         const result = await axios
-          .post<LoginResponse>(
+          .post<BaseResponse<LoginResponse>>(
             url,
             {
               username: credentials?.username,
@@ -63,12 +64,9 @@ export default NextAuth({
               },
             }
           )
-          .catch((err) => {
-            console.log(err);
-          });
 
         if (result) {
-          const { accessToken, user } = result.data;
+          const { accessToken, user } = result.data.data;
 
           const response = {
             accessToken: accessToken,
@@ -138,6 +136,8 @@ export default NextAuth({
           console.log(getFirebaseToken);
           // extract these two tokens
           // const { accessToken, idToken } = account;
+        }else if(account.provider == "credentials"){
+          
         }
         console.log("user", user);
         return true;
