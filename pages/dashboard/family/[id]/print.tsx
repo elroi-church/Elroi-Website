@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { Button } from "@mui/material";
 import { skipToken } from "@reduxjs/toolkit/dist/query";
 import { NextPage } from "next";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
@@ -98,9 +99,9 @@ const FamilyPrint: NextPage = () => {
   return (
     <div>
       <section className="py-2">
-        <a href="/dashboard/family">
+        <Link href="/dashboard/family">
           <Button>Back</Button>
-        </a>
+        </Link>
         <Button onClick={onHandlePrint} variant="contained" color="primary">
           Print
         </Button>
@@ -202,7 +203,10 @@ const FamilyPrint: NextPage = () => {
                 <div className="border">Nikah</div>
               </div>
               {groupFamilyMember?.[FamilyRole.Head]?.map((item) => (
-                <div className="grid grid-cols-8 gap-0 text-center">
+                <div
+                  className="grid grid-cols-8 gap-0 text-center"
+                  key={item._id}
+                >
                   <div className="border">
                     {item.name ? <span>{item.name}</span> : <span>-</span>}
                   </div>
@@ -258,7 +262,10 @@ const FamilyPrint: NextPage = () => {
                 <div className="border">Nikah</div>
               </div>
               {groupFamilyMember?.[FamilyRole.Spouse]?.map((item) => (
-                <div className="grid grid-cols-8 gap-0 text-center">
+                <div
+                  className="grid grid-cols-8 gap-0 text-center"
+                  key={item._id}
+                >
                   <div className="border">
                     {item.name ? <span>{item.name}</span> : <span>-</span>}
                   </div>
@@ -314,7 +321,10 @@ const FamilyPrint: NextPage = () => {
                 <div className="border">Nikah</div>
               </div>
               {groupFamilyMember?.[FamilyRole.Child]?.map((item) => (
-                <div className="grid grid-cols-8 gap-0 text-center">
+                <div
+                  className="grid grid-cols-8 gap-0 text-center"
+                  key={item._id}
+                >
                   <div className="border">
                     {item.name ? <span>{item.name}</span> : <span>-</span>}
                   </div>
@@ -372,7 +382,10 @@ const FamilyPrint: NextPage = () => {
                 <div className="border">Nikah</div>
               </div>
               {groupFamilyMember?.[FamilyRole.Others]?.map((item) => (
-                <div className="grid grid-cols-8 gap-0 text-center">
+                <div
+                  className="grid grid-cols-8 gap-0 text-center"
+                  key={item._id}
+                >
                   <div className="border">
                     {item.name ? <span>{item.name}</span> : <span>-</span>}
                   </div>
