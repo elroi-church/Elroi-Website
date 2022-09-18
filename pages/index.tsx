@@ -32,10 +32,10 @@ const Home: NextPage = () => {
             <div className="w-full lg:w-1/2 px-3 lg:px-0">
               <h1 className="text-4xl font-bold">You`re Welcome Here!</h1>
               <p className="prose mt-5">
-                Life.Church is one church meeting in multiple locations, and we
+                Elroichurch is one church meeting in multiple locations, and we
                 want to help you become the person God made you to be. No matter
                 where you are in your journey, you`re invited to discover your
-                purpose and live it out at Life.Church.
+                purpose and live it out at Elroichurch.
               </p>
             </div>
             <div className="w-full lg:w-3/5 mt-5 lg:mt-0 lg:px-0 h-full">

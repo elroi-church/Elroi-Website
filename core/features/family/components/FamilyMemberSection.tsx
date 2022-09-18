@@ -135,7 +135,6 @@ export const FamilyMemberSection: React.FC<FamilyMemberProps> = ({
 
   const onSubmit = async (data: FamilyMember) => {
     try {
-      console.log(data);
       const { birthDate, ...value } = data;
       if (!isEdit) {
         await addFamilyMember({
@@ -344,6 +343,9 @@ export const FamilyMemberSection: React.FC<FamilyMemberProps> = ({
                 className={"mb-2"}
                 id={"baptismDate"}
                 register={register}
+                value={
+                  watch("baptismDate")?.toString() || new Date().toDateString()
+                }
                 errors={errors}
               />
             )}

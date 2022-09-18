@@ -1,7 +1,8 @@
+import { Button } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useState } from "react";
-import { FaEdit, FaEye, FaPlus, FaTrash } from "react-icons/fa";
+import { FaEdit, FaEye, FaPlus, FaPrint, FaTrash } from "react-icons/fa";
 import { Column } from "react-table";
 import ReactTable from "../../../core/components/commons/datatable/index";
 import AuthLayout from "../../../core/components/commons/layouts/AuthLayout";
@@ -82,21 +83,11 @@ const FamilyList = () => {
         accessor: "_id",
         Cell: ({ row }) => (
           <div>
-            <button
+            {/* <button
               className="btn bg-white border-gray-200 hover:border-gray-300 text-indigo-500 mr-2"
               onClick={() =>
-                router.push(`/cools/detail/${row.original._id}`, undefined, {
-                  shallow: true,
-                })
-              }
-            >
-              <FaEye />
-            </button>
-            <button
-              className="btn bg-white border-gray-200 hover:border-gray-300 text-yellow-500 mr-2"
-              onClick={() =>
                 router.push(
-                  `/dashboard/family/${row.original._id}/edit`,
+                  `/dashboard/family/${row.original._id}/detail`,
                   undefined,
                   {
                     shallow: true,
@@ -104,8 +95,23 @@ const FamilyList = () => {
                 )
               }
             >
-              <FaEdit />
-            </button>
+              <FaEye />
+            </button> */}
+            <Link href={`/dashboard/family/${row.original._id}/print`}>
+              <Button>
+                <FaPrint />
+              </Button>
+            </Link>
+            <Link href={`/dashboard/family/${row.original._id}/edit`}>
+              <Button color="warning">
+                <FaEdit />
+              </Button>
+            </Link>
+
+            <Button color="error" onClick={() => onDelete(row.original._id)}>
+              <FaTrash />
+            </Button>
+
             {/* <button
               className="btn bg-white border-gray-200 hover:border-gray-300 text-red-500"
               onClick={() => onDelete(row.original._id)}
