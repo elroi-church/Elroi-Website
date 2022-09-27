@@ -75,7 +75,7 @@ const FamilyPrint: NextPage = () => {
   }, [familyMemberData]);
 
   const onHandlePrint = () => {
-    setPageOrientation("portrait");
+    setPageOrientation("landscape");
     handlePrint();
   };
 
