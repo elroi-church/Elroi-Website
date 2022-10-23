@@ -29,9 +29,8 @@ const AuthLayout: FunctionComponent<AuthLayoutProps> = ({
 
   const [profile, setProfile] = useState<User>();
 
-  const { data: profileData, isLoading: profileLoading } = useGetProfileQuery(
-    {}
-  );
+  const { data: profileData, isLoading: profileLoading } =
+    useGetProfileQuery(null);
 
   useEffect(() => {
     if (!session && status === "unauthenticated") {

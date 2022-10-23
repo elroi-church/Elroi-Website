@@ -4,6 +4,7 @@ import { apiBaseQuery } from "../../api/api.query";
 import { PaginationResponse } from "../../api/api.type";
 import { FamilyFilterRequest } from "../models/dtos/family-filter.request";
 import { Family } from "../models/family";
+import { CreateFamilyDto } from "../models/dtos/create-family.dto";
 
 export const familyApi = createApi({
   reducerPath: "familyApi",
@@ -49,7 +50,7 @@ export const familyApi = createApi({
         };
       },
     }),
-    createFamily: builder.mutation<BaseResponse<Family>, Family>({
+    createFamily: builder.mutation<BaseResponse<Family>, CreateFamilyDto>({
       query: (data) => {
         return {
           method: "POST",

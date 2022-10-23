@@ -17,6 +17,12 @@ import { City } from "../../../core/features/area/models/city.model";
 import { State } from "../../../core/features/area/models/state.model";
 import { useCreateFamilyMutation } from "../../../core/features/family/api/family.api";
 import { FamilyInformation } from "../../../core/features/family/models/family.type";
+import { Education } from "../../../core/features/commons/enums/education.enum";
+import { TranslateEducation } from "../../../core/features/commons/utils/translate-education.util";
+import { FormSelect } from "../../../core/components/commons/inputs/FormSelect";
+import { FormCheckbox } from "../../../core/components/commons/inputs/FormCheckbox";
+import { useGetProfileQuery } from "../../../core/features/auth/api/auth.api";
+import { User } from "../../../core/features/user/models/user";
 
 export type SelectOption<T> = {
   value: T;
@@ -35,7 +41,7 @@ const schema = yup
   })
   .required();
 
-const WaterBaptismForm: FC = () => {
+const FamilyAddForm: FC = () => {
   const router = useRouter();
 
   const {
@@ -43,18 +49,22 @@ const WaterBaptismForm: FC = () => {
     handleSubmit,
     watch,
     control,
+    reset,
+    resetField,
     formState: { errors },
   } = useForm<FamilyInformation>({
     mode: "onChange",
     resolver: yupResolver(schema),
   });
 
-  console.log(errors);
-
   const [createFamily] = useCreateFamilyMutation();
+
+  const { data: profileData } = useGetProfileQuery(null);
 
   const [cityList, setCityList] = useState<SelectOption<number>[]>([]);
   const [stateList, setStateList] = useState<SelectOption<number>[]>([]);
+  const [useProfileData, setUseProfileData] = useState<boolean>(false);
+  const [profileDataState, setProfileDataState] = useState<User>({});
 
   const { data: stateData } = useGetAllStateQuery({
     country_id: 102,
@@ -100,6 +110,37 @@ const WaterBaptismForm: FC = () => {
     };
   }, [cityData]);
 
+  useEffect(() => {
+    if (profileData) {
+      setProfileDataState(profileData?.data!);
+    }
+    return () => {
+      setProfileDataState({});
+    };
+  }, [profileData]);
+
+  const onUseProfileData = (isUseProfile: boolean) => {
+    if (isUseProfile) {
+      const { name, birthDate, birthPlace, gender, baptismDate, email, phone } =
+        profileDataState!;
+      console.log(profileDataState);
+
+      reset({
+        ...watch(),
+        familyHeadName: name,
+        familyHeadEmail: email,
+        birthDate: birthDate ? birthDate!.toString() : undefined,
+        birthPlace: birthPlace ? birthPlace! : undefined,
+        gender: gender ?? undefined,
+        isBaptized: !!baptismDate,
+        baptismDate: baptismDate ? baptismDate!.toString() : undefined,
+        isMarried: false,
+        isDedicatedToJesus: false,
+        familyHeadPhoneNumber: phone ? phone! : undefined,
+      });
+    }
+  };
+
   const onSubmit = async (data: FamilyInformation) => {
     try {
       const {
@@ -112,6 +153,18 @@ const WaterBaptismForm: FC = () => {
         familyPhoneNumber,
         hamlet,
         neighbourhood,
+        familyHeadName,
+        familyHeadEmail,
+        familyHeadPhoneNumber,
+        birthDate,
+        birthPlace,
+        gender,
+        baptismDate,
+        isDedicatedToJesus,
+        isMarried,
+        job,
+        isBaptized,
+        education,
       } = data;
 
       await createFamily({
@@ -124,9 +177,22 @@ const WaterBaptismForm: FC = () => {
         familyPhoneNumber,
         hamlet,
         neighbourhood,
+        familyHeadName,
+        familyHeadEmail,
+        familyHeadPhoneNumber,
+        birthDate,
+        birthPlace,
+        gender,
+        baptismDate,
+        isDedicatedToJesus,
+        isMarried,
+        job,
+        isBaptized,
+        education,
       }).unwrap();
 
-      router.push("/dashboard/family");
+      await router.push("/dashboard/family");
+
       toast("Success Menambahkan Data", {
         type: "success",
         autoClose: 2000,
@@ -150,9 +216,183 @@ const WaterBaptismForm: FC = () => {
         </h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          {/* Section Family Information  */}
           <section className="shadow-md border border-gray-100 rounded-lg p-5 mb-5">
-            <h2 className="text-lg text-left mb-5">Family Information</h2>
+            <h2 className="font-bold text-xl mb-5">Data Kepala Keluarga</h2>
+
+            <div className={"mb-4"}>
+              <label className={"mr-2"}>Use My Profile Data ?</label>
+              <input
+                type={"checkbox"}
+                onChange={(e) => onUseProfileData(e.target.checked)}
+              />
+            </div>
+
+            {/* <FormCheckbox<FamilyInformation> */}
+            {/*   name="name" */}
+            {/*   label={"Use My Profile Data"} */}
+            {/*   className={"mb-2"} */}
+            {/*   id={"name"} */}
+            {/*   onChange={(e) => onUseProfileData()} */}
+            {/*   register={register} */}
+            {/*   placeholder={"Harap isi nama keluarga"} */}
+            {/*   errors={errors} */}
+            {/* /> */}
+
+            <div className={"mb-4"}>
+              <FormInput<FamilyInformation>
+                name="familyHeadName"
+                label={"Nama Kepala Keluarga"}
+                className={"mb-2"}
+                id={"familyHeadName"}
+                register={register}
+                placeholder={"Harap isi nama keluarga"}
+                errors={errors}
+              />
+
+              <FormInput<FamilyInformation>
+                name="familyHeadEmail"
+                label={"Email Kepala Keluarga"}
+                className={"mb-2"}
+                id={"familyHeadEmail"}
+                register={register}
+                placeholder={"Harap isi email kepala keluarga"}
+                errors={errors}
+              />
+
+              <FormInput<FamilyInformation>
+                name="familyHeadPhoneNumber"
+                label={"No Telepon Kepala Keluarga"}
+                className={"mb-2"}
+                id={"familyHeadPhoneNumber"}
+                register={register}
+                placeholder={"Harap isi No Telepon Kepala Keluarga"}
+                errors={errors}
+              />
+
+              <FormInput<FamilyInformation>
+                name="birthDate"
+                label={"Tempat Lahir"}
+                className={"mb-2"}
+                id={"birthDate"}
+                register={register}
+                placeholder={"Harap isi nama keluarga"}
+                errors={errors}
+              />
+
+              <FormSelect<FamilyInformation>
+                name="gender"
+                label={"Jenis Kelamin"}
+                className={"mb-2"}
+                id={"gender"}
+                register={register}
+                placeholder={"Harap pilih Jenis Kelamin"}
+                errors={errors}
+              >
+                <option></option>
+                <option>Male</option>
+                <option>Female</option>
+              </FormSelect>
+
+              <FormInput<FamilyInformation>
+                name="birthDate"
+                type={"date"}
+                label={"Tanggal Lahir"}
+                className={"mb-2"}
+                id={"birthDate"}
+                register={register}
+                placeholder={"Harap isi Tanggal Lahir"}
+                errors={errors}
+              />
+            </div>
+
+            <FormSelect<FamilyInformation>
+              name="education"
+              label={"Pendidikan"}
+              className={"mb-2"}
+              id={"Education"}
+              register={register}
+              placeholder={"Harap isi Pendidikan"}
+              errors={errors}
+            >
+              <option></option>
+              <option value={Education.Elementary}>
+                {TranslateEducation(Education.Elementary)}
+              </option>
+              <option value={Education.JuniorHigh}>
+                {TranslateEducation(Education.JuniorHigh)}
+              </option>
+              <option value={Education.SeniorHigh}>
+                {TranslateEducation(Education.SeniorHigh)}
+              </option>
+              <option value={Education.Undergraduate}>
+                {TranslateEducation(Education.Undergraduate)}
+              </option>
+              <option value={Education.Graduate}>
+                {TranslateEducation(Education.Graduate)}
+              </option>
+              <option value={Education.Postgraduate}>
+                {TranslateEducation(Education.Postgraduate)}
+              </option>
+              <option value={Education.Others}>
+                {TranslateEducation(Education.Others)}
+              </option>
+            </FormSelect>
+
+            <FormInput<FamilyInformation>
+              name="job"
+              type={"text"}
+              label={"Pekerjaan"}
+              className={"mb-2"}
+              id={"job"}
+              register={register}
+              placeholder={"Harap isi Pekerjaan"}
+              errors={errors}
+            />
+            <FormCheckbox<FamilyInformation>
+              name="isBaptized"
+              type={"text"}
+              label={"Sudah di Baptis ?"}
+              className={"mb-2"}
+              id={"isBaptized"}
+              register={register}
+              errors={errors}
+            />
+            {watch("isBaptized") == true && (
+              <FormInput<FamilyInformation>
+                name="baptismDate"
+                type={"date"}
+                label={"Tanggal Baptis?"}
+                className={"mb-2"}
+                id={"baptismDate"}
+                register={register}
+                value={
+                  watch("baptismDate")?.toString() || new Date().toDateString()
+                }
+                errors={errors}
+              />
+            )}
+
+            <FormCheckbox<FamilyInformation>
+              name="isMarried"
+              label={"Sudah menikah ?"}
+              className={"mb-2"}
+              id={"isMarried"}
+              register={register}
+              errors={errors}
+            />
+
+            <FormCheckbox<FamilyInformation>
+              name="isDedicatedToJesus"
+              label={"Sudah diserahkan ?"}
+              className={"mb-2"}
+              id={"isDedicatedToJesus"}
+              register={register}
+              errors={errors}
+            />
+
+            {/* Section Family Information  */}
+
+            <h2 className="font-bold text-lg text-left mb-5">Data Keluarga</h2>
 
             <div className="mb-4">
               <FormInput<FamilyInformation>
@@ -332,4 +572,4 @@ const WaterBaptismForm: FC = () => {
   );
 };
 
-export default WaterBaptismForm;
+export default FamilyAddForm;

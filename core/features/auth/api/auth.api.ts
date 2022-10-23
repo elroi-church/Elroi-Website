@@ -5,17 +5,11 @@ import { PaginationResponse } from "../../api/api.type";
 import { User } from "../../user/models/user";
 import { RegisterRequest } from "../dtos/register.request";
 
-
-
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: apiBaseQuery,
   endpoints: (builder) => ({
-    
-    getProfile: builder.query<
-      BaseResponse<User>,
-      {}
-    >({
+    getProfile: builder.query<BaseResponse<User>, null>({
       query: () => {
         return {
           method: "GET",
@@ -24,19 +18,16 @@ export const authApi = createApi({
       },
     }),
 
-    register: builder.mutation<
-      BaseResponse<User>,
-      RegisterRequest
-    >({
+    register: builder.mutation<BaseResponse<User>, RegisterRequest>({
       query: (data) => {
         return {
           method: "POST",
           url: "/api/auth/register",
           data,
         };
-      }
+      },
     }),
-  
+
     // getauthById: builder.query<BaseResponse<auth>, { id: string }>({
     //   query: (data) => {
     //     return {
@@ -64,7 +55,4 @@ export const authApi = createApi({
   }),
 });
 
-export const {
-  useGetProfileQuery,
-  useRegisterMutation,
-} = authApi;
+export const { useGetProfileQuery, useRegisterMutation } = authApi;

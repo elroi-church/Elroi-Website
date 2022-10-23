@@ -28,7 +28,7 @@ const Navbar: FunctionComponent = () => {
   const { status } = useSession();
 
   const { data: profileData, isLoading: profileLoading } = useGetProfileQuery(
-    status == "authenticated" ? {} : skipToken
+    status == "authenticated" ? null : skipToken
   );
 
   useEffect(() => {

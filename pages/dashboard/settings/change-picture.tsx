@@ -40,7 +40,7 @@ const ChangePassword: FC = () => {
 
   console.log(errors);
 
-  const { data: profileData, refetch } = useGetProfileQuery({});
+  const { data: profileData, refetch } = useGetProfileQuery(null);
 
   const [changeAvatar] = useChangeAvatarMutation();
 
