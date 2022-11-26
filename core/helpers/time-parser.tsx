@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 export const dateTimeFormat1 = (time: Date | string) => {
   const formatedTime = new Date(time);
   const result = `${formatedTime.getUTCDate()}, ${formatedTime.toLocaleString(
@@ -18,5 +20,11 @@ export const dateTimeFormat2 = (time: Date | string) => {
       month: "long",
     }
   )} ${formatedTime.getUTCFullYear()}`;
+  return result;
+};
+
+export const formatDate = (time: Date | string) => {
+  const formattedTime = dayjs(time);
+  const result = `${formattedTime.format("DD-MM-YYYY")}`;
   return result;
 };

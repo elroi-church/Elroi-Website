@@ -12,6 +12,8 @@ import * as yup from "yup";
 import { FormInput } from "../../core/components/commons/inputs/FormInput";
 import { useRegisterMutation } from "../../core/features/auth/api/auth.api";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
+import { useSession } from "next-auth/react";
 
 const schema = yup
   .object({
@@ -40,6 +42,14 @@ const Register: NextPage = () => {
   });
 
   const [submit] = useRegisterMutation();
+
+  const { status } = useSession();
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/");
+    }
+  });
 
   const onSubmit = async (data: RegisterRequest) => {
     console.log(data);

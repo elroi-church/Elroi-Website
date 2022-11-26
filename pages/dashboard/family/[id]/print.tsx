@@ -4,13 +4,14 @@ import { skipToken } from "@reduxjs/toolkit/dist/query";
 import { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import { useGetAllFamilyMemberQuery } from "../../../../core/features/family/api/family-member.api";
 import { useGetFamilyDetailQuery } from "../../../../core/features/family/api/family.api";
 import { FamilyRole } from "../../../../core/features/family/models/enums/family-role.enum";
 import { Family } from "../../../../core/features/family/models/family";
 import { FamilyMember } from "../../../../core/features/family/models/family-member";
+import { formatDate } from "../../../../core/helpers/time-parser";
 
 const minWidth = 150;
 
@@ -18,6 +19,41 @@ const SpanTitle = styled.span`
   font-weight: bold;
   min-width: ${minWidth}px;
 `;
+
+const CustomColumn: React.FC<{ item?: FamilyMember }> = ({ item }) => {
+  return (
+    <div className="grid grid-cols-8 gap-0 text-center">
+      <div className="border border-black">
+        {item?.name ? <span>{item!.name}</span> : <span>-</span>}
+      </div>
+      <div className="border border-black">
+        {item?.birthPlace && item?.birthDate ? (
+          <span>{`${item?.birthPlace}, ${formatDate(item?.birthDate)}`}</span>
+        ) : (
+          <span>-</span>
+        )}
+      </div>
+      <div className="border border-black">
+        {item?.education ? <span>{item!.education}</span> : <span>-</span>}
+      </div>
+      <div className="border border-black">
+        {item?.job ? <span>{item!.job}</span> : <span>-</span>}
+      </div>
+      <div className="border border-black">
+        {item?.gender ? <span>{item!.gender}</span> : <span>-</span>}
+      </div>
+      <div className="border border-black">
+        {item?.isDedicatedToJesus ? <span>Sudah</span> : <span>Belum</span>}
+      </div>
+      <div className="border border-black">
+        {item?.isBaptized ? <span>Sudah</span> : <span>Belum</span>}
+      </div>
+      <div className="border border-black">
+        {item?.isMarried ? <span>Sudah</span> : <span>Belum</span>}
+      </div>
+    </div>
+  );
+};
 
 const FamilyPrint: NextPage = () => {
   const componentRef = useRef(null);
@@ -51,6 +87,29 @@ const FamilyPrint: NextPage = () => {
     }
   );
 
+  let documentStyle = {
+    body: {
+      fontFamily: "roboto",
+      fontSize: 11,
+      lineHeight: 1.4,
+    },
+    "@page": {
+      size: "letter landscape",
+      margin: 0,
+      fontSize: 8,
+      lineHeight: 1.2,
+    },
+  };
+
+  // Print css style
+  useEffect(() => {
+    // loop through the styles and apply them to the document
+    for (const prop in documentStyle.body) {
+      document.body.style[prop] = documentStyle.body[prop];
+    }
+    return () => {};
+  }, [documentStyle]);
+
   useEffect(() => {
     if (familyData) {
       setFamilyInformation(familyData.data);
@@ -80,18 +139,24 @@ const FamilyPrint: NextPage = () => {
   };
 
   function setPageOrientation(cssPageOrientation: string) {
-    const style = document.createElement("style");
-    style.innerHTML = `@page {size: ${cssPageOrientation}}`;
-    style.id = "page-orientation";
-    document.head.appendChild(style);
+    // const style = document.createElement("style");
+    // style.innerHTML = `@page {size: ${cssPageOrientation}}`;
+    // style.id = "page-orientation";
+    //
+    // document.head.appendChild(style);
+
+    for (const prop in documentStyle["@page"]) {
+      document.body.style[prop] = documentStyle["@page"][prop];
+    }
   }
 
   const Logo = () => (
     <div className="w-1/5">
       <img
-        src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Gereja_Bethel_Indonesia.png"
+        src="/assets/logo.png"
+        style={{ maxWidth: "100px" }}
         alt="logo"
-        className="object-cover"
+        className="object-cover shrink"
       />
     </div>
   );
@@ -102,7 +167,7 @@ const FamilyPrint: NextPage = () => {
         <Link href="/dashboard/family">
           <Button>Back</Button>
         </Link>
-        <Button onClick={onHandlePrint} variant="contained" color="primary">
+        <Button onClick={onHandlePrint} color="warning">
           Print
         </Button>
       </section>
@@ -110,13 +175,15 @@ const FamilyPrint: NextPage = () => {
         <header>
           {/* Logo & Title */}
           <section className="flex flex-row min-w-0 w-full">
-            <div className="w-1/2 flex flex-row">
+            <div className="w-full flex flex-row">
               <Logo />
-              <div className="flex flex-col ml-5 w-4/5">
-                <h2 className="text-2xl lg:text-4xl uppercase font-medium">
+              <div className="flex flex-row justify-between ml-5 w-4/5">
+                <h2 className="text-2xl lg:text-3xl uppercase font-medium">
                   Kartu Keluarga Jemaat
                 </h2>
-                <h3 className="text-2xl lg:text-3xl uppercase mt-2 font-normal">
+              </div>
+              <div>
+                <h3 className="text-2xl lg:text-3xl uppercase font-normal">
                   Gereja Bethel Indonesia
                 </h3>
                 <p>
@@ -141,8 +208,7 @@ const FamilyPrint: NextPage = () => {
               <div className="flex flex-row">
                 <p>Mulai Berjamaat: 2017 | </p>
                 <p>
-                  Tanggal Proses:{" "}
-                  {familyInformation?.createdAt?.toLocaleString()}
+                  Tanggal Proses: {formatDate(familyInformation?.createdAt!)}
                 </p>
               </div>
             </div>
@@ -188,62 +254,22 @@ const FamilyPrint: NextPage = () => {
           </section>
         </header>
         <main className="mt-2">
+          <div className="grid grid-cols-8 gap-0 text-center">
+            <div className="border border-black">Nama</div>
+            <div className="border border-black">Tempat, Tanggal Lahir</div>
+            <div className="border border-black">Pendidikan</div>
+            <div className="border border-black">Pekerjaan</div>
+            <div className="border border-black">Jenis Kelamin</div>
+            <div className="border border-black">Diserahkan</div>
+            <div className="border border-black">Baptis Selam</div>
+            <div className="border border-black">Nikah</div>
+          </div>
           <section className="mt-2">
             <h2>A. Kepala Rohani</h2>
 
             <section>
-              <div className="grid grid-cols-8 gap-0 text-center">
-                <div className="border">Nama</div>
-                <div className="border">Tempat, Tanggal Lahir</div>
-                <div className="border">Pendidikan</div>
-                <div className="border">Pekerjaan Swasta</div>
-                <div className="border">Jenis Kelamin</div>
-                <div className="border">Diserahkan</div>
-                <div className="border">Baptis Selam</div>
-                <div className="border">Nikah</div>
-              </div>
               {groupFamilyMember?.[FamilyRole.Head]?.map((item) => (
-                <div
-                  className="grid grid-cols-8 gap-0 text-center"
-                  key={item._id}
-                >
-                  <div className="border">
-                    {item.name ? <span>{item.name}</span> : <span>-</span>}
-                  </div>
-                  <div className="border">
-                    {item.birthPlace && item?.birthDate ? (
-                      <span>{`${item.birthPlace}, ${item.birthDate}`}</span>
-                    ) : (
-                      <span>-</span>
-                    )}
-                  </div>
-                  <div className="border">
-                    {item.education ? (
-                      <span>{item.education}</span>
-                    ) : (
-                      <span>-</span>
-                    )}
-                  </div>
-                  <div className="border">
-                    {item.job ? <span>{item.job}</span> : <span>-</span>}
-                  </div>
-                  <div className="border">
-                    {item.gender ? <span>{item.gender}</span> : <span>-</span>}
-                  </div>
-                  <div className="border">
-                    {item.isDedicatedToJesus ? (
-                      <span>Sudah</span>
-                    ) : (
-                      <span>Belum</span>
-                    )}
-                  </div>
-                  <div className="border">
-                    {item.isBaptized ? <span>Sudah</span> : <span>Belum</span>}
-                  </div>
-                  <div className="border">
-                    {item.isMarried ? <span>Sudah</span> : <span>Belum</span>}
-                  </div>
-                </div>
+                <CustomColumn item={item} key={item._id} />
               ))}
             </section>
           </section>
@@ -251,181 +277,39 @@ const FamilyPrint: NextPage = () => {
           <section className="mt-2">
             <h2>B. Pasangan</h2>
             <section>
-              <div className="grid grid-cols-8 gap-0 text-center">
-                <div className="border">Nama</div>
-                <div className="border">Tempat, Tanggal Lahir</div>
-                <div className="border">Pendidikan</div>
-                <div className="border">Pekerjaan Swasta</div>
-                <div className="border">Jenis Kelamin</div>
-                <div className="border">Diserahkan</div>
-                <div className="border">Baptis Selam</div>
-                <div className="border">Nikah</div>
-              </div>
-              {groupFamilyMember?.[FamilyRole.Spouse]?.map((item) => (
-                <div
-                  className="grid grid-cols-8 gap-0 text-center"
-                  key={item._id}
-                >
-                  <div className="border">
-                    {item.name ? <span>{item.name}</span> : <span>-</span>}
-                  </div>
-                  <div className="border">
-                    {item.birthPlace && item?.birthDate ? (
-                      <span>{`${item.birthPlace}, ${item.birthDate}`}</span>
-                    ) : (
-                      <span>-</span>
-                    )}
-                  </div>
-                  <div className="border">
-                    {item.education ? (
-                      <span>{item.education}</span>
-                    ) : (
-                      <span>-</span>
-                    )}
-                  </div>
-                  <div className="border">
-                    {item.job ? <span>{item.job}</span> : <span>-</span>}
-                  </div>
-                  <div className="border">
-                    {item.gender ? <span>{item.gender}</span> : <span>-</span>}
-                  </div>
-                  <div className="border">
-                    {item.isDedicatedToJesus ? (
-                      <span>Sudah</span>
-                    ) : (
-                      <span>Belum</span>
-                    )}
-                  </div>
-                  <div className="border">
-                    {item.isBaptized ? <span>Sudah</span> : <span>Belum</span>}
-                  </div>
-                  <div className="border">
-                    {item.isMarried ? <span>Sudah</span> : <span>Belum</span>}
-                  </div>
-                </div>
-              ))}
+              {groupFamilyMember?.[FamilyRole.Spouse]?.length === 0 ? (
+                groupFamilyMember?.[FamilyRole.Spouse]?.map((item) => (
+                  <CustomColumn item={item} key={item._id} />
+                ))
+              ) : (
+                <CustomColumn />
+              )}
             </section>
           </section>
 
           <section className="mt-2">
             <h2>C. Anak</h2>
             <section>
-              <div className="grid grid-cols-8 gap-0 text-center">
-                <div className="border">Nama</div>
-                <div className="border">Tempat, Tanggal Lahir</div>
-                <div className="border">Pendidikan</div>
-                <div className="border">Pekerjaan Swasta</div>
-                <div className="border">Jenis Kelamin</div>
-                <div className="border">Diserahkan</div>
-                <div className="border">Baptis Selam</div>
-                <div className="border">Nikah</div>
-              </div>
-              {groupFamilyMember?.[FamilyRole.Child]?.map((item) => (
-                <div
-                  className="grid grid-cols-8 gap-0 text-center"
-                  key={item._id}
-                >
-                  <div className="border">
-                    {item.name ? <span>{item.name}</span> : <span>-</span>}
-                  </div>
-                  <div className="border">
-                    {item.birthPlace && item?.birthDate ? (
-                      <span>{`${
-                        item.birthPlace
-                      }, ${item.birthDate.toLocaleString()}`}</span>
-                    ) : (
-                      <span>-</span>
-                    )}
-                  </div>
-                  <div className="border">
-                    {item.education ? (
-                      <span>{item.education}</span>
-                    ) : (
-                      <span>-</span>
-                    )}
-                  </div>
-                  <div className="border">
-                    {item.job ? <span>{item.job}</span> : <span>-</span>}
-                  </div>
-                  <div className="border">
-                    {item.gender ? <span>{item.gender}</span> : <span>-</span>}
-                  </div>
-                  <div className="border">
-                    {item.isDedicatedToJesus ? (
-                      <span>Sudah</span>
-                    ) : (
-                      <span>Belum</span>
-                    )}
-                  </div>
-                  <div className="border">
-                    {item.isBaptized ? <span>Sudah</span> : <span>Belum</span>}
-                  </div>
-                  <div className="border">
-                    {item.isMarried ? <span>Sudah</span> : <span>Belum</span>}
-                  </div>
-                </div>
-              ))}
+              {groupFamilyMember?.[FamilyRole.Child]?.length === 0 ? (
+                groupFamilyMember?.[FamilyRole.Child]?.map((item) => (
+                  <CustomColumn item={item} key={item._id} />
+                ))
+              ) : (
+                <CustomColumn />
+              )}
             </section>
           </section>
 
           <section className="mt-2">
-            <h2>D. Keluarga Lain</h2>
+            <h2>D.Orang lain yang tinggal serumah</h2>
             <section>
-              <div className="grid grid-cols-8 gap-0 text-center">
-                <div className="border">Nama</div>
-                <div className="border">Tempat, Tanggal Lahir</div>
-                <div className="border">Pendidikan</div>
-                <div className="border">Pekerjaan Swasta</div>
-                <div className="border">Jenis Kelamin</div>
-                <div className="border">Diserahkan</div>
-                <div className="border">Baptis Selam</div>
-                <div className="border">Nikah</div>
-              </div>
-              {groupFamilyMember?.[FamilyRole.Others]?.map((item) => (
-                <div
-                  className="grid grid-cols-8 gap-0 text-center"
-                  key={item._id}
-                >
-                  <div className="border">
-                    {item.name ? <span>{item.name}</span> : <span>-</span>}
-                  </div>
-                  <div className="border">
-                    {item.birthPlace && item?.birthDate ? (
-                      <span>{`${
-                        item.birthPlace
-                      }, ${item.birthDate.toLocaleString()}`}</span>
-                    ) : (
-                      <span>-</span>
-                    )}
-                  </div>
-                  <div className="border">
-                    {item.education ? (
-                      <span>{item.education}</span>
-                    ) : (
-                      <span>-</span>
-                    )}
-                  </div>
-                  <div className="border">
-                    {item.job ? <span>{item.job}</span> : <span>-</span>}
-                  </div>
-                  <div className="border">
-                    {item.gender ? <span>{item.gender}</span> : <span>-</span>}
-                  </div>
-                  <div className="border">
-                    {item.isDedicatedToJesus ? (
-                      <span>Sudah</span>
-                    ) : (
-                      <span>Belum</span>
-                    )}
-                  </div>
-                  <div className="border">
-                    {item.isBaptized ? <span>Sudah</span> : <span>Belum</span>}
-                  </div>
-                  <div className="border">
-                    {item.isMarried ? <span>Sudah</span> : <span>Belum</span>}
-                  </div>
-                </div>
-              ))}
+              {groupFamilyMember?.[FamilyRole.Child]?.length === 0 ? (
+                groupFamilyMember?.[FamilyRole.Child]?.map((item) => (
+                  <CustomColumn item={item} key={item._id} />
+                ))
+              ) : (
+                <CustomColumn />
+              )}
             </section>
           </section>
         </main>
