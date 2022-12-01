@@ -277,7 +277,7 @@ const FamilyPrint: NextPage = () => {
           <section className="mt-2">
             <h2>B. Pasangan</h2>
             <section>
-              {groupFamilyMember?.[FamilyRole.Spouse]?.length === 0 ? (
+              {groupFamilyMember?.[FamilyRole.Spouse] ? (
                 groupFamilyMember?.[FamilyRole.Spouse]?.map((item) => (
                   <CustomColumn item={item} key={item._id} />
                 ))
@@ -290,7 +290,7 @@ const FamilyPrint: NextPage = () => {
           <section className="mt-2">
             <h2>C. Anak</h2>
             <section>
-              {groupFamilyMember?.[FamilyRole.Child]?.length === 0 ? (
+              {groupFamilyMember?.[FamilyRole.Child] ? (
                 groupFamilyMember?.[FamilyRole.Child]?.map((item) => (
                   <CustomColumn item={item} key={item._id} />
                 ))
@@ -303,8 +303,8 @@ const FamilyPrint: NextPage = () => {
           <section className="mt-2">
             <h2>D.Orang lain yang tinggal serumah</h2>
             <section>
-              {groupFamilyMember?.[FamilyRole.Child]?.length === 0 ? (
-                groupFamilyMember?.[FamilyRole.Child]?.map((item) => (
+              {groupFamilyMember?.[FamilyRole.Others] ? (
+                groupFamilyMember?.[FamilyRole.Others]?.map((item) => (
                   <CustomColumn item={item} key={item._id} />
                 ))
               ) : (
