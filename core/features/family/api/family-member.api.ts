@@ -40,7 +40,7 @@ export const familyMemberApi = createApi({
         };
       },
     }),
-    createFamilyMember: builder.mutation<BaseResponse<FamilyMember>, FamilyMember>({
+    createFamilyMember: builder.mutation<BaseResponse<FamilyMember>, FamilyMember[]>({
       query: (data) => {
         return {
           method: "POST",

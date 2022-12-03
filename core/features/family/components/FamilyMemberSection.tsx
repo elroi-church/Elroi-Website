@@ -40,8 +40,7 @@ const schema = yup
     birthPlace: yup.string().required("Birth place is required"),
     education: yup.string().nullable(),
     job: yup.string().nullable(),
-    isBaptized: yup.boolean().nullable(),
-    baptismDate: yup.date().nullable(),
+    isBaptized: yup.boolean().nullable()
   })
   .required();
 
@@ -114,9 +113,6 @@ export const FamilyMemberSection: React.FC<FamilyMemberProps> = ({
       birthDate: familyMember.birthDate
         ? dayjs(familyMember.birthDate).format("YYYY-MM-DD")
         : null,
-      baptismDate: familyMember.baptismDate
-        ? dayjs(familyMember.baptismDate).format("YYYY-MM-DD")
-        : null,
     };
 
     reset(newData);
@@ -137,11 +133,11 @@ export const FamilyMemberSection: React.FC<FamilyMemberProps> = ({
     try {
       const { birthDate, ...value } = data;
       if (!isEdit) {
-        await addFamilyMember({
+        await addFamilyMember([{
           ...value,
           birthDate: birthDate ?? null,
           familyId,
-        }).unwrap();
+        }]).unwrap();
       } else {
         await updateFamilyMember({
           ...value,
@@ -335,20 +331,6 @@ export const FamilyMemberSection: React.FC<FamilyMemberProps> = ({
               register={register}
               errors={errors}
             />
-            {watch("isBaptized") == true && (
-              <FormInput<Partial<FamilyMember>>
-                name="baptismDate"
-                type={"date"}
-                label={"Tanggal Baptis?"}
-                className={"mb-2"}
-                id={"baptismDate"}
-                register={register}
-                value={
-                  watch("baptismDate")?.toString() || new Date().toDateString()
-                }
-                errors={errors}
-              />
-            )}
           </div>
 
           <div className="mb-4">

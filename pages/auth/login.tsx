@@ -3,10 +3,10 @@ import MainLayout from "../../core/components/commons/layouts/MainLayout";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { useRouter } from "next/router";
-import { getCsrfToken, getProviders, signIn } from "next-auth/react";
+import {getCsrfToken, getProviders, signIn, useSession} from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 
 const Login: NextPage = () => {
   const router = useRouter();
@@ -14,6 +14,14 @@ const Login: NextPage = () => {
   const [state, setState] = useState({
     username: "",
     password: "",
+  });
+
+  const { status } = useSession();
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/");
+    }
   });
 
   const onSubmitLogin = async (e: React.FormEvent<HTMLFormElement>) => {
